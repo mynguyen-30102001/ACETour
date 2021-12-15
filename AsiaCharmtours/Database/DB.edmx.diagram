@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="49b95f53d052420c97048653bcacaa7f" Name="Diagram1">
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_Cabin" Width="1.5" PointX="13.5" PointY="45.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CabinGallery" Width="1.5" PointX="15.75" PointY="46.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CabinPrice" Width="1.5" PointX="15.75" PointY="49.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CabinPriceDetail" Width="1.5" PointX="18.75" PointY="46.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_Cruise" Width="1.5" PointX="11.25" PointY="36" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CruiseBookTour" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CruiseGallery" Width="1.5" PointX="13.5" PointY="51" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CruiseItineraries" Width="1.5" PointX="13.5" PointY="37" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CruiseMenu" Width="1.5" PointX="16.5" PointY="43" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CruiseTour" Width="1.5" PointX="16.5" PointY="39.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.CR_CruiseTourType" Width="1.5" PointX="11.25" PointY="32" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_Application" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_Guide" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_GuideStep" Width="1.5" PointX="5.25" PointY="2.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_Path" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_Role" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_RolePath" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_Screen" Width="1.5" PointX="6.75" PointY="28.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_User" Width="1.5" PointX="0.75" PointY="36" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_UserHistory" Width="1.5" PointX="3" PointY="29.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_UserMembership" Width="1.5" PointX="3" PointY="46.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_UserPath" Width="1.5" PointX="5.25" PointY="21.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_UserProfile" Width="1.5" PointX="3" PointY="52.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_UserRole" Width="1.5" PointX="5.25" PointY="24.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.D_UserScreen" Width="1.5" PointX="9" PointY="31.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.H_RoomType" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.H_RoomTypeGallery" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.QA_Question" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.QA_QuestionMenu" Width="1.5" PointX="5.75" PointY="9.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.QA_QuestionTour" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.Require" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.RV_Review" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.RV_ReviewMenu" Width="1.5" PointX="11.75" PointY="4.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.RV_ReviewTour" Width="1.5" PointX="11.75" PointY="7.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.RV_TravelerRating" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.RV_TravelerType" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.S_Service" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.S_ServiceGallery" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.S_ServiceMenu" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.SR_Destination" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.SR_DestinationSearchTourType" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.SR_SearchTourType" Width="1.5" PointX="13.75" PointY="6.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.SR_Theme" Width="1.5" PointX="17" PointY="33.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.SR_ThemeMenu" Width="1.5" PointX="11.25" PointY="46.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.sysdiagram" Width="1.5" PointX="13.75" PointY="9.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_Customize" Width="1.5" PointX="11.75" PointY="13.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_Tour" Width="1.5" PointX="19.25" PointY="36.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourBook" Width="1.5" PointX="13.75" PointY="12.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourGallery" Width="1.5" PointX="21.5" PointY="43.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourJourney" Width="1.5" PointX="21.5" PointY="45.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourMenu" Width="1.5" PointX="21.5" PointY="40.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourRoomType" Width="1.5" PointX="19.25" PointY="33.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourRoomTypePrice" Width="1.5" PointX="21.5" PointY="36.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourRoomTypePriceGroup" Width="1.5" PointX="23.75" PointY="36.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourShortJourney" Width="1.5" PointX="21.5" PointY="48.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.T2_TourTypeGroup" Width="1.5" PointX="21.5" PointY="34.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_ArticalMenu" Width="1.5" PointX="5.25" PointY="47.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Article" Width="1.5" PointX="3" PointY="38.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_ArticleHistory" Width="1.5" PointX="8.25" PointY="34.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_ArticleRelatedPost" Width="1.5" PointX="5.25" PointY="44.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Company" Width="1.5" PointX="3" PointY="63.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Contact" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_CoreValue" Width="1.5" PointX="15.75" PointY="4.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_EmailConfig" Width="1.5" PointX="4.75" PointY="15.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_EmailRegister" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Employee" Width="1.5" PointX="15.75" PointY="7.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Gallery" Width="1.5" PointX="11.25" PointY="54.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_GalleryTab" Width="1.5" PointX="13.5" PointY="54.5" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Hotel" Width="1.5" PointX="14" PointY="30.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_HotelGallery" Width="1.5" PointX="16.25" PointY="30.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_HotelMenu" Width="1.5" PointX="16.25" PointY="36" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Language" Width="1.5" PointX="0.75" PointY="40.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Menu" Width="1.5" PointX="9" PointY="38" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_MenuType" Width="1.5" PointX="6.75" PointY="32.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Partner" Width="1.5" PointX="15.75" PointY="12.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Plugin" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_Slider" Width="1.5" PointX="3" PointY="70.5" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_SliderMenu" Width="1.5" PointX="5.25" PointY="72.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_SliderTab" Width="1.5" PointX="5.25" PointY="69.875" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_TemplateEmail" Width="1.5" PointX="6" PointY="36.625" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_TermCondition" Width="1.5" PointX="6" PointY="40.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_ThemesMenu" Width="1.5" PointX="14.25" PointY="41.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_TypeEmail" Width="1.5" PointX="3.75" PointY="36.25" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.W_TypeTermCondition" Width="1.5" PointX="3.75" PointY="33.25" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_Cabin_CR_Cruise" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CabinGallery_CR_Cabin" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CabinPrice_CR_Cabin" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CabinPriceDetail_CR_Cabin" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CabinPrice_CR_CruiseTourType" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CabinPriceDetail_CR_CruiseTourType" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_Cruise_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseGallery_CR_Cruise" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseItineraries_CR_Cruise" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseMenu_CR_Cruise" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseTour_CR_Cruise" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseItineraries_CR_CruiseTourType" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseMenu_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_CR_CruiseTour_CR_CruiseTourType" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_Guide_D_Application" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_Path_D_Application1" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_GuideStep_D_Guide" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_RolePath_D_Path" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserPath_D_Path" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_RolePath_D_Role" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserRole_D_Role" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserScreen_D_Screen" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Article_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_ArticleHistory_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserHistory_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserMembership_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserPath_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserProfile_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserRole_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_D_UserScreen_D_User" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_Tour_SR_Theme" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_SR_ThemeMenu_T2_Tour" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_SR_ThemeMenu_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_Tour_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourGallery_T2_Tour" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourJourney_T2_Tour" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourMenu_T2_Tour" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourRoomTypePrice_T2_Tour" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourShortJourney_T2_Tour" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourMenu_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourRoomTypePrice_T2_TourRoomType" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourRoomTypePriceGroup_T2_TourRoomTypePrice" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_T2_TourRoomTypePriceGroup_T2_TourTypeGroup" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_ArticalMenu_Article" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Article_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_ArticleHistory_Article" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_Article_W_Language" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_ArticleRelatedPost_W_Article2" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_ThemesMenu_W_Article" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_Company_W_Language" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Gallery_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_TabGallery_W_Gallery" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_HotelGallery_W_Hotel" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_HotelMenu_W_Hotel" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_HotelMenu_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Menu_Language" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Slider_Language" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_TemplateEmail_W_Language" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_TermCondition_W_Language" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Menu_MenuType" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_ThemesMenu_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_SliderMenu_W_Slider" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_TabSlider_W_Slider" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_TemplateEmail_TypeEmail" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_W_TermCondition_W_TypeTermCondition" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.Author" Width="1.5" PointX="16" PointY="57.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.Blog" Width="1.5" PointX="18.25" PointY="51" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.BlogMenu" Width="1.5" PointX="20.5" PointY="59.75" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.BlogMenuTheme" Width="1.5" PointX="16" PointY="53.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.BlogRelatedPost" Width="1.5" PointX="20.5" PointY="54.5" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.BlogTag" Width="1.5" PointX="21.25" PointY="64.125" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.BlogTheme" Width="1.5" PointX="23.5" PointY="53.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.BlogThemeTag" Width="1.5" PointX="23.5" PointY="56.375" />
+        <EntityTypeShape EntityType="webkh_asiacharmModel.Guide" Width="1.5" PointX="9.375" PointY="16.75" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Blog_Author" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Blog_BlogMenuTheme1" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Blog_W_Menu" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_BlogMenu_Blog" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_BlogRelatedPost_Blog" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_BlogTheme_Blog" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_BlogThemeTags_Blog" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_BlogTheme_BlogMenuTheme" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_BlogThemeTags_BlogTags" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,123 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+@using AsiaCharmtours.Handler
+@using PagedList
+@using PagedList.Mvc;
+@model AsiaCharmtours.Models.EF_Tour
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    List<W_Menu> listMenu = QuickData.ListMenuThemes(0, lan);
+}
+<div class="img-banner" style="position: relative; z-index: 10;">
+    <img src="@menu.Background" width="100%" alt="@menu.Title">
+    <h2>@menu.MenuName</h2>
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<!-- end Header -->
+<input type="hidden" id="Durations" name="Duration" value="@Model.EF_Filters.Duration" />
+<input type="hidden" id="XType" name="XType" value="@Model.EF_Filters.XType" />
+<input type="hidden" id="testww" name="XType" value="@Model.EF_Filters.XType" />
+<div class="dgdan">
+    <div class="container">
+        <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="/@menu.MenuAlias">@menu.MenuName</a> / <a href="">
+            Search
+        </a>
+    </div>
+</div>
+<div class="detail-voya container">
+    <h1 class="wow fadeInUp" style="text-align: center; margin-top: 40px;">Le tour associé Combiné</h1>
+    <p class="text-center">
+        A landscape where boats, houses and even markets float upon endless avenues of
+        canals, rivers and
+        streams. Discover Khmer pagodas, lush rice paddies, rustic beaches, quaint
+    </p>
+    <div class="row">
+        <div class="col-md-3">
+
+            <div class="filter-type">
+                <div class="redo">
+                    <a href="" id="form_id"><i class="fas fa-redo-alt"></i> Réinitialiser</a>
+                </div>
+                <div class="search-ft">
+                    <label for="">Search Tours</label>
+                    <div style="position: relative">
+                        <input type="text" id="Destination" name="Destination" class="form-control">
+                        <button type="submit" onclick="filterResults()"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="filter-tour">
+                    <div class="lable-fiter">
+                        <label for="">Type de</label>
+                    </div>
+                    <div class="link-type">
+                        @{
+                            // 1. Try getting selected themes from querystrings
+                            var selectedThemes = !string.IsNullOrWhiteSpace(Request.QueryString["themes"])
+                                ? Request.QueryString["themes"].Split(',').ToList()
+                                : new List<string>();
+                        }
+                        @foreach (var item in listMenu)
+                        {
+                            // Compare ignore case-sensitive
+                            var isSlected = selectedThemes.Contains(item.MenuName, StringComparer.OrdinalIgnoreCase);
+                            <div class="row">
+                                <div class="checkbox margin-bottom-15">
+                                    <label style="font-size: 16px;">
+                                        <input class="themes" type="checkbox" name="themes" id="themes"
+                                               @(isSlected ? "checked" : "")
+                                               value="@item.MenuId" onclick="filterResults()"> @item.MenuName
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="tour" style="margin: auto; margin-bottom: 40px;">
+                <div class="row" id="databin">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-muschate">
+    <div class="col-md-6 col-lg-4 wow fadeInUp">
+        <div class="DIVCARD">
+            <div class="divHEADER">
+                <div class="cardHeaderHidden">
+                    <div class="dateHEADER">
+                        <div class="cardHeaderDay">14</div>
+                        <div class="cardHeaderMonth">June</div>
+                        <div class="cardHeaderYear">2016</div>
+                    </div>
+                    <img src="{{Image}}" width="100%" alt="{{TourName}}">
+                </div>
+            </div>
+            <div class="mainBODY">
+                <div class="bodyHeader">
+                    <div class="bannerBODY">{{MenuName}} TOUR</div>
+                    <h5 style="font-size: 1.1rem"><a href="/{{MenuAlias}}/{{TourAlias}}">{{TourName}}</a></h5>
+                    <div class="BodyDescription">
+                        <p>
+                            {{DescriptionMin}}
+                        </p>
+                        <a href="/{{MenuAlias}}/{{TourAlias}}">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            searchController.loadDataSelect();
+        });
+    </script>
+}
+

@@ -1,0 +1,121 @@
+﻿<style>
+    .box-table-fix {
+        height: 500px;
+    }
+</style>
+<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm mới tài khoản</span>
+        <span ng-if="!isAdd">Chỉnh sửa tài khoản</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-1-3">
+                    <div class="md-input-wrapper">
+                        <span>Tên tài khoản</span> <span class="required-field">(*)</span>
+                        <input ng-disabled="!isAdd" required ng-model="data.UserName" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Họ tên đầy đủ</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.PropertyName" type="text" class="md-input">
+                    </div>
+                    <div ng-if="isAdd" class="md-input-wrapper">
+                        <span>Mật khẩu</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Password" type="password" class="md-input">
+                    </div>
+                    <div ng-if="isAdd" class="md-input-wrapper">
+                        <span>Nhập lại mật khẩu</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.RePassword" type="password" class="md-input">
+                    </div>
+                    <div ng-if="!isAdd" class="md-input-wrapper">
+                        <span>Mật khẩu</span> <span class="required-field">(*)</span>
+                        <input ng-model="data.Password" type="password" class="md-input">
+                    </div>
+                    <div ng-if="!isAdd" class="md-input-wrapper">
+                        <span>Nhập lại mật khẩu</span> <span class="required-field">(*)</span>
+                        <input ng-model="data.RePassword" type="password" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Email</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Email" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Vai trò</span> <span class="required-field">(*)</span>
+                        <select required ng-model="data.RoleId" class="md-input" convert-to-number>
+                            <option value="">-- Chọn vai trò --</option>
+                            <option ng-repeat="item in roles.roles" value="{{item.RoleId}}">{{item.RoleName}}</option>
+                        </select>
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Trạng thái hoạt động: </span>
+                        <input type="checkbox" data-switchery checked id="switch_status" />
+                    </div>
+                </div>
+                <div class="uk-width-medium-2-3">
+                    <div class="uk-grid">
+                        <div class="uk-width-1-2">
+                            <h3 style="margin-bottom: 0;text-decoration: underline;">Quyền truy cập màn hình</h3>
+                            <div class="md-input-wrapper">
+                                <div class="box-table-fix">
+                                    <table class="uk-table table-menu">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input ng-change="changeAllScreen(checkAllScreen)" type="checkbox" ng-model="checkAllScreen" />
+                                                </th>
+                                                <th>Màn hình</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in roles.screens track by $index" class="ng-scope">
+                                                <td>
+                                                    <input id="screen_{{$index}}" ng-model="item.Checked" type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <label for="screen_{{$index}}">{{item.Description}}</label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <h3 style="margin-bottom: 0;text-decoration: underline;">Quyền truy cập chức năng</h3>
+                            <div class="md-input-wrapper">
+                                <div class="box-table-fix">
+                                    <table class="uk-table table-menu">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input ng-change="changeAllAction(checkAllAction)" type="checkbox" ng-model="checkAllAction" />
+                                                </th>
+                                                <th>Chức năng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in roles.paths track by $index" class="ng-scope">
+                                                <td>
+                                                    <input id="path_{{$index}}" ng-model="item.Checked" type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <label for="path_{{$index}}">{{item.Description}}</label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>

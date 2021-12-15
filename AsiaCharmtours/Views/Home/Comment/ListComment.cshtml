@@ -1,0 +1,59 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+@using PagedList
+@using PagedList.Mvc;
+@model PagedList.IPagedList<AsiaCharmtours.Database.RV_Review>
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu2"];
+    IPagedList<RV_Review> listReview = (IPagedList<RV_Review>)ViewData["listReview"];
+}
+<div class="img-banner" style="position: relative; z-index: 10;">
+    <img src="@menu.Background" width="100%" alt="">
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuHome.cshtml")
+<section class="comment-detail">
+    <div class="container">
+        <h1 class="text-center" style="margin-top: 50px">
+            Avis clients
+        </h1>
+        <div class="row">
+            @foreach (var item in listReview)
+            {
+                <div class="col-12">
+                    <h2 class="text-left">
+                       @item.Title
+                    </h2>
+                </div>
+                <div class="col-lg-3">
+                    <img src="@item.Image" class="img-comment-detail img-fluid" alt="@item.Title">
+                </div>
+                <div class="col-lg-9 border-bootom-comment-detail ">
+                    <p class="text-justify margin-top-15">
+                        @Html.Raw(item.Content)
+                    </p>
+                    <div class="row justify-content-end">
+                        <div class="col-5">
+                            <h4 class="text-left">@item.FullName</h4>
+                            <p class="text-justify blockquote-footer">
+                                @item.Date.ToLongDateString()
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row ">
+            <div class="col-md-12 text-center ">
+                <div class="page">
+                    <ul class="pagination" style="margin-top: 25px;">
+                        <li class="page-item">
+                            @Html.PagedListPager(Model, page => Url.Action("Category", "Home", new { page, menu.MenuAlias }))
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

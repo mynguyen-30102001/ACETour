@@ -1,0 +1,54 @@
+﻿@{
+    List<string> acceptScreen = new List<string>() { "" };
+    if (Session["acceptScreen"] != null)
+    {
+        acceptScreen = (List<string>)Session["acceptScreen"];
+    }
+}
+<div>
+    <div id="sidebar_secondary">
+        <div class="sidebar_secondary_wrapper uk-margin-remove">
+            <ul class="md-list">
+                <li>
+                    <span style="font-size: 16px;">Cài đặt chung</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uk-icon-legal "></i>
+                        <span>Cài đặt chính sách &amp; điều khoản</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uk-icon-cog"></i>
+                        <span>Cấu hình Email</span>
+                    </a>
+                </li>
+                @if (acceptScreen.Any(x => x == "Contract" || true))
+                {
+                    <li>
+                        <a href="/admin/template">
+                            <i class="uk-icon-file-text-o"></i>
+                            <span>File mẫu</span>
+                        </a>
+                    </li>
+                }
+                @if (acceptScreen.Any(x => x == "Manage" || true))
+                {
+                    <li>
+                        <a href="/admin/account">
+                            <i class="uk-icon-user"></i>
+                            <span>Quản lý tài khoản</span>
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="/Admin/login/log-out">
+                        <i class="uk-icon-power-off"></i>
+                        <span>Đăng xuất</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

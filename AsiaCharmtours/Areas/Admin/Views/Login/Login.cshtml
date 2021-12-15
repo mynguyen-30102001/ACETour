@@ -1,0 +1,163 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link rel="icon" type="image/png" href="/Plugin/assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/Plugin/assets/img/favicon-32x32.png" sizes="32x32">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="/Plugin/bower_components/uikit/css/uikit.almost-flat.min.css" />
+    <link rel="stylesheet" href="/Plugin/assets/css/login_page.min.css" />
+    <style>
+        input {
+            font-size: 13px !important;
+            border: 1px solid #dedede !important;
+            padding: 8px 5px 8px 10px !important;
+        }
+
+        .uk-form-row + .uk-form-row {
+            margin-top: 10px !important;
+        }
+
+        body {
+            font-size: 14px !IMPORTANT;
+        }
+
+        .border-warning {
+            border-color: #ca0a0a !important;
+        }
+
+        .required-field {
+            color: #c23527;
+        }
+        #loader {
+            /* display: none; */
+            z-index: 999999;
+            top: 40%;
+            left: 49%;
+            position: fixed;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="login_page" ng-app="app" ng-controller="controller">
+    <div class="login_page_wrapper">
+        <div class="md-card" id="login_card">
+            <div class="md-card-content large-padding" id="login_form">
+                <div class="login_heading">
+                    <div class="user_avatar">
+                        <img src="~/FileDefault/login.jpg" style="border-radius: 50%;" />
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-form-row">
+                        <div class="md-input-wrapper">
+                            <span>Tên tài khoản</span> <span class="required-field">(*)</span>
+                            <input ng-model="account._userName" required class="md-input" type="text">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <div class="md-input-wrapper">
+                            <span>Mật khẩu</span> <span class="required-field">(*)</span>
+                            <input ng-model="account._password" required class="md-input" type="password" />
+                        </div>
+                    </div>
+                    <div>
+                        <p><span class="required-field">(*)</span> <span style="font-size:12px">Trường yêu cầu điền</span></p>
+                    </div>
+                    <div class="uk-margin-medium-top">
+                        <button ng-click="login()" class="md-btn md-btn-primary md-btn-block">Đăng nhập</button>
+                    </div>
+                    <div class="uk-margin-top">
+                        <a href="#" id="login_help_show" class="uk-float-right">Quên tài khoản?</a>
+                        <span class="icheck-inline">
+                            <input type="checkbox" name="login_page_stay_signed" id="login_page_stay_signed" data-md-icheck />
+                            <label for="login_page_stay_signed" class="inline-label">Lưu đăng nhập</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="md-card-content large-padding uk-position-relative" id="login_help" style="display: none">
+                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login"></button>
+                <h2 class="heading_b uk-text-success">Quên tài khoản?</h2>
+                <p>Tại đây,Thông tin được cung cấp để giúp bạn quay lại tài khoản của mình nhanh nhất có thể.</p>
+                <p>Trước tiên, hãy thử cách dễ nhất: nếu bạn nhớ mật khẩu của mình nhưng nó không hoạt động, hãy đảm bảo rằng Caps Lock bị tắt và tên người dùng của bạn được viết đúng chính tả, sau đó thử lại.</p>
+                <p>Nếu mật khẩu của bạn vẫn không hoạt động <a href="#" id="password_reset_show">Thiết lập lại tài khoản</a>.</p>
+            </div>
+            <div class="md-card-content large-padding" id="login_password_reset" style="display: none">
+                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login"></button>
+                <h2 class="heading_a uk-margin-large-bottom">Thiết lập lại tài khoản</h2>
+                <div>
+                    <div class="uk-form-row">
+                        <div class="md-input-wrapper">
+                            <span>Email tài khoản</span> <span class="required-field">(*)</span>
+                            <input ng-model="email" required class="md-input" type="text">
+                        </div>
+                        <button class="md-btn md-btn-primary md-btn-block">Gửi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loader" style="display: none;">
+        <i class="uk-icon-spinner uk-icon-medium uk-icon-spin"></i>
+    </div>
+    <script src="/Plugin/assets/js/common.min.js"></script>
+    <script src="/Plugin/assets/js/uikit_custom.min.js"></script>
+    <script src="/Plugin/assets/js/altair_admin_common.min.js"></script>
+    <script src="/Plugin/assets/js/pages/login.min.js"></script>
+    <script src="~/Scripts/UIGrid/angular.min.js"></script>
+    <script>
+        function checkRequired() {
+            var resultCheck = true;
+            $("#login_form").each(function () {
+                var inputs = $(this).find(':input[required]');
+                var i = 0;
+                for (i = 0; i < inputs.length; i++) {
+                    if (inputs[i].value === null || inputs[i].value === '') {
+                        inputs[i].classList.add("border-warning");
+                        resultCheck = false;
+                    }
+                }
+            });
+            return resultCheck;
+        }
+        $("input").click(function () {
+            $("#login_form").each(function () {
+                var inputs = $(this).find(':input[required]');
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].classList.remove("border-warning");
+                }
+            });
+        });
+        var app = angular.module('app', []);
+        app.controller('controller', ['$scope', '$http', function ($scope, $http) {
+            $scope.account = {
+                _userName: '',
+                _password: '',
+                _saveLogin: false
+            };
+            $scope.email = "";
+            $scope.login = function () {
+                if (checkRequired()) {
+                    $("#loader").css("display", "block");
+                    $scope.account._saveLogin = $('#login_page_stay_signed').is(':checked');
+                    $http({
+                        url: '/api/login/check-account',
+                        method: 'POST',
+                        data: $scope.account
+                    }).then(function success(response) {
+                        $("#loader").css("display", "none");
+                        location.href = response.data;
+                    }, function error(response) {
+                        alert(response.data.Message);
+                        $("#loader").css("display", "none");
+                    });
+                }
+            };
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<div class="armchair">
+    <h3>
+       
+        <span>Xem Chi tiết CUSTOMIZE</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-3-4">
+                    <div class="md-input-wrapper">
+                        <table style="width: 100%;">
+
+                            <tr>
+                                <td>FullName</td>
+                                <td>{{data.FullName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{data.Email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>{{data.Date | date:"dd/MM/yyyy" }}</td>
+                            </tr>
+                            <tr>
+                                <td>Request</td>
+                                <td><textarea style="width: 70%" >{{data.Request}}</textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+</div>

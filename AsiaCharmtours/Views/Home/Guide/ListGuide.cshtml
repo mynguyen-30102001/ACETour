@@ -1,0 +1,58 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@model AsiaCharmtours.Database.W_Article
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    List<W_Article> articlesAll = (List<W_Article>)ViewData["ArticleAll"];
+    //List<W_Article> list = (List<W_Article>)ViewData["ArticleList"];
+    //List<W_Article> listArticle = (List<W_Article>)ViewData["Article"];
+    //List<W_Article> listArDestination = (List<W_Article>)ViewData["ArticleDestination"];
+    int i = 1;
+}
+<div class="img-banner" style="position: relative;z-index: 10">
+    <img src="@menu2.Background" width="100%" alt="@menu2.Title">
+    <h2>@menu2.MenuName</h2>
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+
+<!-- end Header -->
+
+<div class="dgdan">
+    <div class="container">
+        <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="@menu.MenuAlias">@menu.MenuName</a> / <a href="@menu2.MenuAlias">
+            @menu2.MenuName
+        </a>
+    </div>
+</div>
+<section class="our-blog-details ptb-100 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="blog-right-sidebar">
+                    <ul class="list-detail-infospratiques-ul">
+                        @foreach (var item in articlesAll)
+                        {
+                            <li class="list-detail-infospratiques" data-toggle="collapse" data-target="#demo">
+                                <a href="/@item.MenuAlias/@item.Alias" class="title_article">
+                                    <span class="all-acticlespan">
+                                        @item.Title
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                        <li class="list-detail-infospratiqueslast">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="row">
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

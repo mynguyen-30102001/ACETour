@@ -1,0 +1,28 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<W_Menu> menus = QuickData.GetMasterMainMenus(lan);
+}
+
+<span class="position-absolute trigger"></span>
+<nav class="navbar navbar-expand-sm sticky-top">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbar1">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="navbar-nav efferhover" style="margin: auto">
+                @foreach (var item in menus.Where(x => x.Highlight && (bool)x.ShowMenuBottom).OrderBy(x => x.Index).ToList())
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@item.MenuAlias">
+                            @item.MenuName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,41 @@
+﻿
+@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Company company = QuickData.Company(lan);
+    W_Menu menu = (W_Menu)ViewData["menu"];
+}
+<div class="img-banner" style="position: relative; z-index: 10;">
+    <img src="@menu.Background" width="100%" alt="@menu.Title">
+    <h2 class="text-center">@menu.MenuName</h2>
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<div class="container text-center">
+    <div class="thank-you text-center margin-top-20">
+        <h2 class="title text-special margin-bottom-0">Thank you for booking with us!</h2>
+
+        <div class="text-special" style="font-size: 16px; padding-top: 5px">We'll contact you within 01 working day.</div>
+
+        <div class="margin-top-15">If you don't receive our answer after 1 working day, please check your spam email. It may go to your spam mailbox.</div>
+
+        <div class="margin-top-5">If you have any questions, please kindly contact us at: <a href="mailto:@company.Email">@company.Email</a>.</div>
+    </div>
+</div>
+<div class="margin-top-40">
+
+    <div class="container" style="margin-bottom: 50px">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5 col-xs-12 margin-top-20 text-center">
+                <a href="/" class="btn btn-lg btn-blue">Back to Home page</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+

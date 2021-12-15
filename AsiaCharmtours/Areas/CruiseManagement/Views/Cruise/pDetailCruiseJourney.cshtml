@@ -1,0 +1,89 @@
+﻿<div class="armchair">
+    <h3>
+        <span>Cập nhật lịch trình tour</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-margin-bottom">
+                    <h3 style="text-decoration: underline;">Thời gian lịch trình</h3>
+                    <div>
+                        <table class="uk-table table-menu">
+                            <thead>
+                                <tr>
+                                    <th class="uk-text-center" style="width: 20px;"></th>
+                                    <th>Lịch trình</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in cruiseTours track by $index">
+                                    <td>
+                                        <input ng-change="chooseCruiseTour(item)" id="cruise_tour_{{$index}}" ng-model="item.Checked" type="checkbox" />
+                                    </td>
+                                    <td>
+                                        <label for="cruise_tour_{{$index}}" style="cursor:pointer">
+                                            <b>{{item.CruiseTourTypeName}}</b>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="uk-width-large-3-4 uk-width-medium-2-3">
+                    <h3 style="text-decoration: underline;">Chi tiết lịch trình</h3>
+                    <div class="md-input-wrapper">
+                        <select ng-change="changeCruiseTour()" ng-model="CruiseTourTypeId" class="md-input" style="max-width:400px" convert-to-number>
+                            <option value="">-- Chọn lịch trình --</option>
+                            <option value="{{item.CruiseTourType.CruiseTourTypeId}}" ng-repeat="item in data.CruiseJourneys track by $index">{{item.CruiseTourType.CruiseTourTypeName}}</option>
+                        </select>
+                    </div>
+                    <div class="{{currentDetailCruise == null?'uk-hidden':''}}">
+                        <p style="margin: 15px 0 5px;">(Tiêu đề/ thứ tự/ Nội dung)</p>
+                        <div class="uk-input-group" style="max-width: 350px;">
+                            <div class="md-input-wrapper">
+                                <input id="newTitleTab" type="text" class="md-input" placeholder="Tiêu đề">
+                            </div>
+                            <span class="uk-input-group-addon">
+                                <button ng-click="addTab()" class="md-btn md-btn-primary">Thêm</button>
+                                <button ng-click="saveTab()" id="btnSaveTourTab" style="display:none" class="md-btn md-btn-primary">Lưu</button>
+                            </span>
+                        </div>
+                        <div style="min-height:400px">
+                            <ul class="uk-tab">
+                                <li class="tour-tab-header {{$index == 0? 'uk-active':''}}" id="tour-tab-header-{{item._key}}" ng-repeat="item in currentDetailCruise.CR_CruiseItineraries track by $index">
+                                    <a href="#">
+                                        <input ng-click="showDetailTab(item)" required type="text" ng-model="item.Title" class="md-input uk-margin-small-bottom" />
+                                        <input required type="number" ng-model="item.Index" class="md-input" />
+                                    </a>
+                                    <i class="uk-icon uk-icon-close" ng-click="removeTourTab($index)"></i>
+                                </li>
+                            </ul>
+                            <ul class="uk-switcher uk-margin">
+                                <li class="uk-active">
+                                    <textarea class="md-input" rows="2" name="Journey"></textarea>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('Journey', {
+            on: {
+                change: function (evt) {
+                    $("#btnSaveTourTab").click();
+                }
+            }
+        });
+    });
+</script>

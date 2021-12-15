@@ -1,0 +1,68 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+@using AsiaCharmtours.Handler
+@using PagedList
+@using PagedList.Mvc;
+@model PagedList.IPagedList<AsiaCharmtours.Models.EF_Tour>
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    IPagedList<EF_Tour> listTours = (IPagedList<EF_Tour>)ViewData["listTours"];
+}
+
+<div class="img-banner" style="position: relative; z-index: 10;">
+    <img src="@menu.Background" width="100%" alt="@menu.Title">
+    <h2 class="text-center">@menu2.MenuName</h2>
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+
+<!-- end Header -->
+
+<div class="container tour" style="margin: auto">
+    <h1 class="wow fadeInUp" style="text-align: center">Tournée en @menu2.MenuName</h1>
+    <div class="row">
+        @foreach (var item in listTours)
+        {
+            <div class="col-md-6 col-lg-4 wow fadeInUp">
+                <div class="DIVCARD">
+                    <div class="divHEADER">
+                        <div class="cardHeaderHidden">
+                            <div class="dateHEADER">
+                                <div class="cardHeaderDay">@item.DateCreate.Day</div>
+                                <div class="cardHeaderMonth">@item.DateCreate.Month</div>
+                                <div class="cardHeaderYear">@item.DateCreate.Year</div>
+                            </div>
+                            <img src="@item.Image" width="100%" alt="@item.MetaTitle">
+                        </div>
+                    </div>
+                    <div class="mainBODY">
+                        <div class="bodyHeader">
+                            <div class="bannerBODY">@menu.MenuName Tour</div>
+                            <h4><a href="/@item.MenuAlias/@item.TourAlias">@item.TourName</a></h4>
+                            <div class="BodyDescription">
+                                <p>
+                                    @item.Destination
+                                </p>
+                                <a href="/@item.MenuAlias/@item.TourAlias">@GetLanguage.Language(lan, "ReadMore")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <div class="row ">
+        <div class="col-md-12 text-center ">
+            <div class="page">
+                <ul class="pagination" style="margin-top: 25px;">
+                    <li class="page-item">
+                        @Html.PagedListPager(Model, page => Url.Action("Category", "Home", new { page, menu.MenuAlias }))
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

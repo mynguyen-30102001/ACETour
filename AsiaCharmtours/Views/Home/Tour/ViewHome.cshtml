@@ -1,0 +1,155 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    List<EF_Tour> tourLike = (List<EF_Tour>)ViewData["TourLike"];
+    List<W_Menu> listDestination = QuickData.ListDestination(menu, lan);
+}
+<div class="img-banner" style="position: relative; z-index: 10">
+    <img src="@menu.Background" width="100%" alt="@menu.Title">
+    <h2 class="text-center"> @GetLanguage.Language(lan, "BienvenueAu") @menu.MenuName</h2>
+</div>
+
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<!-- end Header -->
+<!-- gt Việt Nam -->
+<input type="hidden" id="MenuAlias" name="MenuAlias" value="@menu.MenuAlias" />
+<div class="gt-vn">
+    <div class="dgdan">
+        <div class="container">
+            <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="@menu.MenuAlias">@menu.MenuName</a>
+        </div>
+    </div>
+    <h1 class="wow fadeInUp">@GetLanguage.Language(lan, "Découvrezle") @menu.MenuName</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 wow fadeInUp">
+                <img src="@menu.Image2" width="100%" alt="">
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-lg-11">
+                        @Html.Raw(menu.Description)
+                        @Html.Raw(menu.Content)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 mx-auto wow fadeInUp">
+        <video width="100%" height="530" controls autoplay muted>
+            <source src="~/Content/video/INNOTRAVEL VIETNAM - The Art Of Living.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<!-- Tour -->
+<div class="container tour" style="margin: auto">
+    <h1 class="wow fadeInUp" style="text-align: center">@GetLanguage.Language(lan, "ourfavorites")</h1>
+    <div class="row">
+        @foreach (var item in tourLike)
+        {
+            <div class="col-md-6 col-lg-4 wow fadeInUp">
+                <div class="DIVCARD">
+                    <div class="divHEADER">
+                        <div class="cardHeaderHidden">
+                            <div class="dateHEADER">
+                                <div class="cardHeaderDay">@item.DateCreate.Day</div>
+                                <div class="cardHeaderMonth">@item.DateCreate.Month</div>
+                                <div class="cardHeaderYear">@item.DateCreate.Year</div>
+                            </div>
+                            <img src="@item.Image" width="100%" alt="@item.MetaTitle">
+                        </div>
+                    </div>
+                    <div class="mainBODY">
+                        <div class="bodyHeader">
+                            <div class="bannerBODY">@menu.MenuName Tour</div>
+                            <h4><a href="/@item.MenuAlias/@item.TourAlias">@item.TourName</a></h4>
+                            <div class="BodyDescription">
+                                <p>
+                                    @item.DescriptionMin
+                                </p>
+                                <a href="/@item.MenuAlias/@item.TourAlias">@GetLanguage.Language(lan, "ReadMore")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Điểm đến -->
+<section class="dden" style="margin-top: 20px;">
+    <div class="container-fluid">
+        <div class="row">
+            @if (listDestination.Count > 0)
+            {
+                <div class="col-xs-12  col-md-15 row-item">
+                    <div class="nd-dd0 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="nd-dd">
+                            <img src="@listDestination[0].Photo" width="100%" alt="@listDestination[0].Title">
+                            <a href="@listDestination[0].MenuAlias">
+                                <h2>@listDestination[0].MenuName</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (listDestination.Count > 1)
+            {
+                <div class="col-xs-12  col-md-15 row-item">
+                    <div class="nd-dd0 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="nd-dd dd2">
+                            <img src="@listDestination[1].Photo" width="100%" alt="@listDestination[1].Title">
+                            <a href="@listDestination[1].MenuAlias">
+                                <h2 style="padding-top: 50px;">@listDestination[1].MenuName</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (listDestination.Count > 2)
+            {
+                <div class="col-xs-12 col-md-15 row-item">
+                    <div class="nd-dd0 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="nd-dd dd3">
+                            <img src="@listDestination[2].Photo" width="100%" alt="@listDestination[2].Title">
+                            <a href="@listDestination[2].MenuAlias">
+                                <h2 style="padding-top: 100px">@listDestination[2].MenuName</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (listDestination.Count > 3)
+            {
+                <div class="col-xs-12 col-md-15 row-item">
+                    <div class="nd-dd0 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="nd-dd dd4">
+                            <img src="@listDestination[3].Photo" width="100%" alt="@listDestination[3].Title">
+                            <a href="@listDestination[3].MenuAlias">
+                                <h2 style="padding-top: 150px">@listDestination[3].MenuName</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (listDestination.Count > 4)
+            {
+                <div class="col-xs-12 col-md-15 row-item">
+                    <div class="nd-dd0 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="nd-dd dd5">
+                            <img src="@listDestination[4].Photo" width="100%" alt="@listDestination[4].Title">
+                            <a href="@listDestination[4].MenuAlias">
+                                <h2 style="padding-top: 200px">@listDestination[4].MenuName</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

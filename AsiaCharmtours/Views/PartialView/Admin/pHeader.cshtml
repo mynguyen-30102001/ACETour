@@ -1,0 +1,389 @@
+﻿@{
+    List<string> acceptScreen = new List<string>() { "" };
+    if (Session["acceptScreen"] != null)
+    {
+        acceptScreen = (List<string>)Session["acceptScreen"];
+    }
+}
+
+<header id="header_main">
+    <div class="header_main_content">
+        <nav class="uk-navbar">
+            <div class="main_logo_top">
+                <a href="/admin">
+                    <img src="~/FileDefault/webhotel_logo.png" alt="logo IIT" height="15" width="71" />
+                </a>
+            </div>
+            <div class="uk-navbar-flip">
+                <ul class="uk-navbar-nav user_actions">
+                    <li data-uk-dropdown="{mode:'click',pos:'top-center'}">
+                        @Html.Partial("~/Views/PartialView/Admin/pLanguage.cshtml")
+                    </li>
+                    <li title="Website">
+                        <a target="_blank" href="/">
+                            <i class="uk-icon-globe " style="vertical-align: -6px;color: #fff;">
+                                <span>Website</span>
+                            </i>
+                        </a>
+                    </li>
+                    <li title="Hướng dẫn">
+                        <a href="#">
+                            <i class="uk-icon-question-circle " style="vertical-align: -6px;color: #fff;">
+                                <span>Hướng dẫn</span>
+                            </i>
+                        </a>
+                    </li>
+                    <li data-uk-dropdown="{pos:'bottom-right',mode:'click'}" title="Thông tin tài khoản">
+                        <a id="UserProfile" href="#" class="user_action_image uk-padding-non">
+                            <img class="md-user-image" src="~/FileDefault/avatar-s-1.png" alt="" />
+                        </a>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav js-uk-prevent">
+                                <li><a href="#">Thông tin tài khoản</a></li>
+                                <li><a href="/Admin/login/log-out">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li data-uk-dropdown="{pos:'bottom-right',mode:'click'}" title="Cài đặt">
+                        <a href="#" id="sidebar_secondary_toggle">
+                            <i class="uk-icon-gears " style="vertical-align: -6px;color: #fff;"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div id="top_bar">
+    <div class="md-top-bar">
+        <ul id="menu_top" class="uk-clearfix">
+            @if (acceptScreen.Any(x => x == "Information" || true))
+            {
+                <li class="li-company">
+                    <a href="/admin/company">
+                        <i class="uk-icon-small uk-icon-building"></i>
+                        <span>Công ty</span>
+                    </a>
+                </li>
+            }
+
+            @if (acceptScreen.Any(x => x == "MainMenu" || x == "SubMenu" || true))
+            {
+                <li class="li-menu" data-uk-dropdown="{mode:'click',pos:'top-right'}">
+                    <a href="#">
+                        <i class="uk-icon-small uk-icon-list"></i>
+                        <span>Chuyên mục</span>
+                    </a>
+                    <div class="uk-dropdown">
+                        <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+                            <div class="uk-width-1">
+                                <ul class="uk-nav uk-nav-dropdown">
+                                    @if (acceptScreen.Any(x => x == "MainMenu" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/menu/main-menu">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Chuyên mục chính
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (acceptScreen.Any(x => x == "SubMenu" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/menu/sub-menu">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Chuyên mục phụ
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+            @if (acceptScreen.Any(x => x == "ListArticle" || true))
+            {
+                <li class="li-article">
+                    <a href="/admin/article">
+                        <i class="uk-icon-small uk-icon-book"></i>
+                        <span>Bài viết</span>
+                    </a>
+                </li>
+            }
+            @if (acceptScreen.Any(x => x == "ListSlider" || true))
+            {
+                <li class="li-slider">
+                    <a href="/admin/slider">
+                        <i class="uk-icon-small uk-icon-video-camera"></i>
+                        <span>Slide ảnh</span>
+                    </a>
+                </li>
+            }
+            @if (acceptScreen.Any(x => x == "JsCode" || x == "CssCode" || x == "SideBarCode" || true))
+            {
+                <li class="li-plugin" data-uk-dropdown="{mode:'click',pos:'top-center'}">
+                    <a href="#">
+                        <i class="uk-icon-small uk-icon-puzzle-piece"></i>
+                        <span>Plugin</span>
+                    </a>
+                    <div class="uk-dropdown">
+                        <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+                            <div class="uk-width-1">
+                                <ul class="uk-nav uk-nav-dropdown">
+                                    @if (acceptScreen.Any(x => x == "JsCode" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/plugin/js-code">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Google analytics, Live chat
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (acceptScreen.Any(x => x == "CssCode" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/plugin/css-code">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Chỉnh sửa CSS
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (acceptScreen.Any(x => x == "SideBarCode" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/plugin/sidebar-code">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Thêm Sidebar
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+            @if (acceptScreen.Any(x => x == "TourPriceList" || x == "ListBookTour" || x == "ListTour" || x == "Journey" || x == "Flight" || true))
+            {
+                <li data-uk-dropdown="{mode:'click',pos:'top-center'}" class="li-tour">
+                    <a href="#">
+                        <i class="uk-icon-small uk-icon-umbrella"></i>
+                        <span>Tour</span>
+                    </a>
+                    <div class="uk-dropdown uk-dropdown-width-2">
+                        <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+                            <div class="uk-width-1-2">
+                                <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                    <li class="uk-nav-header">Danh sách</li>
+                                    @if (acceptScreen.Any(x => x == "TourPriceList" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/tour/list-tour">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Danh sách Tour
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (acceptScreen.Any(x => x == "ListBookTour" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/tour/list-book-tour">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Khách hàng đặt Tour
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                    <li class="uk-nav-header">Cài đặt</li>
+                                    @if (acceptScreen.Any(x => x == "Journey" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/tour/journey">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Cài đặt lịch trình Tour
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (acceptScreen.Any(x => x == "TourPriceList" || true))
+                                    {
+                                        <li>
+                                            <a href="/admin/tour/tour-price-list">
+                                                <i class="uk-icon uk-icon-circle-o"></i>Cài đặt giá tour
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+
+            @*<li data-uk-dropdown="{mode:'click',pos:'top-center'}" class="li-hotel">
+                <a href="#">
+                    <i class="uk-icon-small uk-icon-home"></i>
+                    <span>Khách sạn</span>
+                </a>
+                <div class="uk-dropdown uk-dropdown-width-2">
+                    <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-2">
+                            <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                <li class="uk-nav-header">Khách sạn</li>
+                                <li>
+                                    <a href="/admin/hotel/list-hotel">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Danh sách khách sạn
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                <li class="uk-nav-header">Phòng</li>
+                                <li>
+                                    <a href="#">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Danh sách phòng
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li data-uk-dropdown="{mode:'click',pos:'top-center'}" class="li-cruise">
+                <a href="#">
+                    <img src="~/FileDefault/cruise.png" style="display: block;margin: 0 auto;width: 20px;margin-top: -4px;" />
+                    <span>Tàu</span>
+                </a>
+                <div class="uk-dropdown uk-dropdown-width-2">
+                    <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-2">
+                            <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                <li class="uk-nav-header">Danh sách</li>
+                                <li>
+                                    <a href="/admin/cruise/list-cruise">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Danh sách Tàu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/cruise/list-cabin">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Danh sách Cabin
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/cruise/cabin-book">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Khách hàng đặt Tàu
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                <li class="uk-nav-header">Cài đặt</li>
+                                <li>
+                                    <a href="/admin/cruise/cruise-journey">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Cài đặt hành trình tàu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/cruise/cabin-price">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Cài đặt giá Cabin
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/cruise/cruise-tour">
+                                        <i class="uk-icon uk-icon-circle-o"></i>DS thời gian lịch trình
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>*@
+            <li class="li-question">
+                <a href="/admin/question">
+                    <i class="uk-icon-small uk-icon-glass"></i>
+                    <span>Bài viết trang chủ</span>
+                </a>
+            </li>
+            @if (acceptScreen.Any(x => x == "ListReview" || true))
+            {
+                <li class="li-review">
+                    <a href="/admin/review">
+                        <i class="uk-icon-small uk-icon-comments-o"></i>
+                        <span>Review</span>
+                    </a>
+                </li>
+            }
+
+            @*<li class="li-article">
+                <a href="/admin/customize/list-customize">
+                    <i class="uk-icon-small uk-icon-glass"></i>
+                    <span>Booking Tùy Chọn</span>
+                </a>
+            </li>*@
+
+            <li class="li-partner">
+                <a href="/admin/partner">
+                    <i class="uk-icon-small uk-icon-users"></i>
+                    <span>Đối tác</span>
+                </a>
+            </li>
+
+            <li class="li-employee">
+                <a href="/admin/employee">
+                    <i class="uk-icon-small uk-icon-user"></i>
+                    <span>Nhân viên</span>
+                </a>
+            </li>
+
+            <li data-uk-dropdown="{mode:'click',pos:'top-center'}" class="li-contact">
+                <a href="#">
+                    <i class="uk-icon-small uk-icon-umbrella"></i>
+                    <span>Liên Hệ</span>
+                </a>
+                <div class="uk-dropdown uk-dropdown-width-2">
+                    <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-2">
+                            <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                <li class="uk-nav-header">Liên hệ</li>
+                                <li>
+                                    <a href="/admin/contact/list-contact">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Danh Sách Liên Hệ
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <ul class="uk-nav uk-nav-dropdown uk-panel">
+                                <li class="uk-nav-header">Yêu cầu đặt tour</li>
+                                <li>
+                                    <a href="/admin/contact/list-require">
+                                        <i class="uk-icon uk-icon-circle-o"></i>Danh sách yêu cầu
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(function () {
+        var $win = $(window); // or $box parent container
+        var $box = $("#sidebar_secondary");
+
+        $win.on("click.Bst", function (event) {
+            if (
+                $box.has(event.target).length == 0
+                &&
+                !$box.is(event.target)
+            ) {
+                if ($('body').attr('class').indexOf('sidebar_secondary_active') > 0 && !sidebar_secondary_click)
+                    $('body').removeClass('sidebar_secondary_active')
+                sidebar_secondary_click = false;
+            }
+        });
+    });
+    $("#menu_top > .li-company").removeClass('active');
+</script>

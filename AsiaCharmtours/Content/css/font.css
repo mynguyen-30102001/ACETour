@@ -1,0 +1,42 @@
+@font-face {
+    font-family: font1;
+    src: url(../fonts/NotoSans-Medium.ttf);
+}
+
+@font-face {
+    font-family: fontb;
+    /* src: url(../fonts/G_ari_bd.TTF); */
+    src: url(../fonts/Freight\ Big\ Book.otf);
+}
+
+
+/* src: url(../fonts/Freight\ Big\ Light.otf);
+} */
+
+
+/* @font-face {
+        font-family: fonta;
+        src: url(../font/UTM\ Aptima.ttf);
+    } */
+
+
+/* @font-face {
+    font-family: fontc;
+    src: url(../font/UTM\ Aptima.ttf);
+     src: url(../fonts/G_ari_bd.TTF); 
+
+
+}
+*/
+
+
+/* src: url(../fonts/UTM\ BryantLG_B.ttf); */
+
+.fontc {
+    /* font-family: fontc!important; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fontb {
+    font-family: fontb!important;
+}

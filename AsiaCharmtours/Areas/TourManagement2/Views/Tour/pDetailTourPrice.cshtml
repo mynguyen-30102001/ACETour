@@ -1,0 +1,63 @@
+﻿<div class="armchair">
+    <h3>
+        <span>Cập nhật bảng giá tour</span>
+    </h3>
+    <div class="uk-grid" id="form_data">
+        <div class="uk-width-1">
+            <div class="md-input-wrapper">
+                <span>Giá liên hệ </span>
+                <input type="checkbox" data-switchery checked id="switch_status" />
+            </div>
+        </div>
+        <div class="uk-width-1">
+            <div>
+                <table class="uk-table table-menu">
+                    <thead>
+                        <tr>
+                            <th style="width: 500px;">Phòng</th>
+                            <th ng-repeat="item in tourPriceBase.EF_TourTypeGroup">
+                                <input ng-model="item.Checked" id="type_group_{{item.TourTypeGroupId}}" type="checkbox" />
+                                <label for="type_group_{{item.TourTypeGroupId}}" style="cursor:pointer">{{item.TourTypeGroupName}}</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in tourPriceBase.EF_TourRoomType">
+                            <td>
+                                <input ng-model="item.Checked" id="room_name_{{item.TourRoomTypeId}}" type="checkbox" />
+                                <label for="room_name_{{item.TourRoomTypeId}}" style="cursor:pointer">
+                                    <b>{{item.TourRoomTypeName}}</b>
+                                </label>
+                                <div>
+                                    <textarea class="md-input" rows="2" id="Description_{{$index}}" name="Description_{{$index}}"></textarea>
+                                </div>
+                            </td>
+                            <td ng-repeat="tourPrice in item.EF_TourRoomTypePrice">
+                                <div class="md-input-wrapper">
+                                    <span>Giá gốc</span>
+                                    <input ng-model="tourPrice.Price" type="text" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Giá khuyễn mãi</span>
+                                    <input ng-model="tourPrice.PromotionalPrice" type="text" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Giá trẻ em</span>
+                                    <input ng-model="tourPrice.PriceChild" type="text" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Giá trẻ sơ sinh</span>
+                                    <input ng-model="tourPrice.PriceInfant" type="text" class="md-input">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Đóng</button>
+    <button ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>

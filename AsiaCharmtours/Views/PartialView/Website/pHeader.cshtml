@@ -1,0 +1,169 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Company company = Model;
+    List<W_Menu> menus = QuickData.GetMasterMainMenus(lan);
+    List<W_Language> languages = QuickData.ListLanguage();
+    List<EF_Tour> listTour = QuickData.ListTour(lan);
+
+
+}
+<!-- header -->
+
+<section class="menu" id="header-1">
+    <nav class="navbar navbar-expand-lg navbar-dark background000">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+                @foreach (var item in menus.Where(a => a.MenuParentId == 0 && a.Status && (bool)a.ShowMenuTop).OrderBy(x => x.Index).ToList())
+                {
+                    if (item.MenuTypeId == (int)MenuType.Home)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" title="@item.MenuName">@item.MenuName</a>
+                        </li>
+                    }
+                    else
+                    {
+                        var menuChilds = menus.Where(a => a.MenuParentId == item.MenuId).OrderBy(a => a.Index).ToList();
+                        if (menuChilds.Count > 0)
+                        {
+                            if (item.MenuTypeId == (int)MenuType.Sites)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/@item.MenuAlias" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @item.MenuName
+                                    </a>
+                                    <div class="dropdown-menu wow fadeInUp" aria-labelledby="navbarDropdown">
+                                        <div class="container ">
+                                            <div class="row">
+                                                @foreach (var itemTour in listTour.Where(a => (bool)a.Status && a.MainMenuId == item.MenuId).Take(5).ToList())
+                                                {
+                                                    <div class="col-xs-5ths text-center">
+                                                        <a href="/@itemTour.MenuAlias/@itemTour.TourAlias">
+                                                            <img class="img-dropdownmenu" src="@itemTour.Image" alt="">
+                                                            <div class="margin-10-20 colorf9a size25 tt-menu">
+                                                                <i>@itemTour.TourName </i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/@item.MenuAlias" id="navbarDropdown">
+                                        @item.MenuName
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="">
+                                        <div class="container ">
+                                            <div class="row ">
+                                                <div class="col-md-4">
+                                                    @foreach (var itemChilds in menuChilds.Take(1))
+                                                    {
+                                                        var menuChild1 = menus.Where(a => a.MenuParentId == itemChilds.MenuId).OrderBy(a => a.Index).ToList();
+                                                        <span class="text-uppercase color696969">@itemChilds.MenuName</span>
+                                                        <div class="row  border-right">
+                                                            <div class="col-md-6">
+                                                                <ul class="nav flex-column padding0 ">
+                                                                    @foreach (var itemTour in listTour.Where(a => (bool)a.Status && a.MainMenuId == itemChilds.MenuId).Take(4).ToList())
+                                                                    {
+                                                                        <li class="nav-item ">
+                                                                            <a class="nav-link nav-activites padding0 " href="/@itemTour.MenuAlias/@itemTour.TourAlias">@itemTour.TourName</a>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                            <!-- /.col-md-4  -->
+                                                            <div class="col-md-6">
+                                                                <ul class="nav flex-column padding0  ">
+                                                                    @foreach (var itemTour1 in listTour.Where(a => (bool)a.Status && a.MainMenuId == itemChilds.MenuId).Skip(4).Take(3).ToList())
+                                                                    {
+                                                                        <li class="nav-item ">
+                                                                            <a class="nav-link nav-activites padding0" href="/@itemTour1.MenuAlias/@itemTour1.TourAlias">@itemTour1.TourName</a>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <div class="col-md-8">
+                                                    @foreach (var itemChild1 in menuChilds.Skip(1).Take(1))
+                                                    {
+                                                        var menuChild2 = menus.Where(a => a.MenuParentId == itemChild1.MenuId).OrderBy(a => a.Index).ToList();
+                                                        <span class="text-uppercase color696969">@itemChild1.MenuName</span>
+                                                        <div class="row" style="margin-top:20px">
+                                                            @foreach (var itemTour in listTour.Where(a => (bool)a.Status && a.MainMenuId == itemChild1.MenuId).Take(4).ToList())
+                                                            {
+                                                                <div class="col-md-6 col-xs-6">
+                                                                    <a class="" href="/@itemChild1.MenuAlias/@itemTour.TourAlias">
+                                                                        <div class="row zoomin-img-header">
+                                                                            <div class="col-md-6 zoomin-img-header">
+                                                                                <img class="height100" src="@itemTour.Image" alt="">
+                                                                            </div>
+                                                                            <div class="col-md-6 col-xs-6">
+                                                                                <span class="text-uppercase tt-content-popular color696969">@itemChild1.MenuName</span>
+                                                                                <p class="color-fff size14">@itemTour.TourName</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    }
+
+                                                </div>
+
+                                                <!-- /.col-md-4  -->
+                                                <!-- /.col-md-4  -->
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/@item.MenuAlias">@item.MenuName</a>
+                            </li>
+                        }
+                    }
+                }
+                <li class="nav-item">
+                    <a href="#" class="search-toggle" data-selector="#header-1"><i class="fas fa-search"></i></a>
+                </li>
+                <div class="searchheader">
+                    <div class="search-box wow fadeInDownp">
+                        <form action="" class="">
+
+                            <input type="text" class="text search-input" placeholder="Type here to search..." />
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+</section>
+

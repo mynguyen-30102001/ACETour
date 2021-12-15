@@ -1,0 +1,146 @@
+﻿
+<style>
+    .box-detail-book-tour th {
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .box-detail-book-tour td {
+        border: none !important
+    }
+</style>
+<div class="armchair">
+    <h3>
+        <span>Thông tin liên hệ</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-2">
+            <input type="hidden" value="" id="latt"/>
+            <input type="hidden" value="" id="longg" />
+            <input type="hidden" value="{{data.Country}}" id="player" name="player" />
+            <table class="uk-table">
+                <tbody>
+                    <tr>
+                        <td style="width: 150px;"><b>Họ và tên</b></td>
+                        <td>: &emsp; {{data.FullName}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Số điện thoại</b></td>
+                        <td>: &emsp; {{data.Phone}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Email</b></td>
+                        <td>: <a href="mailto:{{data.Email}}">&emsp; {{data.Email}}</a></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Tên Tour</b></td>
+                        <td>: &emsp; {{data.TourType}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Số người tham gia</b></td>
+                        <td>: &emsp; {{data.People}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Giới tính</b></td>
+                        <td>: &emsp; {{data.Gender}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Năm Sinh</b></td>
+                        <td>: &emsp; {{data.Year}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>USD/người</b></td>
+                        <td>: &emsp; {{data.Budget}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Quốc gia</b></td>
+                        <td>: &emsp; {{data.Nationality}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Ngày khởi hành</b></td>
+                        <td>: &emsp; {{data.DateArrival}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;"><b>Thông tin chi tiết KH</b></td>
+                        <td>
+                            <button ng-click="showRelatedPost()" id="showRelatedPost" class="md-btn md-btn-primary md-btn-wave-light">Xem Thêm</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+</div>
+
+<div id="modalRelatePost" class="uk-modal" style="z-index: 10002;">
+    <div class="uk-modal-dialog uk-modal-dialog-large">
+        <button type="button" id="Closes" class="uk-modal-close uk-close"></button>
+        <h3>Thông tin chi tiết</h3>
+        <div>
+            <div class="uk-grid">
+                <div class="uk-width-1">
+                    <table class="uk-table">
+                        <tbody id="mydata">
+                            <tr>
+                                <td style="width: 150px;"><b>IP</b></td>
+                                <td>: &emsp; [[ip]]</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px;"><b>Quốc gia</b></td>
+                                <td>: &emsp; [[country_name]]</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px;"><b>Khu vực</b></td>
+                                <td>: &emsp; [[region_name]]</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px;"><b>Thành Phố</b></td>
+                                <td id="location">: &emsp; [[capital]]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1 uk-text-right uk-margin-top">
+                    <button type="button" id="Closes1" class="md-btn md-btn-default uk-modal-close md-btn-wave-light" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#showRelatedPost").click(function () {
+        var ip = $('#player').val();
+        var access_key = '01d286786363844b3438847aeafc295f';
+
+        // get the API result via jQuery.ajax
+        $.ajax({
+            url: 'http://api.ipstack.com/' + ip + '?access_key=' + access_key,
+            dataType: 'jsonp',
+            success: function (json) {
+                $("#latt").val(json.latitude),
+                    $("#longg").val(json.longitude),
+
+                    $("#mydata").mirandajs(json),
+
+                    $("#location").mirandajs(json, {
+                        jsonNode: ['location']
+                    });
+            }
+        });
+    });
+    $("#Closes").click(function () {
+        location.reload();
+    });
+    $("#Closes1").click(function () {
+        location.reload();
+    });
+</script>

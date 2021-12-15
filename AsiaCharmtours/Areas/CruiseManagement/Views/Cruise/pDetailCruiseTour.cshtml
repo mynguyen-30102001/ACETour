@@ -1,0 +1,27 @@
+﻿<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm mới</span>
+        <span ng-if="!isAdd">Chỉnh sửa</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-2-3">
+                    <div class="md-input-wrapper">
+                        <span>Tên lịch trình</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.CruiseTourTypeName" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Thứ tự</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Index" type="text" class="md-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>

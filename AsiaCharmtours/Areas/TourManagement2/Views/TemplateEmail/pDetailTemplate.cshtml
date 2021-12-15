@@ -1,0 +1,52 @@
+﻿<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm mới mẫu file</span>
+        <span ng-if="!isAdd">Chỉnh sửa mẫu file</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-1">
+                    <div class="md-input-wrapper">
+                        <span>Chọn mẫu</span> <span class="required-field">(*)</span>
+                        <select ng-model="data.TypeEmailId" required class="md-input" convert-to-number>
+                            <option value="">-- Chọn mẫu ---</option>
+                            <option ng-repeat="item in typeEmails" value="{{item.TypeEmailId}}">{{item.TypeEmailName}}</option>
+                        </select>
+                    </div>
+                    <div ng-if="data.TypeEmailId != 1" class="md-input-wrapper">
+                        <span>CC</span>
+                        <input ng-model="data.CC" type="text" class="md-input">
+                    </div>
+                    <div ng-if="data.TypeEmailId != 1" class="md-input-wrapper">
+                        <span>BCC</span>
+                        <input ng-model="data.BCC" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Subject</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Subject" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Nội dung</span>
+                        <p ng-if="data.TypeEmailId == 1">
+                            {mahopdong}, {ngayhomnay}, {tenkhachhang}, {diachi}, {sodienthoai}, {email}, {thoigianbatdauhieuluc}
+                            {tentour}, {motatour}, {hanhtrinh}, {thoihanthanhtoan}, {dieukhoan}
+                        </p>
+                        <textarea class="md-input" rows="2" name="Content"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('Content');
+    });
+</script>

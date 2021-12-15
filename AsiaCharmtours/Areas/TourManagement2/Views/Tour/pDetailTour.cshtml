@@ -1,0 +1,361 @@
+﻿@using AsiaCharmtours.Database
+@{
+    var menuType = QuickData.GetMenuTour(Request.Cookies["lang_client"].Value);
+    List<W_Menu> menuForType = QuickData.GetMenuTourByLevel(menuType.MenuId, 1, Request.Cookies["lang_client"].Value);
+
+    if (menuForType is null)
+    {
+        menuForType = new List<W_Menu>();
+    }
+}
+
+<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm mới tour</span>
+        <span ng-if="!isAdd">Chỉnh sửa tour</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-2-3">
+                    <div class="uk-grid">
+                        <div class="uk-width-1-2">
+                            <div class="md-input-wrapper">
+                                @*<span>Chủ đề</span> <span class="required-field">(*)</span>
+        <select required ng-model="data.ThemeId" class="md-input" convert-to-number>
+            <option value="">-- Chọn chủ đề --</option>
+            <option value="{{item.ThemeId}}" ng-repeat="item in themes">{{item.ThemeName}}</option>
+        </select>*@
+                                <div class="md-input-wrapper">
+                                    <span>Tên tour</span> <span class="required-field">(*)</span>
+                                    <input ng-change="autoConvertAlias()" required ng-model="data.TourName" type="text" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Alias</span> <span class="required-field">(*)</span>
+                                    <input required ng-model="data.TourAlias" type="text" class="md-input">
+                                </div>
+
+                                <div class="md-input-wrapper">
+                                    <span>Số ngày đi</span> <span class="required-field">(*)</span>
+                                    <input required ng-model="data.NumberDay" type="number" value="1" min="1" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Thứ tự hiển thị</span> 
+                                    <input required ng-model="data.Index" type="number" value="0" min="0" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Điểm đến</span> <span class="required-field">(*)</span>
+                                    <input required ng-model="data.Destination" type="text" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Loại chuyến đi</span>
+                                    <input ng-model="data.PromotionTitle" type="text" class="md-input">
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Mô tả ngắn</span>
+                                    <input ng-model="data.DescriptionMin" type="text" class="md-input">
+                                </div>
+
+                                <div class="md-input-wrapper">
+                                    <span>Hiển thị: </span>
+                                    <input type="checkbox" data-switchery checked id="switch_status" />
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Tour nổi bật: </span>
+                                    <input type="checkbox" data-switchery checked id="switch_hot" />
+                                </div>
+                                <div class="md-input-wrapper">
+                                    <span>Yêu thích (May you also like): </span>
+                                    <input type="checkbox" data-switchery checked id="switch_MayLike" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="uk-width-1-2">
+                            <div class="md-input-wrapper">
+                                <span>Loại tour</span><span class="required-field">(*)</span>
+                                @*<select required ng-model="filterMenu._menuParent1" class="md-input" convert-to-number>
+                                    <option value="">-- Chọn loại tour --</option>
+                                    @foreach (var item in menuForType)
+                                    {
+                                        <option value="@item.MenuId">@item.MenuName</option>
+                                    }
+                                </select>*@
+                                <select required ng-model="data.MainMenuId" class="md-input" convert-to-number>
+                                    <option value="">-- Chọn chuyên mục ---</option>
+                                    <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                </select>
+                            </div>
+                            @*<div class="md-input-wrapper">
+                                <span>Thuộc châu/ miền</span>
+                                <select ng-change="GetMenuByLevel()" ng-model="filterMenu._parentMenuId" class="md-input" convert-to-number>
+                                    <option value="">-- Chọn châu/ miền --</option>
+                                    <option value="{{item.MenuId}}" ng-repeat="item in menuForArea">{{item.MenuName}}</option>
+                                </select>
+                            </div>
+                            <div class="md-input-wrapper">
+                                <span>Điểm đến</span>
+                                <div class="box-table-fix" id="add_related_menu">
+                                    <table class="uk-table table-menu">
+                                        <thead>
+                                            <tr>
+                                                <th>Chọn</th>
+                                                <th>Điểm đến</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in menuForDestination">
+                                                <td>
+                                                    <input ng-model="item.Checked" type="checkbox" id="checkbox_menu_{{$index}}" />
+                                                </td>
+                                                <td>
+                                                    <label for="checkbox_menu_{{$index}}">{{item.MenuName}}</label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>*@
+
+                        </div>
+                        <div class="uk-width-1">
+                            <div class="md-input-wrapper">
+                                <span ng-click="showDetailTourTab(data.FakeTourTab[0])" class="fake-btn fake-btn-type1 fake-btn-type1-1">Tổng quan</span>
+                                <span ng-click="showDetailTourTab(data.FakeTourTab[1])" class="fake-btn fake-btn-type1 fake-btn-type1-2">Điểm nổi bật</span>
+                                <span ng-click="showDetailTourTab(data.FakeTourTab[2])" class="fake-btn fake-btn-type1 fake-btn-type1-3">Mô tả</span>
+                                <span ng-click="showDetailTourTab(data.FakeTourTab[3])" class="fake-btn fake-btn-type1 fake-btn-type1-4">Ghi chú</span>
+                                <span ng-click="showDetailTourTab(data.FakeTourTab[4])" class="fake-btn fake-btn-type1 fake-btn-type1-5">Khuyến mãi</span>
+                                <button ng-click="saveTourTab()" id="btnSaveTourTab" style="display:none" class="md-btn md-btn-primary">Lưu</button>
+                            </div>
+                            <div class="md-input-wrapper">
+                                <textarea class="md-input" rows="2" name="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="uk-width-1">
+                            <div class="md-input-wrapper">
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[0])" class="fake-btn fake-btn-type2 fake-btn-type2-1">Bữa ăn</span>
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[1])" class="fake-btn fake-btn-type2 fake-btn-type2-2">Phương tiện</span>
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[2])" class="fake-btn fake-btn-type2 fake-btn-type2-3">Chỗ ở</span>
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[3])" class="fake-btn fake-btn-type2 fake-btn-type2-4">Giá bao gồm</span>
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[4])" class="fake-btn fake-btn-type2 fake-btn-type2-5">Giá không bao gồm</span>
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[5])" class="fake-btn fake-btn-type2 fake-btn-type2-6">Chính sách hủy bởi khách hàng</span>
+                                <span ng-click="showDetailTourConditionTab(data.FakeTourCondition[6])" class="fake-btn fake-btn-type2 fake-btn-type2-7">Chính sách trẻ em</span>
+                                <button ng-click="saveTourConditionTab()" id="btnSaveTourConditionTab" style="display:none" class="md-btn md-btn-primary">Lưu</button>
+                            </div>
+                            <div class="md-input-wrapper">
+                                <textarea class="md-input" rows="2" name="Condition"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="uk-grid">
+                        <div class="uk-width-1">
+                            @*<div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục chính</span> <span class="required-field">(*)</span>
+                                            <select required ng-model="data.MainMenuId" class="md-input" convert-to-number>
+                                                <option value="">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.Index" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục phụ 1</span>
+                                            <select ng-model="data.T2_TourMenu[0].MenuId" class="md-input" convert-to-number>
+                                                <option value="">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.T2_TourMenu[0].Index" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục phụ 2</span>
+                                            <select ng-model="data.T2_TourMenu[1].MenuId" class="md-input" convert-to-number>
+                                                <option value="">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.T2_TourMenu[1].Index" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục phụ 3</span>
+                                            <select ng-model="data.T2_TourMenu[2].MenuId" class="md-input" convert-to-number>
+                                                <option value="">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.T2_TourMenu[2].Index" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                            @*//Test Select Address*@
+
+                            @*<div class="md-input-wrapper">
+                                <span>Chủ đề</span> <span class="required-field">(*)</span>
+                                <div class="box-table-fix" id="add_related_menu">
+                                    <table class="uk-table table-menu">
+                                        <thead>
+                                            <tr>
+                                                <th>Chọn</th>
+                                                <th>Chủ đề</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in menuThemes">
+                                                <td>
+                                                    <input ng-model="item.Checked" type="checkbox" id="checkbox_menu_{{$index}}" />
+                                                </td>
+                                                <td>
+                                                    <label for="checkbox_menu_{{$index}}">{{item.MenuName}}</label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>*@
+                        </div>
+                        <div class="uk-width-1 uk-text-center">
+                            <span>Ảnh đại diện (390x260)</span> <span class="required-field">(*)</span>
+                            <img id="img-logo" src="~/FileDefault/img-default.gif">
+                            <input required id="Logo" style="display: none; width: 0px;" name="Logo" class="upload">
+                        </div>
+                        <div class="uk-width-1 uk-margin-top">
+                            <h3 style="text-decoration: underline;">Gallery</h3>
+                            <div class="uk-grid" ng-if="data.T2_TourGallery.length == 0">
+                                <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-width-1-4">
+                                    <div>
+                                        <img src="~/FileDefault/img-default.gif">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-grid uk-grid-small" ng-if="data.T2_TourGallery.length > 0">
+                                <div ng-repeat="item in data.T2_TourGallery" class="uk-width-large-1-4 uk-width-medium-1-3 uk-width-1-4">
+                                    <div class="box-gallery">
+                                        <img ng-src="{{item.Image}}">
+                                        <i class="uk-icon uk-icon-close" ng-click="removeGallery($index)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-input-group" style="max-width: 350px;margin: 0 auto;">
+                                <input id="Gallery" style="display:none;width: 0px;" name="Gallery" class="upload-gallery">
+                                <button id="autoAddGallery" style="display:none" ng-click="addGallery()"></button>
+                            </div>
+                        </div>
+                        <div class="uk-width-1 uk-margin-top">
+                            <h3 style="margin-bottom: 0;text-decoration: underline;">Tối ưu hóa công cụ tìm kiếm (SEO)</h3>
+                            <div class="md-input-wrapper">
+                                <span>Meta Title</span>
+                                <input ng-model="data.MetaTitle" type="text" class="md-input">
+                            </div>
+                            <div class="md-input-wrapper">
+                                <span>Meta Description</span>
+                                <textarea ng-model="data.MetaDescription" class="md-input autosized" rows="2" style="overflow-x: hidden; overflow-wrap: break-word; height: 80px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('Description', {
+            on: {
+                change: function (evt) {
+                    $("#btnSaveTourTab").click();
+                }
+            }
+        });
+        CKEDITOR.replace('Condition', {
+            on: {
+                change: function (evt) {
+                    $("#btnSaveTourConditionTab").click();
+                }
+            }
+        });
+
+
+        function setFileField(fileUrl) {
+            $('#' + $(upload).attr('for')).val(fileUrl);
+            $("#img-logo").attr("src", fileUrl);
+        }
+        function setFileFieldGallery(fileUrl) {
+            $('#' + $(uploadGallery).attr('for')).val(fileUrl);
+            $("#autoAddGallery").click();
+        }
+        var i = 0;
+        if (!$('.button-upload').length > 0) {
+            var upload;
+            var textBox = $('.upload');
+            for (i = 0; i < textBox.length; i++) {
+                var uploadText = $(textBox[i]);
+                uploadText.css('width', uploadText.width() - 70);
+                uploadText.after('<button type="button" for="' + uploadText.attr('id') + '" class="button-upload md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload').click(function () {
+                    upload = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finder = new CKFinder();
+                    finder.basePath = '../files';
+                    finder.selectActionFunction = setFileField;
+                    finder.popup();
+                });
+            }
+        }
+        if (!$('.button-upload-gallery').length > 0) {
+            var uploadGallery;
+            var textBoxGallery = $('.upload-gallery');
+            for (i = 0; i < textBoxGallery.length; i++) {
+                var uploadTextGalery = $(textBoxGallery[i]);
+                uploadTextGalery.css('width', uploadTextGalery.width() - 70);
+                uploadTextGalery.after('<button type="button" for="' + uploadTextGalery.attr('id') + '" class="button-upload-gallery md-btn md-btn-primary md-btn-wave-light uk-margin-top">Thêm Gallery</button>');
+                $('.button-upload-gallery').click(function () {
+                    uploadGallery = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finderGallery = new CKFinder();
+                    finderGallery.basePath = '../files';
+                    finderGallery.selectActionFunction = setFileFieldGallery;
+                    finderGallery.popup();
+                });
+            }
+        }
+    });
+</script>

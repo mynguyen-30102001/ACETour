@@ -1,0 +1,153 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    List<W_Menu> menus = QuickData.GetMasterMainMenus(lan);
+    QA_Question about = (QA_Question)ViewData["ListAbout"];
+    List<W_Employee> employee = QuickData.ListEmployee(lan);
+    int i = 1;
+}
+<div class="img-banner" style="position: relative; z-index: 10;">
+    <img src="@menu.Background" width="100%" alt="@menu.Title">
+    <h2 class="text-center">@menu.MenuName</h2>
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuHome.cshtml")
+
+<!-- end Header -->
+
+<div class="nous-about">
+    <div class="container">
+        <p class="wow fadeInUp">
+            @Html.Raw(menu.Description)
+        </p>
+    </div>
+</div>
+<div style="background: #ccd9fe; padding-top: 30px; padding-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+
+                @foreach (var item in menus.Where(a => a.MenuParentId == 0 && a.Highlight && (bool)a.ShowMenuTop && a.MenuTypeId == (int)MenuType.AboutUs).OrderBy(x => x.Index).ToList())
+                {
+                    var menuChilds = menus.Where(a => a.MenuParentId == item.MenuId).OrderBy(a => a.Index).ToList();
+                    if (menuChilds.Count > 0)
+                    {
+                        foreach (var itemChild in menuChilds)
+                        {
+                            if (itemChild.MenuTypeId == (int)MenuType.OutSite)
+                            {
+                                <div class="link-nous  wow fadeInUp" data-wow-delay="0.2s">
+                                    <a href="#panel-@i"><i class="far fa-hand-point-right"></i>@itemChild.MenuName</a>
+                                </div>
+                                i++;
+                            }
+                            else
+                            {
+                                <div class="link-nous  wow fadeInUp" data-wow-delay="0.2s">
+                                    <a href="/@itemChild.MenuAlias"><i class="far fa-hand-point-right"></i>@itemChild.MenuName</a>
+                                </div>
+                            }
+                            
+                        }
+                    }
+                }
+            </div>
+            <div class="col-md-8 wow fadeInUp">
+                <video width="100%" height="400" controls autoplay muted>
+                    <source src="~/Content/video/INNOTRAVEL VIETNAM - The Art Of Living.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nous-nd">
+    <div id="panel-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 wow fadeInUp">
+                    <img src="@about.Avatar" width="100%" alt="">
+                    <p style="text-align: center; margin-top: 20px;">@about.FullName</p>
+                </div>
+                <div class="col-md-8 wow fadeInUp">
+                    @Html.Raw(about.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="panel-2" class=" wow fadeInUp">
+        <div class="container" style="padding-top: 40px">
+            <div class="col-lg-8" style="margin: auto">
+                <p>
+                    @Html.Raw(menu.Overview)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="panel-3" class="wow fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <img src="@about.Icon" width="100%" alt="">
+                </div>
+                <div class="col-lg-7">
+                    @Html.Raw(about.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="panel-4" class="wow fadeInUp">
+        <div class="container">
+           
+            <div class="col-lg-7" style="margin: auto; margin-bottom: 30px;">
+                @Html.Raw(menu.Note)
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-wrap">
+                        <div class="owl-carousel wow fadeInUp" id="nos1">
+                            @foreach (var item in employee)
+                            {
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="our-team" style="background: #fff">
+                                                <div class="pic">
+                                                    <img src="@item.Image">
+                                                </div>
+                                                <h3 class="title">@item.FullName</h3>
+                                                <span class="post">@item.Position</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="panel-5" class="wow fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@menu.Image2" width="100%" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h4>Permis de voyage international</h4>
+                    <p>
+                        Energistically drive standardized communities through user friendly results.
+                        Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield
+                        solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis
+                        superior
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

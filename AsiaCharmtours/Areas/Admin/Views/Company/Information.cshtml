@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Thông tin khách sạn";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script>
+    $(".li-company").addClass('active');
+</script>
+<script src="~/Scripts/UIGrid/angular.min.js"></script>
+<script src="~/Scripts/BaseJS/layout-angular-sample.js"></script>
+<script src="~/Areas/Admin/Content/js/Company/company.js"></script>
+<script src="~/Plugin/ckfinder/ckfinder.js"></script>
+
+<div class="uk-grid uk-grid-small" ng-app="app" ng-controller="controller">
+    <div class="uk-width-1">
+        <div class="md-card">
+            <div class="md-card-toolbar">
+                <h3 class="md-card-toolbar-heading-text">
+                    <i class="uk-icon uk-icon-building"></i>  CẬP NHẬT THÔNG TIN KHÁCH SẠN
+                </h3>
+            </div>
+            <div class="md-card-content">
+                <div id="form_data" class="uk-grid">
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-grid">
+                            <div class="uk-width-1 uk-text-center">
+                                <span>Logo khách sạn</span> <span class="required-field">(*)</span>
+                                <img id="img-logo" src="~/FileDefault/img-default.gif">
+                                <input required id="Logo" style="display: none; width: 0px;" name="Logo" class="upload">
+                            </div>
+                            <div class="uk-width-1-2 uk-text-center">
+                                <span>Ảnh đại diện</span> <span class="required-field">(*)</span>
+                                <img id="img-gallery" src="~/FileDefault/img-default.gif">
+                                <input required id="Gallery" style="display: none; width: 0px;" name="Gallery" class="upload-gallery">
+                            </div>
+                            <div class="uk-width-1-2 uk-text-center">
+                                <span>Favicon</span> <span class="required-field">(*)</span>
+                                <img id="img-favicon" src="~/FileDefault/img-default.gif">
+                                <input required id="Favicon" style="display: none; width: 0px;" name="Favicon" class="upload-favicon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="md-input-wrapper">
+                            <span>Tên khách sạn</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.CompanyName" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Số điện thoại</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.Phone" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Fax</span>
+                            <input ng-model="data.Fax" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Địa chỉ email</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.Email" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Địa chỉ khách sạn</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.Address" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Vị trí khách sạn trên google</span>
+                            <input ng-model="data.LocationMap" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Frame map google</span>
+                            <input ng-model="data.IframeMap" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Website</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.Website" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Link trang facebook</span>
+                            <input ng-model="data.Facebook" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Link Instagram</span>
+                            <input ng-model="data.Instagram" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Link twitter</span>
+                            <input ng-model="data.Twitter" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Link youtube</span>
+                            <input ng-model="data.Youtube" type="text" class="md-input">
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="md-input-wrapper">
+                            <span>Ký hiệu mã booking</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.CompanyCode" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Mã đánh giá tripadvisor</span>
+                            <input ng-model="data.Tripadvisor" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <span>Thương hiệu</span> <span class="required-field">(*)</span>
+                            <input required ng-model="data.CopyRight" type="text" class="md-input">
+                        </div>
+                        <div class="md-input-wrapper">
+                            <h3 style="margin-bottom: 0;text-decoration: underline;">Tối ưu hóa công cụ tìm kiếm</h3>
+                            <div class="md-input-wrapper">
+                                <span>Meta Title</span>
+                                <input ng-model="data.MetaTitle" type="text" class="md-input">
+                            </div>
+                            <div class="md-input-wrapper">
+                                <span>Meta Description</span>
+                                <textarea ng-model="data.MetaDescription" class="md-input" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1 uk-margin-medium-top uk-text-center uk-margin-large-bottom">
+                        <button ng-click="Put()" class="md-btn md-btn-primary md-btn-wave-light">Cập nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        function setFileField(fileUrl) {
+            $('#' + $(upload).attr('for')).val(fileUrl);
+            $("#img-logo").attr("src", fileUrl);
+        }
+        function setFileFieldGallery(fileUrl) {
+            $('#' + $(uploadGallery).attr('for')).val(fileUrl);
+            $("#img-gallery").attr("src", fileUrl);
+        }
+        function setFileFieldFavicon(fileUrl) {
+            $('#' + $(uploadFavicon).attr('for')).val(fileUrl);
+            $("#img-favicon").attr("src", fileUrl);
+        }
+        var i = 0;
+        if (!$('.button-upload').length > 0) {
+            var upload;
+            var textBox = $('.upload');
+            for (i = 0; i < textBox.length; i++) {
+                var uploadText = $(textBox[i]);
+                uploadText.css('width', uploadText.width() - 70);
+                uploadText.after('<button type="button" for="' + uploadText.attr('id') + '" class="button-upload md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload').click(function () {
+                    upload = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finder = new CKFinder();
+                    finder.basePath = '../files';
+                    finder.selectActionFunction = setFileField;
+                    finder.popup();
+                });
+            }
+        }
+        if (!$('.button-upload-gallery').length > 0) {
+            var uploadGallery;
+            var textBoxGallery = $('.upload-gallery');
+            for (i = 0; i < textBoxGallery.length; i++) {
+                var uploadTextGalery = $(textBoxGallery[i]);
+                uploadTextGalery.css('width', uploadTextGalery.width() - 70);
+                uploadTextGalery.after('<button type="button" for="' + uploadTextGalery.attr('id') + '" class="button-upload-gallery md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload-gallery').click(function () {
+                    uploadGallery = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finderGallery = new CKFinder();
+                    finderGallery.basePath = '../files';
+                    finderGallery.selectActionFunction = setFileFieldGallery;
+                    finderGallery.popup();
+                });
+            }
+        }
+        if (!$('.button-upload-favicon').length > 0) {
+            var uploadFavicon;
+            var textBoxFavicon = $('.upload-favicon');
+            for (i = 0; i < textBoxFavicon.length; i++) {
+                var uploadTextFavicon = $(textBoxFavicon[i]);
+                uploadTextFavicon.css('width', uploadTextFavicon.width() - 70);
+                uploadTextFavicon.after('<button type="button" for="' + uploadTextFavicon.attr('id') + '" class="button-upload-favicon md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload-favicon').click(function () {
+                    uploadFavicon = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finderFavicon = new CKFinder();
+                    finderFavicon.basePath = '../files';
+                    finderFavicon.selectActionFunction = setFileFieldFavicon;
+                    finderFavicon.popup();
+                });
+            }
+        }
+    });
+</script>

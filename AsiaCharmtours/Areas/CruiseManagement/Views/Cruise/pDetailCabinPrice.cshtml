@@ -1,0 +1,102 @@
+﻿<div class="armchair">
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-large-1-3">
+                    <h3 style="text-decoration: underline;">Thông tin cabin</h3>
+                    <div>
+                        <table class="uk-table table-menu">
+                            <thead>
+                                <tr>
+                                    <th colspan="2"><b>#</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Hình ảnh</b></td>
+                                    <td>
+                                        <img ng-src="{{dataDetail.Image}}" style="max-width: 360px;border: 1px solid #dcdcdc;padding: 2px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Tên cabin</b></td>
+                                    <td>{{dataDetail.CabinName}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Diện tích</b></td>
+                                    <td>{{dataDetail.Acreage}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Giường</b></td>
+                                    <td>{{dataDetail.Bed}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Ban công</b></td>
+                                    <td>{{dataDetail.Balcony}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>SL người tối đa</b></td>
+                                    <td>{{dataDetail.MaxPeople}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Highlight</b></td>
+                                    <td>{{dataDetail.Highlight}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="uk-width-large-2-3">
+                    <h3 style="text-decoration: underline;">Chi tiết bảng giá</h3>
+                    <div>
+                        <div class="md-input-wrapper">
+                            <span class="label-fixed">Giảm giá khi đặt vượt quá số lượng người tối đa/ phòng</span>
+                            <input ng-model="data.discountOverMaxNumber" type="text" class="md-input" style="max-width:300px">
+                        </div>
+                    </div>
+                    <div>
+                        <table class="uk-table table-menu uk-margin-bottom" ng-repeat="item in dataPrice">
+                            <thead>
+                                <tr>
+                                    <th colspan="{{countPerson.length + 1}}">
+                                        <b>
+                                            Lịch trình cho:
+                                            <span style="font-size: 18px;font-weight: bold;">{{item.CruiseTourTypeName}}</span>
+                                        </b>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th class="uk-text-center" ng-repeat="countNumber in countPerson">
+                                        <b>/{{countNumber}} người</b>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="cb in item.EF_CabinPersonType">
+                                    <td>
+                                        <b>{{cb.Title}}</b>
+                                    </td>
+                                    <td ng-repeat="ps in cb.EF_CabinPersonPrice">
+                                        <div class="md-input-wrapper">
+                                            <span class="label-fixed">Giá ban đầu</span>
+                                            <input ng-model="ps.Price" type="text" class="md-input">
+                                        </div>
+                                        <div class="md-input-wrapper">
+                                            <span class="label-fixed">Giá khuyến mãi</span>
+                                            <input ng-model="ps.PromotionalPrice" type="text" class="md-input">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>

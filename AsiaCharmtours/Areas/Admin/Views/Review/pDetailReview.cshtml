@@ -1,0 +1,132 @@
+﻿<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm mới đánh giá</span>
+        <span ng-if="!isAdd">Chỉnh sửa đánh giá</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-2-3">
+                    <div class="md-input-wrapper">
+                        <span>Tiêu đề</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Title" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Name</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.FullName" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Address</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Address" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Thứ tự hiển thị</span>
+                        <input ng-model="data.Index" type="number" value="0" min="0" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Trạng thái hiển thị: </span>
+                        <input type="checkbox" data-switchery checked id="switch_status" />
+                    </div>
+
+                    <div class="md-input-wrapper">
+                        <span>Nội dung bài viết</span>
+                        <textarea class="md-input" rows="2" name="Content"></textarea>
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="uk-grid">
+                      
+                        <div class="uk-width-1 uk-text-center uk-margin-top">
+                            <span>Ảnh đại diện</span> <span class="required-field">(*)</span>
+                            <img id="img-logo" src="~/FileDefault/img-default.gif">
+                            <input required id="Logo" style="display: none; width: 0px;" name="Logo" class="upload">
+                        </div>    
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>
+<div id="modalRelatePost" class="uk-modal" style="z-index: 10002;">
+    <div class="uk-modal-dialog uk-modal-dialog-large">
+        <button type="button" class="uk-modal-close uk-close"></button>
+        <h3>Chọn bài viết liên quan</h3>
+        <div>
+            <div class="uk-grid">
+                <div class="uk-width-1">
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-1-3 uk-width-1-2 uk-margin-small-bottom">
+                            <div class="md-input-wrapper">
+                                <label class="label-fixed">Tìm kiếm</label>
+                                <input ng-change="GetRelatedPost()" ng-model="filtersRelatedPost._keySearch" type="text" class="md-input" placeholder="Tiêu đề">
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3 uk-width-1-2 uk-margin-small-bottom">
+                            <div class="md-input-wrapper">
+                                <label class="label-fixed">Chuyên mục</label>
+                                <select ng-change="GetRelatedPost()" ng-model="filtersRelatedPost._menuId" class="md-input" convert-to-number>
+                                    <option value="-1">--Tất cả--</option>
+                                    <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-1">
+                    <div style="overflow: auto;">
+                        <div ui-grid="gridOptionsRelatedPost" ui-grid-auto-resize ui-grid-selection ui-grid-resize-columns ui-grid-pagination class="grid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1 uk-text-right uk-margin-top">
+                    <button type="button" class="md-btn md-btn-default uk-modal-close md-btn-wave-light" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="md-btn md-btn-primary uk-modal-close md-btn-wave-light" data-dismiss="modal">Chọn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        //CKEDITOR.replace("Description");
+        CKEDITOR.replace("Content");
+
+        $("input[type='radio']").on('ifChanged', function (e) {
+            if ($("input[type='radio'][id=relatepost2]").is(':checked'))
+                $("#add_related_post").css("display", "block");
+            else
+                $("#add_related_post").css("display", "none");
+        });
+        function setFileField(fileUrl) {
+            $('#' + $(upload).attr('for')).val(fileUrl);
+            $("#img-logo").attr("src", fileUrl);
+        }
+        if (!$('.button-upload').length > 0) {
+            var upload;
+            var textBox = $('.upload');
+            for (var i = 0; i < textBox.length; i++) {
+                var uploadText = $(textBox[i]);
+                uploadText.css('width', uploadText.width() - 70);
+                uploadText.after('<button type="button" for="' + uploadText.attr('id') + '" class="button-upload md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload').click(function () {
+                    upload = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finder = new CKFinder();
+                    finder.basePath = '../files';
+                    finder.selectActionFunction = setFileField;
+                    finder.popup();
+                });
+            }
+        }
+    });
+</script>

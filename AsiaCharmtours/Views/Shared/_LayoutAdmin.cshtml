@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/Plugin/assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/Plugin/assets/img/favicon-32x32.png" sizes="32x32">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/Plugin/bower_components/kendo-ui/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="/Plugin/bower_components/kendo-ui/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="/Plugin/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
+    <link rel="stylesheet" href="/Plugin/assets/css/main.min.css" media="all">
+    <script src="/Plugin/assets/js/common.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="~/Content/admin/layout-admin.css" rel="stylesheet" />
+</head>
+<body class="sidebar_main_swipe sidebar_secondary_persisten top_bar_active">
+    @Html.Partial("~/Views/PartialView/Admin/pHeader.cshtml")
+    <div id="page_content">
+        <div id="page_content_inner">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Html.Partial("~/Views/PartialView/Admin/pSetting.cshtml")
+    <footer id="footer" class="uk-text-center">
+        WEBHOTEL.VN hệ thống website khách sạn được sử dụng nhiều nhất tại Việt Nam
+    </footer>
+    <div id="loader">
+        <i class="uk-icon-spinner uk-icon-medium uk-icon-spin"></i>
+    </div>
+    <script src="/Plugin/assets/js/uikit_custom.min.js"></script>
+    <script src="/Plugin/assets/js/altair_admin_common.min.js"></script>
+    <script src="/Plugin/assets/js/kendoui_custom.min.js"></script>
+    <script src="/Plugin/assets/js/pages/kendoui.min.js"></script>
+    @RenderSection("jsaddition", false)
+    <script src="~/Scripts/BaseJS/validation.js"></script>
+    <script src="~/Plugin/assets/js/jquery.miranda.min.js"></script>
+    <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+</body>
+</html>

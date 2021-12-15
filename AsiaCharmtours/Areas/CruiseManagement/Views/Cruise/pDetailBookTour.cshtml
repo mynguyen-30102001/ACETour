@@ -1,0 +1,99 @@
+﻿<style>
+    table, td, th {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+
+    .container {
+        width:80%;
+       margin:auto;
+    }
+
+    tr th:first-child {
+        text-align: right;
+    }
+
+    tr td:first-child {
+    text-align:right;
+    }
+</style>
+<br /><br />
+<div class="container">
+
+
+    <h2>Thông tin đặt tàu</h2>
+
+
+    <table>
+        <tr>
+            <th>Thông Tin Người Đặt</th>
+            <th></th>
+
+        </tr>
+        <tr>
+            <td>Họ tên</td>
+            <td>{{data.Gender}} {{data.FullName}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{data.Email}}</td>
+        </tr>
+        <tr>
+            <td>Số điện thoại</td>
+            <td>{{data.PhoneNumber}}</td>
+        </tr>
+        <tr>
+            <td>Địa chỉ</td>
+            <td>{{data.Address}}</td>
+        </tr>
+        <tr>
+            <td>Mạng xã hội</td>
+            <td>{{data.SocialMedia}}</td>
+        </tr>
+        <tr>
+            <td>Lời nhắn</td>
+            <td>{{data.SpecialRequests}}</td>
+        </tr>
+        <tr>
+            <th>Thông Tin Tàu</th>
+            <th></th>
+
+        </tr>
+        <tr>
+            <td>Tàu</td>
+            <td>{{data.Cruise}}</td>
+        <tr>
+            <td>Cabin</td>
+            <td>{{data.Cabin}}</td>
+        <tr>
+            <td>Ngày khởi hành</td>
+            <td>{{data.Departure}}</td>
+        </tr>
+        <tr>
+            <td>Số lượng khách</td>
+            <td>{{data.People}}</td>
+        </tr>
+        <tr>
+            <td>Hành Trình</td>
+            <td>{{data.TourType}}</td>
+        <tr>
+        <tr>
+            <td>Khách sạn(nếu có)</td>
+            <td>{{data.ServiceHotel}}</td>
+        <tr>
+        <tr>
+            <td>Tổng Tiền</td>
+            <td>{{data.TotalPrice}} $</td>
+        <tr>
+    </table>
+</div>
+

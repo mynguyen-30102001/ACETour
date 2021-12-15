@@ -1,0 +1,1015 @@
+.most-recommended-service {
+    font-style: italic;
+    border: 1px solid #ddd;
+    border-right: 0;
+    border-bottom: 0;
+    border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    width: 143%;
+    padding: 10px 15px;
+    margin-top: 15px
+}
+
+.most-recommended-service .header {
+    font-weight: 700;
+    font-size: 14px;
+    color: #693;
+    margin-bottom: 10px
+}
+
+.search-filter-bgr {
+    border: 1px solid #ddd;
+    padding: 10px
+}
+
+.search-filter-bgr h4 {
+    font-size: 18px;
+    font-weight: 700
+}
+
+.search-filter-bgr .title {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding-bottom: 10px
+}
+
+.most-recommended-service .col-service-cnt,
+.most-recommended-service .col-service-price {
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left
+}
+
+.most-recommended-service .col-service-cnt {
+    width: 68%
+}
+
+.most-recommended-service .col-service-price {
+    width: 32%;
+    padding-left: 5px;
+    font-size: 11px
+}
+
+.col-service-cnt img {
+    margin: 0 10px 10px 0;
+    float: left;
+    position: relative
+}
+
+.col-service-cnt .service-name {
+    font-size: 15px
+}
+
+.col-service-cnt .location,
+.col-service-cnt .reviews,
+.col-service-cnt .service-desc {
+    font-size: 11px
+}
+
+.col-service-price .bt-price {
+    font-size: 16px;
+    font-weight: 700
+}
+
+.col-service-price .dc-unit {
+    font-size: 11px;
+    font-weight: 400
+}
+
+.col-service-price .seperate-line {
+    border-bottom: 1px solid #ddd
+}
+
+.bpt-item .col-content {
+    width: 80%
+}
+
+.bpt-item .col-price {
+    width: 20%
+}
+
+.bpt-item-background {
+    background-color: #ebebeb;
+    padding: 10px 10px 0 10px
+}
+
+.bpt-item-search {
+    width: 100%;
+    border: 1px solid #d0d0d0;
+    float: left;
+    background-color: #fff;
+    margin-bottom: 15px;
+    position: relative
+}
+
+.bpt-item-search:hover {
+    box-shadow: 2px 2px 2px #eca962
+}
+
+.bpt-item-search .col-content,
+.bpt-item-search .col-price {
+    background-color: #fff
+}
+
+.bpt-item-search .col-content {
+    width: 70%;
+    float: left
+}
+
+.bpt-item-search .col-price {
+    width: 30%;
+    float: left;
+    padding: 5px
+}
+
+.bpt-item-search .col-price .secret-deal-price {
+    font-size: 12px;
+    margin-top: -5px
+}
+
+.bpt-item-search .secret-deal {
+    font-size: 20px;
+    margin-left: -5px
+}
+
+.bpt-item-search .col-img {
+    width: 28%;
+    float: left;
+    position: relative
+}
+
+.bpt-item-search.border-orange {
+    border: 2px solid #eb8f00!important
+}
+
+.bpt-item-search .col-img .show-recommend-type {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(245, 121, 33, .91);
+    color: #fff;
+    width: 100%;
+    max-width: 225px
+}
+
+.bpt-item-search .col-info .highlight {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+.bpt-item-search .col-info .highlight .glyphicon {
+    font-size: 11px;
+    margin-right: 5px
+}
+
+.bpt-item-search .col-info {
+    width: 72%;
+    padding: 10px;
+    float: left
+}
+
+.bpt-item-search .col-label,
+.bpt-item-search .col-text {
+    min-height: 1px;
+    padding-right: 10px;
+    position: relative;
+    float: left
+}
+
+.bpt-item-search .col-label {
+    width: 26%;
+    padding-left: 10px
+}
+
+.bpt-item-search .col-text {
+    width: 74%;
+    padding-left: 0
+}
+
+.bpt-item-search .btn-green {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 15px;
+    font-size: 15px;
+    border-bottom: 2px solid #508326
+}
+
+.bpt-item-search .btn-yellow {
+    padding: 8px 15px;
+    font-size: 15px
+}
+
+.bpt-item-search .item-name {
+    font-size: 20px
+}
+
+.bpt-item-search .description {
+    line-height: 1.5em;
+    color: #333
+}
+
+.bpt-item-search .what-included {
+    font-weight: 700
+}
+
+.bpt-item-search .col-price .item-from {
+    font-size: 11px;
+    margin-bottom: -5px;
+    color: #666
+}
+
+.bpt-item-search .btn-list {
+    border-radius: 15px
+}
+
+.cruise-by-type .bpt-see-more,
+.tab-content .bpt-see-more {
+    padding: 3px 15px;
+    font-weight: 700;
+    text-decoration: underline
+}
+
+.bpt-item-search .item-offer {
+    margin-left: 0;
+    max-width: 100%
+}
+
+.item-offer {
+    background-color: #ffffc9;
+    padding: 6px 10px 3px;
+    height: auto;
+    max-width: 100%;
+    position: relative;
+    overflow: visible
+}
+
+.bpt-item-search .item-offer ul {
+    margin: 0
+}
+
+.bpt-item-search .item-offer li {
+    width: 100%;
+    overflow: hidden
+}
+
+.bpt-item-search .item-offer-arrow-after,
+.bpt-item-search .item-offer-arrow-before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-right: 0;
+    border-width: 13.5px 15px;
+    display: none
+}
+
+.bpt-item-search .item-offer-arrow-before {
+    top: 0;
+    right: -16px;
+    border-left-color: #e2e2e2;
+    border-width: 15px 16px
+}
+
+.bpt-item-search .item-offer-arrow-after {
+    top: -1px;
+    right: -15px;
+    border-left-color: #ffffc9!important;
+    border-width: 15px 15px
+}
+
+.bpt-item-search .item-offer .item-arrow-circle {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 2px solid #ced0cb;
+    vertical-align: middle;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: -9px;
+    margin-top: -2px;
+    z-index: 10;
+    display: none
+}
+
+.search-overview {
+    background: #eee;
+    padding: 10px 0
+}
+
+.search-overview h4 {
+    margin-bottom: 0;
+    font-size: 16px
+}
+
+.bgr_search {
+    text-align: center;
+    background-color: #eee
+}
+
+.page-header {
+    display: none
+}
+
+.search-content .form-group {
+    min-width: 140px
+}
+
+.flash-sale {
+    background-color: #eaeaea
+}
+
+.TopCht1 {
+    position: relative;
+}
+
+    .TopCht1 img {
+        width: 100%;
+    }
+
+.Top10Title {
+    position: absolute;
+    background: none repeat scroll 0 0 rgba(0,0,0,0.31);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+h1.Top10 {
+    border-bottom: none;
+    font-size: 52px;
+    color: #fff;
+    text-align: center;
+    display: block;
+    top: calc(50% - 60px);
+    height: 100px;
+    text-shadow: 3px 3px 3px #414141;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 10px;
+}
+
+.TourItinerary {
+    font-size: 22px;
+    font-weight: 300;
+    color: #000;
+    margin-top: 5px;
+}
+
+.CityTransport {
+    padding: 15px 0;
+}
+
+.TrainHour {
+    background: url(/FileDefault/arrow-right.png) no-repeat bottom;
+    padding-bottom: 15px;
+    display: block;
+    text-align: center;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.TourDays {
+    background: #e7e7e7;
+    border-radius: 4px;
+    padding: 8px 5px;
+    height: 110px;
+}
+
+.CityTransport .fa {
+    color: #003580;
+    text-align: center;
+    font-size: 22px;
+    display: block;
+}
+
+.fa-square {
+    font-size: 5px;
+    margin-right: 8px;
+    color: #c4c4c4;
+    margin-left: -12px;
+}
+
+ul.TourSees{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+ul.TourSees li {
+    padding-left: 20px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    list-style: none;
+}
+
+.TourHighlights {
+    margin-bottom: 15px;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.TourHighlights h2{
+    font-size: 30px !important;
+    color: #000 !important;
+    margin: 35px 0 30px !important;
+    font-weight: 300 !important;
+}
+
+.TourMap {
+    margin-bottom: 15px;
+    padding-right: 0;
+    padding-left: 44px;
+    margin-top: 20px;
+}
+    .TourMap img {
+        border-radius: 4px;
+        margin-top: 40px;
+        width: 100%;
+    }
+
+ul.TourSights {
+    display: block;
+    margin-bottom: 15px;
+    height: auto !important;
+}
+
+ul.TourSights li {
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background: none !important;
+}
+
+.TMtop {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.TMcontent {
+    border-right: 2px solid #c4c4c4;
+}
+
+.DetailTopTM {
+    text-align: center;
+    font-size: 18px;
+}
+
+ul.IndexTM {
+    margin-left: -5px;
+}
+
+ul.IndexTM li {
+    float: left;
+    font-size: 18px;
+    padding-left: 25px;
+    margin-right: 15px;
+}
+
+.fa-check-square {
+    color: #2373ba;
+    font-size: 20px;
+    margin-right: 5px;
+    margin-left: -20px;
+}
+
+.TMtitle {
+    font-size: 26px;
+    font-weight: 300;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.TourPrice {
+    text-align: center;
+}
+
+.TourPriceRed {
+    font-size: 22px;
+    color: #2373ba;
+    font-weight: 300;
+}
+
+.DetailTopTM p {
+    margin-top: 13px;
+    font-size: 18px;
+    margin-bottom: 0 !important;
+}
+.wrpDtTour{
+color: #545454
+}
+
+.earlyBird .promoTitle {
+    color: #003580;
+    display: block;
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.freeTour {
+    display: block;
+    padding: 0 0 0 70px;
+    font-size: 16px;
+}
+
+.freeTour strong{
+    display: block;
+    color: #666;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.TopDetail {
+    background: #e9e9e9;
+    padding: 15px 0 60px 0;
+}
+
+.TopDetail h2{
+    font-size: 30px !important;
+    color: #000 !important;
+    margin: 35px 0 30px !important;
+    font-weight: 300 !important;
+}
+
+#expandAll {
+    line-height: 27px;
+    float: right;
+    cursor: pointer;
+    font-size: 18px !important;
+    font-style: italic;
+    color: #003580;
+    margin-bottom: 10px;
+}
+.collapseIcon i{
+    transition: all ease .4s;
+}
+
+.toggleArrow{
+    transform: rotate(180deg);
+    transition: all ease .4s;
+}
+.TourList {
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.TourDates {
+    background: #f7f7f7;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    display: block;
+    margin: 0 !important;
+}
+
+.TourInfo {
+    padding: 20px;
+}
+
+.CloseButton .fa, .OpenButton .fa {
+    cursor: pointer;
+    float: right;
+    font-size: 18px;
+    color: #003580;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.TourDay {
+    color: #2373ba;
+    margin-right: 10px;
+}
+
+.InquiryFormBox {
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.InquiryFormBox .InquiryInfo {
+    background: #f7f7f7;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+}
+
+.InquiryFormBox .TourTitle {
+    color: #003580;
+    font-size: 28px;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.InquiryFormBox .FieldSet {
+    padding: 0 20px 10px 20px;
+}
+
+.InquiryFormBox p {
+    margin-bottom: 20px !important;
+}
+
+.InquiryFormBox input[type="text"], textarea {
+    width: 100%;
+}
+
+.InquiryFormBox input.FullName {
+    background: url(https://data.chinahighlights.com/pic/input-name.png) no-repeat 15px;
+    padding-left: 50px;
+}
+
+.InquiryFormBox input.EmailAddress {
+    background: url(https://data.chinahighlights.com/pic/input-email.png) no-repeat 15px;
+    padding-left: 50px;
+}
+
+.InquiryFormBox input.InquiryCalendar {
+    background: url(https://data.chinahighlights.com/pic/top10/tour-calendar.png) no-repeat 15px !important;
+    padding-left: 50px;
+    color: #555;
+}
+.InquiryFormBox input, textarea {
+    background-color: #fff;
+    border: medium none;
+    border-radius: 4px;
+    box-shadow: 0 0 2px #999;
+    color: #333;
+    font-size: 14px;
+    padding: 10px;
+    line-height: 24px;
+}
+
+.InquiryFormBox .sendButton {
+    background: #003580  none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    margin: -10px 10px 15px 0;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.earlyBird {
+    display: block;
+    border-top: 1px dashed #999;
+    padding: 15px 20px 25px;
+    margin: 30px 0;
+}
+
+.InquiryFormBox .sendButton .fa {
+    margin-left: 20px;
+    font-size: 21px;
+}
+
+h2 {
+    font-size: 30px !important;
+    margin: 35px 0 30px !important;
+    font-weight: 300 !important;
+}
+
+.InquiryButton {
+    background: #2373ba;
+    text-align: center;
+    font-size: 28px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 4px;
+    font-weight: 300;
+    width: 100%;
+}
+
+.InquiryButton a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.toggleFix{
+    position: fixed;
+    top: 60px;
+}
+ 
+@media (max-width:1024px) {
+    .TourDays {
+        height: 150px;
+    }
+}
+@media (max-width:767px) {
+    .TourDays {
+        height: 110px;
+    }
+    h1.Top10 {
+        font-size: 30px !important;
+        font-weight: 400;
+        top: calc(50% - 40px) !important;
+    }
+    .flash-sale {
+        border-bottom: 1px solid #d0d0d0
+    }
+    .flash-sale .content {
+        top: 0;
+        right: 0
+    }
+    .page-header {
+        display: none
+    }
+    .search-form {
+        position: relative;
+        top: 0;
+        margin: 10px 0
+    }
+    .search-form-non-ad {
+        background-color: #e0e0e0
+    }
+    .search-form-type-1 .form-control {
+        border: 0
+    }
+    .search-form-type-1 .search-content {
+        display: block
+    }
+    .search-overview {
+        background: #0283df;
+        padding: 10px;
+        color: #fff
+    }
+    .search-form-type-1 .search-content #hotel_destination_group,
+    .search-form-type-1 .search-content #tour_destination_group,
+    .search-form-type-1 .search-content .twitter-typeahead {
+        width: 100%
+    }
+    .bgr_search {
+        background-color: #0283df
+    }
+    .search-overview {
+        padding: 10px 0
+    }
+    .search-overview a {
+        color: #fff;
+        margin-top: 20px
+    }
+    .search-overview .label-overview {
+        display: none
+    }
+    .sort-by {
+        background: 0 0;
+        border: 0;
+        border-bottom: 1px solid #d6d6d6
+    }
+    .sort-by li {
+        width: 100%;
+        border: 1px solid #d6d6d6;
+        border-bottom: 0
+    }
+    .sort-by li.selected {
+        background: #693;
+        color: #fff;
+        border-color: #693
+    }
+    .most-recommended-service {
+        font-style: italic;
+        border: 0 solid #ddd;
+        border-right: 0;
+        border-bottom: 0;
+        border-top: 1px dashed #ddd;
+        clear: both;
+        border-top-left-radius: 3px;
+        -moz-border-radius-topleft: 3px;
+        -webkit-border-top-left-radius: 3px;
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 15px
+    }
+    .most-recommended-service .col-service-cnt {
+        width: 60%
+    }
+    .bpt-item-search .most-recommended-service .btn-green {
+        position: static;
+        padding: 5px 10px;
+        font-size: 14px
+    }
+    .most-recommended-service .col-service-price {
+        width: 40%;
+        padding-left: 5px;
+        font-size: 11px
+    }
+    .bpt-item-background {
+        background-color: #ebebeb;
+        padding: 10px 10px 0 10px
+    }
+    .bpt-background {
+        background-color: #f8f7f5;
+        padding-bottom: 20px
+    }
+    .search-form-type-3 {
+        position: static
+    }
+    .bpt-item-search {
+        width: 100%;
+        border-bottom: 2px solid #d0d0d0;
+        float: left;
+        background-color: #fff;
+        margin-bottom: 15px;
+        position: relative;
+        padding: 0
+    }
+    .bpt-item-search .item-list {
+        padding: 10px
+    }
+    .bpt-item-search:hover {
+        box-shadow: 2px 2px 2px #eca962
+    }
+    .bpt-item-search .col-content,
+    .bpt-item-search .col-price {
+        background-color: #fff
+    }
+    .bpt-item-search .col-content {
+        width: 100%;
+        float: none
+    }
+    .bpt-item-search .col-price {
+        width: 100%;
+        float: none;
+        padding: 0
+    }
+    .bpt-item-search .col-price .margin-bottom-10 {
+        margin-bottom: 0
+    }
+    .bpt-item-search .col-price .secret-deal-price {
+        font-size: 12px;
+        margin-top: -5px
+    }
+    .bpt-item-search .secret-deal {
+        font-size: 20px;
+        margin-left: -5px
+    }
+    .bpt-item-search .col-img {
+        width: 32%;
+        float: left
+    }
+    .bpt-item-search .col-info {
+        width: 68%;
+        padding: 0;
+        float: left;
+        padding-left: 10px
+    }
+    .bpt-item-search .col-label,
+    .bpt-item-search .col-text {
+        min-height: 1px;
+        padding-right: 10px;
+        position: relative;
+        float: left
+    }
+    .bpt-item-search .col-label {
+        width: 23%;
+        padding-left: 10px
+    }
+    .bpt-item-search .col-text {
+        width: 77%;
+        padding-left: 0
+    }
+    .bpt-item-search .btn-green {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 15px;
+        font-size: 15px;
+        border-bottom: 2px solid #508326
+    }
+    .bpt-item-search .item-name {
+        font-size: 16px
+    }
+    .bpt-item-search .description {
+        line-height: 1.5em;
+        color: #333
+    }
+    .bpt-item-search .what-included {
+        font-weight: 700
+    }
+    .bpt-item-search .col-price .item-from {
+        font-size: 11px;
+        margin-bottom: -5px;
+        color: #666;
+        display: none
+    }
+    .bpt-item-search .btn-list {
+        border-radius: 15px
+    }
+    .cruise-by-type .bpt-see-more,
+    .tab-content .bpt-see-more {
+        padding: 3px 15px;
+        font-weight: 700;
+        text-decoration: underline
+    }
+    .bpt-item-search .item-offer {
+        max-width: 111%;
+        margin-left: -10px;
+        margin-right: -10px
+    }
+    .bpt-item-search .item-review,
+    .bpt-item-search .item-review .review-link {
+        font-size: 12px
+    }
+    .bpt-item-search .price-from {
+        font-size: 25px;
+        color: #b20000
+    }
+    .item-offer {
+        background-color: #ffffc9;
+        padding: 6px 10px 3px;
+        height: auto;
+        max-width: 100%;
+        position: relative;
+        overflow: visible
+    }
+    .bpt-item-search .item-offer ul {
+        margin: 0
+    }
+    .bpt-item-search .item-offer li {
+        width: 100%;
+        overflow: hidden
+    }
+    .bpt-item-search .item-offer-arrow-after,
+    .bpt-item-search .item-offer-arrow-before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+        border-right: 0;
+        border-width: 13.5px 15px;
+        display: none
+    }
+    .bpt-item-search .item-offer-arrow-before {
+        top: 0;
+        right: -16px;
+        border-left-color: #e2e2e2;
+        border-width: 15px 16px;
+        display: none
+    }
+    .bpt-item-search .item-offer-arrow-after {
+        top: -1px;
+        right: -15px;
+        border-left-color: #ffffc9!important;
+        border-width: 15px 15px;
+        display: none
+    }
+    .bpt-item-search .item-offer .item-arrow-circle {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: 2px solid #ced0cb;
+        vertical-align: middle;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        right: -9px;
+        margin-top: -2px;
+        z-index: 10;
+        display: none
+    }
+    #frm_hotel_search .search-form-type-1 .btn-search {
+        margin: 0
+    }
+    .search-filter-bgr {
+        background-color: #fff
+    }
+    #filterModal .modal-body {
+        padding: 0
+    }
+    #filterModal .search-filter-bgr {
+        border: 0
+    }
+    #filterModal .sort-by li {
+        padding: 0
+    }
+    #filterModal .sort-by li.selected {
+        padding: .6em .7em
+    }
+    #filterModal .sort-by a {
+        padding: .6em .7em;
+        display: block
+    }
+}

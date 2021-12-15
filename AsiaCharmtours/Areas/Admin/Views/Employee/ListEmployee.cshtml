@@ -1,0 +1,61 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Danh sách bài viết";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script>
+    $(".li-employee").addClass('active');
+</script>
+@Html.Partial("~/Views/PartialView/Admin/pScriptUIGrid.cshtml")
+<script src="~/Areas/Admin/Content/js/Employee/employee.js"></script>
+<script src="~/Scripts/BaseJS/kendo-window.js"></script>
+<script src="~/Plugin/ckeditor/ckeditor.js"></script>
+<script src="~/Plugin/ckfinder/ckfinder.js"></script>
+<script src="~/Plugin/ckeditor/config.js"></script>
+<script src="~/Plugin/ckeditor/styles.js"></script>
+<script src="~/Plugin/ckeditor/sample.js"></script>
+<div ng-app="app" ng-controller="controller">
+    <div class="reservation">
+        <div id="kUI_window" style="display:none;">
+            @Html.Partial("pDetailEmployee")
+        </div>
+    </div>
+
+    <div class="uk-grid uk-grid-small">
+        <div class="uk-width-1">
+            <div class="md-card">
+                <div class="md-card-toolbar">
+                    <h3 class="md-card-toolbar-heading-text">
+                        <i class="uk-icon uk-icon-book"></i>
+                    </h3>
+                </div>
+                <div class="md-card-content">
+                    <div class="uk-grid">
+                        <div class="uk-width-1">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-4 uk-width-1 uk-margin-small-bottom">
+                                    <div class="md-input-wrapper">
+                                        <label class="label-fixed">Tìm kiếm</label>
+                                        <input ng-change="Get()" ng-model="filters._keySearch" type="text" class="md-input" placeholder="Tiêu đề">
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2 uk-width-1-2" style="width: 75%">
+                                    <button ng-click="showAdd()" class="md-btn md-btn-primary md-btn-wave-light" style="float: right;margin-top: 2px;">Thêm nhân viên</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-1">
+                            <div>
+                                <div ui-grid="gridOptions" ui-grid-selection ui-grid-resize-columns ui-grid-move-columns
+                                     ui-grid-pinning ui-grid-pagination ui-grid-exporter ui-grid-auto-resize class="grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("pConfirmDelete")
+</div>

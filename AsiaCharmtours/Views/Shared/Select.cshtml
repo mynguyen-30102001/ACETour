@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "Tổng quan";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/admin/dashboard.css" rel="stylesheet" />
+<div class="uk-grid uk-grid-small">
+    <div class="uk-width-medium-1-4 uk-width-1-2 uk-row-first">
+        <div class="md-card box-breadcrumbs">
+            <div class="md-card-content">
+                <div class="uk-float-right uk-margin-top uk-margin-small-right">
+                    <i class="uk-icon uk-icon-database"></i>
+                </div>
+                <span class="uk-text-muted uk-text-small">Số lượng đặt phòng</span>
+                <h2 class="uk-margin-remove">
+                    <b>10</b>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-1-4 uk-width-1-2 uk-row-first">
+        <div class="md-card box-breadcrumbs">
+            <div class="md-card-content">
+                <div class="uk-float-right uk-margin-top uk-margin-small-right">
+                    <i class="uk-icon uk-icon-umbrella"></i>
+                </div>
+                <span class="uk-text-muted uk-text-small">Số lượng đặt tour</span>
+                <h2 class="uk-margin-remove">
+                    <b>24</b>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-1-4 uk-width-1-2 uk-row-first">
+        <div class="md-card box-breadcrumbs">
+            <div class="md-card-content">
+                <div class="uk-float-right uk-margin-top uk-margin-small-right">
+                    <i class="uk-icon uk-icon-book"></i>
+                </div>
+                <span class="uk-text-muted uk-text-small">Tổng số bài viết</span>
+                <h2 class="uk-margin-remove">
+                    <b>1205</b>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-1-4 uk-width-1-2 uk-row-first">
+        <div class="md-card box-breadcrumbs">
+            <div class="md-card-content">
+                <div class="uk-float-right uk-margin-top uk-margin-small-right">
+                    <i class="uk-icon uk-icon-phone"></i>
+                </div>
+                <span class="uk-text-muted uk-text-small">Danh sách liên hệ</span>
+                <h2 class="uk-margin-remove">
+                    <b>10</b>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="uk-grid uk-grid-small">
+    <div class="uk-width-medium-3-4">
+        <div class="md-card">
+            <div class="md-card-toolbar">
+                <h3 class="md-card-toolbar-heading-text">
+                    <i class="uk-icon uk-icon-bookmark"></i>  CHỨC NĂNG CHÍNH
+                </h3>
+            </div>
+            <div class="md-card-content" style="padding-right: 0;padding-left: 0;">
+                <div class="shortcuts">
+                    <a href="/admin/company" class="shortcut">
+                        <i class="shortcut-icon uk-icon-building"></i>
+                        <span class="shortcut-label">Khách sạn</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-list"></i>
+                        <span class="shortcut-label">Chuyên mục</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-book"></i>
+                        <span class="shortcut-label">Bài viết</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-umbrella"></i>
+                        <span class="shortcut-label">Tour</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-star"></i>
+                        <span class="shortcut-label">Room</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-glass"></i>
+                        <span class="shortcut-label">Services</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-video-camera"></i>
+                        <span class="shortcut-label">Slide ảnh</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon  uk-icon uk-icon-camera"></i>
+                        <span class="shortcut-label">Gallery</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-users"></i>
+                        <span class="shortcut-label">Đối tác</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-file-text-o"></i>
+                        <span class="shortcut-label">Mẫu Email</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-user"></i>
+                        <span class="shortcut-label">Quản lý người dùng</span>
+                    </a>
+                    <a href="#" class="shortcut">
+                        <i class="shortcut-icon uk-icon-bullhorn"></i>
+                        <span class="shortcut-label">Quảng cáo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-1-4">
+        <div class="md-card">
+            <div class="md-card-toolbar">
+                <h3 class="md-card-toolbar-heading-text">
+                    <i class="uk-icon uk-icon-clock-o"></i>  HOẠT ĐỘNG GẦN ĐÂY
+                </h3>
+            </div>
+            <div class="md-card-content">
+                <div class="md-list-outside-wrapper" style="height: 500px;">
+                    <div class="scroll-wrapper scrollbar-inner" style="position: relative;">
+                        <div class="scrollbar-inner scroll-content">
+                            <ul class="md-list md-list-addon md-list-outside" id="chat_user_list">
+                                <li>
+                                    <div class="md-list-addon-element">
+                                        <i class="uk-icon uk-icon-book"></i>
+                                    </div>
+                                    <div class="md-list-content">
+                                        <span class="md-list-heading">11:56, 03/10/2018</span>
+                                        <span class="uk-text-small uk-text-muted uk-text-truncate">
+                                            Bài viết đã được đăng tải.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="md-list-addon-element">
+                                        <i class="uk-icon uk-icon-book"></i>
+                                    </div>
+                                    <div class="md-list-content">
+                                        <span class="md-list-heading">11:20, 21/08/2017</span>
+                                        <span class="uk-text-small uk-text-muted uk-text-truncate">
+                                            Đã tạo bài viết: Voluptatem voluptatem non voluptatem excepturi.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="md-list-addon-element">
+                                        <i class="uk-icon uk-icon-book"></i>
+                                    </div>
+                                    <div class="md-list-content">
+                                        <span class="md-list-heading">11:20, 21/08/2017</span>
+                                        <span class="uk-text-small uk-text-muted uk-text-truncate">
+                                            Đã tạo bài viết: Voluptatem voluptatem non voluptatem excepturi.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="md-list-addon-element">
+                                        <i class="uk-icon uk-icon-book"></i>
+                                    </div>
+                                    <div class="md-list-content">
+                                        <span class="md-list-heading">11:20, 21/08/2017</span>
+                                        <span class="uk-text-small uk-text-muted uk-text-truncate">
+                                            Đã tạo bài viết: Voluptatem voluptatem non voluptatem excepturi.
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

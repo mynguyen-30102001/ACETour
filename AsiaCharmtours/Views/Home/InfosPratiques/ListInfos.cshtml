@@ -1,0 +1,207 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    List<W_Article> list = (List<W_Article>)ViewData["ArticleList"];
+    List<W_Article> articlesDestination = (List<W_Article>)ViewData["ArticleDestination"];
+    List<W_Article> articlesTravel = (List<W_Article>)ViewData["ArticleTravel"];
+    List<W_Article> articlesAll = (List<W_Article>)ViewData["ArticleAll"];
+    List<W_Menu> listDestination = QuickData.ListDestination(menu, lan);
+}
+
+<div class="img-banner" style="position: relative; z-index: 10">
+    <img src="@menu2.Background" width="100%" alt="@menu2.Title">
+    <h2>@menu2.MenuName</h2>
+</div>
+
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<!-- end Header -->
+
+<div class="dgdan">
+    <div class="container">
+        <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="@menu.MenuAlias">@menu.MenuName</a> / <a href="@menu2.MenuAlias">
+            @menu2.MenuName
+        </a>
+    </div>
+</div>
+<section id="infospratiques">
+    <div class="container">
+        <div class="row mar-0 justify-content-center">
+            <div class="infospratiques col-10">
+                @Html.Raw(menu2.Description)
+            </div>
+            <div class="row">
+                @foreach (var item in list.Take(3))
+                {
+                    <div class=" col-lg-4">
+                        <div class="prepape">
+                            <h2 class="title-prepape">
+                                <a href="/@item.MenuAlias/@item.Alias">
+                                    <img class="img-fluid" src="@item.Avatar" width="100%" alt="@item.Title">
+                                    <p>@item.Title</p>
+                                </a>
+                            </h2>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="infospratiques">
+            <div class="row">
+                <div class="col-lg-9">
+
+                    <div class="row mar-0">
+                        <div class="information">
+                            @Html.Raw(menu2.Overview)
+                            <div class="seemore">
+                                <a href="#">Lire plus</a>
+                            </div>
+                        </div>
+                        <div class="information">
+                            @Html.Raw(menu2.Note)
+                        </div>
+                        <div class="information">
+                            @Html.Raw(menu2.Introduct)
+                            <div class="seemore">
+                                <a href="#">
+                                    En savoir plus
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mar-0">
+                        <div class="information">
+                            <div class="all-aticle">
+                                <ul class="row all-aticle-ul">
+                                    @foreach (var item in articlesAll)
+                                    {
+                                        <li class="col-lg-4 col-md-4">
+                                            <a href="/@item.MenuAlias/@item.Alias" class="title_article">
+                                                <img src="@item.Icon" alt="@item.Title" />
+                                                <span class="all-acticlespan">
+                                                    @item.Title
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="prepape prepape-lieux">
+
+                            <h3 class="title-h3 title-lieux">
+                                Lieux à découvrir
+                            </h3>
+                            <ul class="lieux-infospratiques">
+                                @foreach (var item in listDestination)
+                                {
+                                    <li>
+                                        <a href="@item.MenuAlias">
+                                            <div class="row mar-0 pad-0">
+                                                <div class="col-lg-6">
+                                                    <img src="@item.Image2" width="100%" alt="@item.Title">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p class="mar-0">@item.MenuName </p>
+                                                    <span class="star">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            @*<div class="seemore seemore-col-4">
+                                    <a href="#">
+                                        Voir plus
+                                    </a>
+                                </div>*@
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="inspiration prepape prepape-lieux">
+
+                            <h3 class="title-h3 title-lieux">
+                                Inspiration
+                            </h3>
+                            <ul class="lieux-infospratiques">
+                                @foreach (var item in articlesDestination)
+                                {
+                                    <li>
+                                        <a href="/@item.MenuAlias/@item.Alias">
+                                            <div class="row mar-0 pad-0">
+                                                <div class="col-lg-4">
+                                                    <img src="@item.Avatar" width="100%" alt="@item.Title">
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="mar-0 inspination-p">
+                                                       @item.Title
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            @*<div class="seemore seemore-col-4">
+                                <a href="#">
+                                    Voir plus
+                                </a>
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="prepape prepape-lieux">
+
+                            <h3 class="title-h3 title-lieux">
+                                Idées de voyage
+                            </h3>
+                            <ul class="lieux-infospratiques">
+                                @foreach (var item in articlesTravel)
+                                {
+                                    <li>
+                                        <a href="/@item.MenuAlias/@item.Alias">
+                                            <div class="row mar-0 pad-0">
+                                                <div class="col-12">
+                                                    <img src="@item.Avatar" width="100%" alt="@item.Title">
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <p class="title-small mar-0">
+                                                        @menu.MenuName
+                                                    </p>
+                                                    <p>
+                                                        @item.Title
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+</section>

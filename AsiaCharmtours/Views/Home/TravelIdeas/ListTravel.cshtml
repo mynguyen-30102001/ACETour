@@ -1,0 +1,105 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@using PagedList
+@using PagedList.Mvc;
+@model PagedList.IPagedList<AsiaCharmtours.Models.EF_Tour>
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    IPagedList<EF_Tour> tourAll = (IPagedList<EF_Tour>)ViewData["TourAll"];
+    List<W_Menu> listMenu = QuickData.ListMenuThemes(0, lan);
+}
+<div class="img-banner" style="position: relative;z-index: 10">
+    <img src="@menu2.Background" width="100%" alt="@menu2.Title">
+    <h2>@menu2.MenuName</h2>
+</div>
+
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<!-- end Header -->
+
+<div class="content-voyages">
+    <div class="dgdan">
+        <div class="container">
+            <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="@menu.MenuAlias">@menu.MenuName</a> / <a href="@menu2.MenuAlias">
+                @menu2.MenuName
+            </a>
+        </div>
+    </div>
+    <div class="about">
+        <div class="col-lg-8 text-about">
+            <h1 class="">@menu2.MenuName</h1>
+            @Html.Raw(menu2.Description)
+        </div>
+    </div>
+</div>
+
+<div class="icon-voya container">
+    <div class="row">
+        @foreach (var item in listMenu)
+        {
+            <div class="col-md-4">
+                <a href="search/@item.MenuAlias">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="htron">
+                                <img src="@item.Photo" alt="@item.Title" style="max-width: 100px"/>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <p>@item.MenuName</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Tour -->
+<div class="container tour" style="margin: auto">
+    <h1 class="wow fadeInUp" style="text-align: center">@GetLanguage.Language(lan, "allTour")</h1>
+    <div class="row">
+        @foreach (var item in tourAll)
+        {
+            <div class="col-md-6 col-lg-4 wow fadeInUp">
+                <div class="DIVCARD">
+                    <div class="divHEADER">
+                        <div class="cardHeaderHidden">
+                            <div class="dateHEADER">
+                                <div class="cardHeaderDay">@item.DateCreate.Day</div>
+                                <div class="cardHeaderMonth">@item.DateCreate.Month</div>
+                                <div class="cardHeaderYear">@item.DateCreate.Year</div>
+                            </div>
+                            <img src="@item.Image" width="100%" alt="@item.MetaTitle">
+                        </div>
+                    </div>
+                    <div class="mainBODY">
+                        <div class="bodyHeader">
+                            <div class="bannerBODY">@menu.MenuName Tour</div>
+                            <h4><a href="/@item.MenuAlias/@item.TourAlias">@item.TourName</a></h4>
+                            <div class="BodyDescription">
+                                <p>
+                                    @item.DescriptionMin
+                                </p>
+                                <a href="/@item.MenuAlias/@item.TourAlias">@GetLanguage.Language(lan, "ReadMore")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row ">
+        <div class="col-md-12 text-center ">
+            <div class="page">
+                <ul class="pagination" style="margin-top: 25px;">
+                    <li class="page-item">
+                        @Html.PagedListPager(Model, page => Url.Action("Category", "Home", new { page, menu2.MenuAlias }))
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

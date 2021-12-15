@@ -1,0 +1,318 @@
+﻿@using AsiaCharmtours.Database
+@{
+    var menuType = QuickData.GetMenuTour(Request.Cookies["lang_client"].Value);
+    List<W_Menu> menuForType = QuickData.GetMenuTourByLevel(menuType.MenuId, 1, Request.Cookies["lang_client"].Value);
+
+    if (menuForType is null)
+    {
+        menuForType = new List<W_Menu>();
+    }
+}
+
+<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm mới bài viết</span>
+        <span ng-if="!isAdd">Chỉnh sửa bài viết</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid" id="form_data">
+                <div class="uk-width-medium-2-3">
+                    <div class="md-input-wrapper">
+                        <span>Tiêu đề</span> <span class="required-field">(*)</span>
+                        <input ng-change="autoConvertAlias()" required ng-model="data.Title" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Alias</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Alias" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Name</span>
+                        <input required ng-model="data.FullName" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Thứ tự hiển thị</span>
+                        <input ng-model="data.Index" type="number" value="0" min="0" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Trạng thái hiển thị: </span>
+                        <input type="checkbox" data-switchery checked id="switch_status" />
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Bài viết địa điểm: </span>
+                        <input type="checkbox" data-switchery checked id="switch_destination" />
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Bài viết travel: </span>
+                        <input type="checkbox" data-switchery checked id="switch_travel" />
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Mô tả bài viết</span>
+                        <textarea class="md-input" rows="2" name="Description"></textarea>
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Nội dung bài viết</span>
+                        <textarea class="md-input" rows="2" name="Content"></textarea>
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="uk-grid">
+                        <div class="uk-width-1">
+                            <div class="uk-grid">
+                                <div class="uk-width-1">
+                                    <div class="md-input-wrapper">
+                                        <span>Chuyên mục chính</span> <span class="required-field">(*)</span>
+                                        <select required ng-model="data.MainMenuId" class="md-input" convert-to-number>
+                                            <option value="">-- Chọn chuyên mục ---</option>
+                                            <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                        </select>
+                                    </div>
+                                    @*<div class="md-input-wrapper">
+                                            <span>Thuộc chuyên mục</span>
+                                            <select ng-model="data.MainMenuId" class="md-input" convert-to-number>
+                                                <option value="">-- Chọn chuyên mục --</option>
+                                                <option value="{{item.MenuId}}" ng-repeat="item in menuForArea">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>*@
+                                </div>
+
+                                @*Comment*@
+                                @*<div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục chính</span> <span class="required-field">(*)</span>
+                                            <select required ng-model="data.MainMenuId" class="md-input" convert-to-number>
+                                                <option value="">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.Index" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>*@
+                            </div>
+                            @*<div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục phụ 1</span>
+                                            <select ng-model="data.W_ArticalMenu[0].SubMenu1" class="md-input" convert-to-number>
+                                                <option value="-1">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.W_ArticalMenu[0].IndexSubMenu1" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục phụ 2</span>
+                                            <select ng-model="data.W_ArticalMenu[0].SubMenu2" class="md-input" convert-to-number>
+                                                <option value="-1">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.W_ArticalMenu[0].IndexSubMenu2" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-2-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Chuyên mục phụ 3</span>
+                                            <select ng-model="data.W_ArticalMenu[0].SubMenu3" class="md-input" convert-to-number>
+                                                <option value="-1">-- Chọn chuyên mục ---</option>
+                                                <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3">
+                                        <div class="md-input-wrapper">
+                                            <span>Thứ tự</span>
+                                            <input ng-model="data.W_ArticalMenu[0].IndexSubMenu3" type="number" min="0" value="0" class="md-input" />
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                        </div>
+                        <div class="uk-width-1 uk-text-center uk-margin-top">
+                            <span>Ảnh đại diện</span> <span class="required-field">(*)</span>
+                            <img id="img-logo" src="~/FileDefault/img-default.gif">
+                            <input required id="Logo" style="display: none; width: 0px;" name="Logo" class="upload">
+                        </div>
+                        <div class="uk-width-1 uk-text-center">
+                            <span>Ảnh phụ (270x320, 580x150)</span>
+                            <img id="img-logo3" src="~/FileDefault/img-default.gif">
+                            <input id="Logo3" style="display: none; width: 0px;" name="Logo3" class="upload3">
+                        </div>
+                        @*<div class="uk-width-1 uk-margin-top">
+                                <h3 style="margin-bottom: 0;text-decoration: underline;">Bài viết liên quan</h3>
+                                <div class="md-input-wrapper">
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="relatepost" id="relatepost" data-md-icheck checked />
+                                        <label for="relatepost" class="inline-label">Tự động chọn theo chuyên mục chính</label>
+                                    </span>
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="relatepost" id="relatepost2" data-md-icheck />
+                                        <label for="relatepost2" class="inline-label">Tủy chỉnh</label>
+                                    </span>
+                                </div>
+                                <div class="uk-grid" id="add_related_post" style="display:none">
+                                    <div class="uk-width-1">
+                                        <div>
+                                            <table class="uk-table table-menu">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="uk-text-center" style="width: 20px;">#</th>
+                                                        <th>Tên bài viết</th>
+                                                        <th style="width: 50px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in relatedPost">
+                                                        <td class="uk-text-center">{{$index + 1}}</td>
+                                                        <td>{{item.Title}}</td>
+                                                        <td class="uk-text-center">
+                                                            <button ng-click="removeRelatedPost($index)" class="md-btn md-btn-danger md-btn-mini"><i class="uk-icon uk-icon-minus"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1">
+                                        <button ng-click="showRelatedPost()" class="md-btn md-btn-primary md-btn-wave-light">Chọn bài viết</button>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="uk-width-1 uk-margin-top">
+                            <h3 style="margin-bottom: 0;text-decoration: underline;">Tối ưu hóa công cụ tìm kiếm (SEO)</h3>
+                            <div class="md-input-wrapper">
+                                <span>Meta Title</span>
+                                <input ng-model="data.MetaTitle" type="text" class="md-input">
+                            </div>
+                            <div class="md-input-wrapper">
+                                <span>Meta Description</span>
+                                <textarea ng-model="data.MetaDescription" class="md-input autosized" rows="2" style="overflow-x: hidden; overflow-wrap: break-word; height: 80px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>
+@*<div id="modalRelatePost" class="uk-modal" style="z-index: 10002;">
+        <div class="uk-modal-dialog uk-modal-dialog-large">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <h3>Chọn bài viết liên quan</h3>
+            <div>
+                <div class="uk-grid">
+                    <div class="uk-width-1">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-1-3 uk-width-1-2 uk-margin-small-bottom">
+                                <div class="md-input-wrapper">
+                                    <label class="label-fixed">Tìm kiếm</label>
+                                    <input ng-change="GetRelatedPost()" ng-model="filtersRelatedPost._keySearch" type="text" class="md-input" placeholder="Tiêu đề">
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-width-1-2 uk-margin-small-bottom">
+                                <div class="md-input-wrapper">
+                                    <label class="label-fixed">Chuyên mục</label>
+                                    <select ng-change="GetRelatedPost()" ng-model="filtersRelatedPost._menuId" class="md-input" convert-to-number>
+                                        <option value="-1">--Tất cả--</option>
+                                        <option ng-repeat="item in menus" value="{{item.MenuId}}">{{item.MenuName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1">
+                        <div style="overflow: auto;">
+                            <div ui-grid="gridOptionsRelatedPost" ui-grid-auto-resize ui-grid-selection ui-grid-resize-columns ui-grid-pagination class="grid"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid">
+                    <div class="uk-width-1 uk-text-right uk-margin-top">
+                        <button type="button" class="md-btn md-btn-default uk-modal-close md-btn-wave-light" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="md-btn md-btn-primary uk-modal-close md-btn-wave-light" data-dismiss="modal">Chọn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace("Description");
+        CKEDITOR.replace("Content");
+
+        $("input[type='radio']").on('ifChanged', function (e) {
+            if ($("input[type='radio'][id=relatepost2]").is(':checked'))
+                $("#add_related_post").css("display", "block");
+            else
+                $("#add_related_post").css("display", "none");
+        });
+        function setFileField(fileUrl) {
+            $('#' + $(upload).attr('for')).val(fileUrl);
+            $("#img-logo").attr("src", fileUrl);
+        }
+        function setFileField3(fileUrl) {
+            $('#' + $(upload3).attr('for')).val(fileUrl);
+            $("#img-logo3").attr("src", fileUrl);
+        }
+        if (!$('.button-upload').length > 0) {
+            var upload;
+            var textBox = $('.upload');
+            for (var i = 0; i < textBox.length; i++) {
+                var uploadText = $(textBox[i]);
+                uploadText.css('width', uploadText.width() - 70);
+                uploadText.after('<button type="button" for="' + uploadText.attr('id') + '" class="button-upload md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload').click(function () {
+                    upload = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finder = new CKFinder();
+                    finder.basePath = '../files';
+                    finder.selectActionFunction = setFileField;
+                    finder.popup();
+                });
+            }
+        }
+        if (!$('.button-upload3').length > 0) {
+            var upload3;
+            var textBox3 = $('.upload3');
+            for (var i = 0; i < textBox3.length; i++) {
+                var uploadText3 = $(textBox3[i]);
+                uploadText3.css('width', uploadText3.width() - 70);
+                uploadText3.after('<button type="button" for="' + uploadText3.attr('id') + '" class="button-upload3 md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload3').click(function () {
+                    upload3 = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finder3 = new CKFinder();
+                    finder3.basePath = '../files';
+                    finder3.selectActionFunction = setFileField3;
+                    finder3.popup();
+                });
+            }
+        }
+    });
+</script>

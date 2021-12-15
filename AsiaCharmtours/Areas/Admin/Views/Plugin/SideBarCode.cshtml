@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Thêm sideBar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script>
+    $(".li-plugin").addClass('active');
+</script>
+
+<div class="uk-grid uk-grid-small">
+    <div class="uk-width-1">
+        <div class="md-card">
+            <div class="md-card-toolbar">
+                <h3 class="md-card-toolbar-heading-text">
+                    <i class="uk-icon uk-icon-puzzle-piece"></i> THÊM SIDEBAR
+                </h3>
+            </div>
+            <div class="md-card-content">
+                <div class="uk-grid">
+                    <div class="uk-width-1">
+                        <p>
+                            <span class="required-field">(*)</span> Giao diện chỉnh sửa css có thể chứa các thư viện khác nhau (bootstrap...).
+                            Để hiển thị tương quan trong cài đặt vui lòng đính kèm đường dẫn thư viện css vào trong bộ cài đặt.
+                            Đường dẫn chỉ có mục đich hiển thị nên có thể xóa đi trước khi lưu lại. <br />
+                            Ví dụ: <span class="required-field">"@("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>")"</span>
+                        </p>
+                        <h3 class="heading_a uk-margin-bottom">Mã HTML cho sidebar</h3>
+                        <textarea id="contentEditor" data-uk-htmleditor="{ maxsplitsize:1220, codemirror : { mode: 'text/html' } }">@Html.Partial("~/Views/PartialView/Admin/pTemplateHTMLEditor.cshtml")</textarea>
+                    </div>
+                    <div class="uk-width-1 uk-margin-medium-top uk-text-center uk-margin-large-bottom">
+                        <button class="md-btn md-btn-primary md-btn-wave-light">Cập nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Plugin/bower_components/codemirror/lib/codemirror.css" rel="stylesheet" />
+@section jsaddition{
+    <script src="~/Plugin/assets/js/uikit_htmleditor_custom.min.js"></script>
+}

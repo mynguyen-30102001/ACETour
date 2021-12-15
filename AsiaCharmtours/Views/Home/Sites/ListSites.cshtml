@@ -1,0 +1,686 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    List<EF_Tour> tourHot = (List<EF_Tour>)ViewData["TourHot"];
+    List<W_Menu> listMenuParent = QuickData.ListMenuParent(menu, lan);
+    List<W_Menu> menus = QuickData.GetMasterMainMenus(lan);
+}
+
+    <content>
+
+        <section class="id">
+            <div class="banner">
+
+                <img class="img-banner" src="./images/1.7.jpg" alt="content">
+                <div class="wrapper-banner text-center  color-fff">
+                    <!-- <h2 class="size25">
+                        Title name tour
+                    </h2> -->
+                    <h1 class="size70 fontb">
+                        VietNam
+                    </h1>
+
+                    <p class="size20 fontc">
+                        Sensing the Timeless Charm of Vietnam
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+        <section>
+
+            <div class="introduc margin-top-50">
+                <div class="container">
+                    <div class="pd-btn">
+                        <div class="row">
+                            <div class="col-lg-7 align-self-center">
+                                <h1 class="size60">
+                                    Explore Our Vietnam ACE Tours
+                                </h1>
+                                <p class="size16 color696969">
+                                    Vietnam is a unique country in Southeast Asia, where traditions that are thousands of years are still alive. The country is fast developing and old and new go in pair. We offer you our vast knowledge and expertise in Vietnam, bringing you the most authentic
+                                    and bespoke holidays in Vietnam. Discover our ACE Vietnam tours and our Vietnam Holiday Packages, where you can combine nature, adventure, culture and beach holidays easily. Include in your holiday to Vietnam an incredible
+                                    Halong Bay cruise, a visit to many UNESCO World Heritage sites such as Hue and Hoi An and uncover the mysteries of the Mekong Delta in the South. Don’t forget to include the unmissable rice terraces in Sapa or Mai Chau
+                                    and a relaxing time in Hoi An, the little riverside town in the Central area of Vietnam.
+                                </p>
+                                <div class="count-destiny">
+                                    <div class="tt-destiny text-center float-left padding20">
+                                        <div class="num fontb size60">
+                                            8
+                                        </div>
+                                        <div class="tt-num">
+                                            World Heritage Sites
+                                        </div>
+                                    </div>
+                                    <div class="tt-destiny text-center float-left padding20">
+                                        <div class="num  fontb size60">
+                                            8
+                                        </div>
+                                        <div class="tt-num">
+                                            World Heritage Sites
+                                        </div>
+                                    </div>
+                                    <div class="tt-destiny text-center float-left padding20">
+                                        <div class="num  fontb size60">
+                                            8
+                                        </div>
+                                        <div class="tt-num">
+                                            World Heritage Sites
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-5 align-self-center">
+                                <img src="./images/vietnam.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="introduc margin-top-50 marbt-50 pd-t-bt">
+                <h1 class="size60 text-center">
+                    Explore Our Vietnam ACE Tours
+                </h1>
+                <div class="container">
+                    <div class="row marbt-50">
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs 6">
+                            <div class="sellingtour mar200">
+                                <a href="#">
+                                    <img class="img-selingtour" src="./images/1.3.jpg" alt="">
+                                    <span class="vn tt-img-tour">
+                                        Adventure Tours
+                                    </span>
+                                </a>
+                                <div class="sellingtour-brief">
+                                    <div class="sellingtour-date size16">10 DAYS</div>
+                                    <div class="sellingtour-box">
+                                        <h3 class="sellingtour-title">
+                                            <a class="size20 color000" href="#" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">Luxuries and Mysteries of Myanmar 10 days</a>
+                                        </h3>
+                                        <span class="_current">$4608</span><a href="./detail-tour.html" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="w-100" style="margin: auto;
+                            text-align: center; margin-bottom: 20px;">
+                        <a href="" class="_text k-btn text-center fontb">
+                            View Details
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="backgroundc pad500">
+                <div class="container">
+                    <div class="text-left size60 color000 fontb pad500">
+                        Travel Guide
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12">
+                            <div class="travel-vn">
+                                <div id="accordion" class="accordion">
+                                    <div class="mb-0">
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapseOne">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-down"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div id="collapseOne" class="card-body collapse color696969 show" data-parent="#accordion">
+                                            <p class="fontc fontweight-500 margin0">With 15 years of experiences, ACE Travel is confident to insist that our premium services, local experts and unique experience will be the best companion to your trips.</p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapsetwo">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-down"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div id="collapsetwo" class="card-body collapse color696969" data-parent="#accordion">
+                                            <p class="fontc fontweight-500 margin0">With 15 years of experiences, ACE Travel is confident to insist that our premium services, local experts and unique experience will be the best companion to your trips.</p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse3">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-down"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse3" class="card-body collapse color696969" data-parent="#accordion">
+                                            <p class="fontc fontweight-500 margin0">With 15 years of experiences, ACE Travel is confident to insist that our premium services, local experts and unique experience will be the best companion to your trips.</p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h3>
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by
+                                            </h3>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse4">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-down"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse4" class="card-body collapse color696969" data-parent="#accordion">
+                                            <p class="fontc fontweight-500 margin0">With 15 years of experiences, ACE Travel is confident to insist that our premium services, local experts and unique experience will be the best companion to your trips.</p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                            <h4 class="size25 fontweight-b">
+                                                <strong>
+                                                    100% Tailor-made itinerary
+                                                </strong>
+                                            </h4>
+                                            <p class="fontc">
+                                                ACE Vietnam Tours mean seeing the world exactly how you want to see it, on an itinerary customized for you by the best local travel experts. When traveling with us, the travel consultants will work closely with you to create a tailor-made journey of a
+                                                lifetime, optimized to make sure you get the most out of every moment. No matter what you like, admiring Halong Bay from a private helicopter or experiencing the farmer life in Hoi An, we can arrange for
+                                                you. We provide the knowledge, the access, and the guidance to show you the best that Vietnam offers.
+
+                                            </p>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse5">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-up"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse5">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-up"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse5">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-up"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse5">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-up"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse5">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+                                                <span class="float-right"><i class="fas fa-angle-up"></i></span>
+                                            </h3>
+                                        </div>
+                                        <div class="card-vn collapsed color696969" data-toggle="collapse" href="#collapse5">
+                                            <h3 class="card-title fontc size18 fontweight-b">
+                                                4. Why to choose Vietnam ACE Tours?
+
+                                                <span class="float-right"><i class="fas fa-angle-up"></i></span>
+                                            </h3>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <div class="vn-box backgroundfff">
+                                <h3 class="color000 size25 text-center">Meet our Expert</h3>
+                                <div class="img-center">
+                                    <img class="img-meet text-center" src="./images/1.3.jpg" alt="">
+                                </div>
+                                <div class="text-center">
+                                    <p class="size20 color696969">Nguyen An</p>
+                                    <p class="fontc color696969">
+                                        I’m proud to represent ACE Travel and to help you find your perfect vacation. Before you book elsewhere, check with me please! You will receive added benefit of booking with ACE Travel as well
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="vn-box backgroundfff">
+                                <div class="text-center">
+                                    <p class="size25">+984 739 3860</p>
+                                    <p class="fontc color696969">
+                                        I’m proud to represent ACE Travel and to help you find your perfect
+                                    </p>
+                                    <p class="colorf9a">
+                                        <span class="margin-10">
+                                            <i class="fab fa-skype"></i>
+                                        </span>
+                                        <span class="margin-10">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </span>
+                                    </p>
+                                    <p class="fontb size18 color696969 fontweight-500">
+                                        sale@contactiit.com
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="best-destinatiponvn pad500">
+                <div class="vk-home__title-box animated fadeInUp" data-animation="fadeInUp" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
+                    <h2 class="_title">Best destination in VietNam</h2>
+                </div>
+                <div class="sales">
+                    <div class="col-md-3">
+                        <div class="swiper-slide ">
+                            <div class="outer-div ">
+                                <div class="inner-div ">
+                                    <img src="./images/1.3.jpg " class="entity-img " />
+                                </div>
+
+                            </div>
+                            <div class="sellingtour-brief best-destination">
+
+                                <div class="sellingtour-box ">
+                                    <h3 class="sellingtour-title ">
+                                        <a class="size20 color000 " href="# " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">Luxuries and Mysteries of Myanmar 10 days</a>
+                                    </h3>
+                                    <p class="size16 color696969">
+                                        Are you confused on private tours to Vietnam and Cambodia? Is it safe? – Yes, definitely! Safe, Affordable and Amazing experiences on these beautiful countries are waiting for you to explore. Travel is to immerse yoursel
+                                    </p>
+                                    <a href="#./detail-tour.html" class="btn-viewdetail btn-left " tabindex="0 "><span>View Details</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="swiper-slide ">
+                            <div class="outer-div ">
+                                <div class="inner-div ">
+                                    <img src="./images/1.3.jpg " class="entity-img " />
+                                </div>
+
+                            </div>
+                            <div class="sellingtour-brief best-destination">
+
+                                <div class="sellingtour-box ">
+                                    <h3 class="sellingtour-title ">
+                                        <a class="size20 color000 " href="# " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">Luxuries and Mysteries of Myanmar 10 days</a>
+                                    </h3>
+                                    <p class="size16 color696969">
+                                        Are you confused on private tours to Vietnam and Cambodia? Is it safe? – Yes, definitely! Safe, Affordable and Amazing plore. Travel is to immerse yoursel
+                                    </p>
+                                    <a href="#./detail-tour.html" class="btn-viewdetail btn-left " tabindex="0 "><span>View Details</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="swiper-slide ">
+                            <div class="outer-div ">
+                                <div class="inner-div ">
+                                    <img src="./images/1.3.jpg " class="entity-img " />
+                                </div>
+
+                            </div>
+                            <div class="sellingtour-brief best-destination">
+
+                                <div class="sellingtour-box ">
+                                    <h3 class="sellingtour-title ">
+                                        <a class="size20 color000 " href="# " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">Luxuries and Mysteries of Myanmar 10 days</a>
+                                    </h3>
+                                    <p class="size16 color696969">
+                                        Are you confused on private tours to Vietnam and Cambodia? Is it safe? –
+                                    </p>
+                                    <a href="#./detail-tour.html" class="btn-viewdetail btn-left " tabindex="0 "><span>View Details</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="swiper-slide ">
+                            <div class="outer-div ">
+                                <div class="inner-div ">
+                                    <img src="./images/1.3.jpg " class="entity-img " />
+                                </div>
+
+                            </div>
+                            <div class="sellingtour-brief best-destination">
+
+                                <div class="sellingtour-box ">
+                                    <h3 class="sellingtour-title ">
+                                        <a class="size20 color000 " href="# " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">Luxuries and Mysteries of Myanmar 10 days</a>
+                                    </h3>
+                                    <p class="size16 color696969">
+                                        Are you confused on private tours to Vietnam and Cambodia?
+                                    </p>
+                                    <a href="#./detail-tour.html" class="btn-viewdetail btn-left " tabindex="0 "><span>View Details</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="swiper-slide ">
+                            <div class="outer-div ">
+                                <div class="inner-div ">
+                                    <img src="./images/1.3.jpg " class="entity-img " />
+                                </div>
+
+                            </div>
+                            <div class="sellingtour-brief  best-destination ">
+
+                                <div class="sellingtour-box">
+                                    <h3 class="sellingtour-title ">
+                                        <a class="size20 color000 " href="# " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">Luxuries and Mysteries of Myanmar 10 days</a>
+                                    </h3>
+                                    <p class="size16 color696969 ">
+                                        Are you confused on private tours to
+                                    </p>
+                                    <a href="#./detail-tour.html" class="btn-viewdetail btn-left " tabindex="0 "><span>View Details</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="make-bottom">
+                <div class="make-bottom-img">
+                    <img class="" src="./images/1.4.jpg" alt="">
+                    <div class="make-bottom-txt">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10">
+                                    <p class="size40 text-center color-fff">
+                                        We know you are unique, so we're here to create the unique experinces for you
+                                    </p>
+                                    <div class="w-100 text-center" style="margin-top: 30px;">
+                                        <a href="#" class="btn-center" tabindex="0"><span>Make an enquiry</span></a>
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+
+    </content>
+

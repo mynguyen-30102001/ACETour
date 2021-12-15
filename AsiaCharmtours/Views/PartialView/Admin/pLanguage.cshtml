@@ -1,0 +1,28 @@
+﻿@using AsiaCharmtours.Database
+@{
+    List<W_Language> languages = QuickData.ListLanguage();
+}
+<a href="#">
+    <i class="" style="vertical-align: -6px;color: #fff;">
+        <i class="flag-VN" title="Tiếng việt"></i>
+        <span>@QuickData.CurentLanguage(Request.Cookies["lang_client"].Value)</span>
+        <i class="uk-icon-angle-down " style="color: #fff;"></i>
+    </i>
+</a>
+<div class="uk-dropdown uk-dropdown-width-1" style="width: 150px;">
+    <div class="uk-grid uk-dropdown-grid" data-uk-grid-margin>
+        <div class="uk-width-1">
+            <ul class="uk-nav uk-nav-dropdown">
+                @foreach (var language in languages)
+                {
+                    <li>
+                        <a href="/admin/@language.LanguageCode">
+                            <i class="flag-US" title="English"></i>
+                            @language.LanguageName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,341 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menufeedb = (W_Menu)ViewData["feedback"];
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Company company = Model;
+    List<RV_Review> review = QuickData.ListReview(lan);
+    List<W_Partner> partners = QuickData.ListPartner(lan);
+    List<W_Employee> employee = QuickData.ListEmployee(lan);
+    List<W_Language> languages = QuickData.ListLanguage();
+    List<W_Slider> sliders = (List<W_Slider>)ViewData["sliders"];
+    List<EF_Menu> listDestitation = QuickData.GetDestitation(lan);
+    EF_Question article = QuickData.ListQuestion(lan).FirstOrDefault();
+    List<EF_Tour> getDestitation = QuickData.GetDestitations(lan);
+    List<EF_Tour> listTourLike = QuickData.ListTourLike(lan);
+    List<EF_Tour> listTourHot = QuickData.ListTourHot(lan);
+    List<EF_Article> listArticle = QuickData.ListArticle(lan);
+    int i = 0;
+}
+<content>
+    <section class="id">
+        <div class="banner">
+
+
+
+            <img class="img-banner" src="~/Content/images/vietnam.png" alt="content">
+            <div class="wrapper-banner text-center  color-fff">
+                <h2 class="size25">
+                    ACE Travel -Made Tours to
+                </h2>
+                <h1 class="size70 fontb wow fadeIn">
+                    Southeast Asia
+                </h1>
+                <div class="container" style="margin-top:50px">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-lg-4 col-md-6 col-10 col-6 margin0 padding0 form-index backgroundfff">
+
+                            <form action="" class="">
+
+                                <input type="text" class="text search-input" style="width: 100%; padding: 23px;" placeholder="Type here to search...">
+
+
+                            </form>
+                        </div>
+                        <div class="col-md-3 col-10 margin0 padding0">
+                            <button class="btn-search-index">
+                                <span class="txt-upper size16 fontc fontweight-b">
+                                    Search tour
+                                </span>
+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <div class="vk-home-banner-bot wow fadeInUp">
+            <div class="container">
+                <div class="vk-banner-bot-list row">
+                    <div class="_item col-lg-4">
+                        <div class="vk-bb-item bdlefft">
+                            <h2 class="vk-bb-item-title">100% Tailor-made</h2>
+                            <div class="vk-bb-item-text">The holiday is designed around your interest, time, need and budget. You are the one who decide when and where to go, where to stay</div>
+                        </div>
+                    </div>
+                    <div class="_item col-lg-4">
+                        <div class="vk-bb-item">
+                            <h2 class="vk-bb-item-title">Local Experts</h2>
+                            <div class="vk-bb-item-text">With more than 15 years of experiences, our knowledgeable staff will advise you the most suitable and wonderful itineraries.</div>
+                        </div>
+                    </div>
+                    <div class="_item col-lg-4">
+                        <div class="vk-bb-item last">
+                            <h2 class="vk-bb-item-title">Personal Services</h2>
+                            <div class="vk-bb-item-text">You are more comfortable with private car and guides as well as support services 24 hours per day.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vk-home__about">
+            <div class="container">
+                <div class="vk-home__about-content row justify-content-center">
+                    <div class="col-md-10 col-xs-12">
+                        <h2 class="vk-home__title text-center size60 fontb wow fadeInUp">@article.Title</h2>
+                        <p class="_text wow fadeInUp">
+                            @Html.Raw(article.Description)
+                        </p>
+                        <div class="w-100" style="    margin: auto;
+                            text-align: center; margin-bottom: 20px;">
+                            <a href="/@article.MenuAlias/@article.Alias" class="_text k-btn text-center fontb">
+                                View Details
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="vk-home__how wow fadeInUp">
+            <div class="container">
+                <div class="vk-home__how-content">
+                    <div class="vk-home__title-box" data-animation="fadeInUpFix" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
+                        <h2 class="_title text-center">How to book with us?</h2>
+                        <div class="_title-sub">Amazing holiday packages in 3 simple steps</div>
+                    </div>
+                    <div>
+                        <div class="row vk-step__list justify-content-center vk-slider--style-8 vk-slider" data-slider="">
+                            <div class="_item col-lg-3 col-md-3">
+                                <div class="vk-step-item vk-step-item--style-1">
+                                    <div class="vk-step-item__num">01</div>
+                                    <div class="vk-step-item__brief">
+                                        <h3 class="vk-step-item__title">Send us your inquiry</h3>
+                                        <div class="vk-step-item__text">&amp; tell us your preferences</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="_item col-lg-3 col-md-3">
+                                <div class="vk-step-item vk-step-item--style-1">
+                                    <div class="vk-step-item__num">02</div>
+                                    <div class="vk-step-item__brief">
+                                        <h3 class="vk-step-item__title">
+                                            Get the free
+                                            <br>quote
+                                            <br>
+                                        </h3>
+                                        <div class="vk-step-item__text">within 24 hours from our travel experts</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="_item col-lg-3 col-md-3">
+                                <div class="vk-step-item vk-step-item--style-1">
+                                    <div class="vk-step-item__num">03</div>
+                                    <div class="vk-step-item__brief">
+                                        <h3 class="vk-step-item__title">
+                                            Customize
+                                            <br>and
+                                            <br> Book
+                                        </h3>
+                                        <div class="vk-step-item__text">a perfect holiday vacation</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vk-home__tour-cat ">
+            <div class="container-fluid p-lg-0">
+                <div class="row vk-home__tour-cat-list wow fadeInUp">
+                    @foreach (var itemMenuDes in getDestitation)
+                    {
+                        if (itemMenuDes.Index != 1)
+                        {
+                            <div class="col-12 col-md-6 col-lg-3 _item">
+                                <div class="vk-shop-item vk-shop-item--style-4" data-animation="fadeInUpFix" data-animation-delay="0" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
+                                    <a href="/@itemMenuDes.MenuAlias/@itemMenuDes.TourAlias" title="Myanmar" class="vk-shop-item__img">
+                                        <img src="@itemMenuDes.Image" alt="Myanmar" width="" height="" class="_img lazy" mg lazy">
+                                    </a>
+                                    <div class="vk-shop-item__brief">
+                                        <div>
+                                            <h3 class="vk-shop-item__title ">
+                                                <a class="color-fff" href="#" title="Myanmar">@itemMenuDes.TourName</a>
+                                            </h3>
+                                            <div class="bb">
+                                                <div class="vk-shop-item__text">@Html.Raw(itemMenuDes.Description)</div>
+                                                <a href="/@itemMenuDes.MenuAlias/@itemMenuDes.TourAlias" class="btn-viewdetail-lf">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<a href="#" class="vk-shop-item__link" title="Myanmar"></a>*@
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12 col-md-6 col-lg-6 _item">
+                                <div class="vk-shop-item vk-shop-item--style-4" data-animation="fadeInUpFix" data-animation-delay="0" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
+                                    <a href="/@itemMenuDes.MenuAlias/@itemMenuDes.TourAlias" title="Multi countries tours" class="vk-shop-item__img">
+                                        <img src="@itemMenuDes.Image" alt="Multi countries tours" width="" height="" class="_img lazy">
+                                    </a>
+                                    <div class="vk-shop-item__brief">
+                                        <div>
+                                            <h3 class="vk-shop-item__title">
+                                                <a class="color-fff" href="#ountry" title="Multi countries tours">@itemMenuDes.TourName</a>
+                                            </h3>
+                                            <div class="bb" style="display: block;">
+                                                <div class="vk-shop-item__text">@Html.Raw(itemMenuDes.Description)</div>
+                                                <a href="/@itemMenuDes.MenuAlias/@itemMenuDes.TourAlias" class="btn-viewdetail-lf">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#ountry" class="vk-shop-item__link" title="Multi countries tours"></a>
+                                </div>
+                            </div>
+                        }
+
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="selling-index pad500 backgroundc">
+            <div class="vk-home__title-box wow fadeInUp" data-animation="fadeInUp" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
+                <h2 class="_title text-center">Best Selling Tours</h2>
+            </div>
+            <div class="sales wow fadeInUp">
+                @foreach (var itemTourLike in listTourLike)
+                {
+                    <div class="col-md-3">
+                        <div class="swiper-slide ">
+                            <div class="outer-div">
+                                <div class="inner-div">
+                                    <img src="@itemTourLike.Image" class="entity-img " />
+                                </div>
+                                <span class="tt-img-tour">
+                                    @itemTourLike.DescriptionMin
+                                </span>
+                            </div>
+                            <div class="sellingtour-brief">
+                                <div class="sellingtour-date size16">@itemTourLike.NumberDay DAYS</div>
+                                <div class="sellingtour-box">
+                                    <h3 class="sellingtour-title">
+                                        <a class="size20 color000" href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">@itemTourLike.TourName</a>
+                                    </h3>
+                                    <span class="_current">$4608</span>
+                                    <a href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        <div class="tour-hightline background000 wow fadeInUp" data-background-content="Find your ideal tours">
+            <div class="">
+                <div class="justify-content-center">
+                    <div class="text-center size60 colorf9a marbt-50">
+                        Tour Hightlight
+                    </div>
+                </div>
+            </div>
+            <div class=" tour-index loading ">
+                @foreach (var itemTourHot in listTourHot)
+                {
+                    <div class="bb ">
+                        <div class="outer-div ">
+                            <div class="inner-div inner-tourhight ">
+                                <img src="@itemTourHot.Image" class="entity-img " />
+                            </div>
+
+
+                        </div>
+
+                        <a href="/@itemTourHot.MenuAlias/@itemTourHot.TourAlias">
+                            <div class="content ">
+                                <p class="size30 color-fff margin-10-20 fontb ">@itemTourHot.TourName</p>
+
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+
+        </div>
+        <div class="vk-sale__review pad500 margin-10-20">
+            <div class="container ">
+                <div class="vk-review__wrapper " data-animation="fadeInUpFix " data-animation-duration="2 " style="opacity: 1; animation-duration: 2s; ">
+                    <h2 class="vk-review__title ">
+                        <span>Tripadvisor</span>
+                    </h2>
+                    <div class="slider-review">
+                        @foreach (var itemReview in review)
+                        {
+                            <div class="tt-review ">
+                                <div class="margin-10-20 fontb size20 text-center ">
+                                    <i class=" ">@itemReview.FullName</i>
+                                    <p class="margin-10-20 ">
+                                        <span class="review-add ">@itemReview.Address</span>
+                                        <span>&#x2022;@itemReview.Date</span>
+                                    </p>
+                                </div>
+                                @Html.Raw(itemReview.Content)
+                            </div>
+                        }
+                    </div>
+
+                    <div class="vk-review__button ">
+                        <a href="https://www.tripadvisor.com.vn/" target="_blank " class="vk-review__btn ">Write a review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="newandspecial pad800">
+            <div class="vk-home__title-box wow fadeInUp" data-animation="fadeInUp" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
+                <h2 class="_title text-center">News and Special Offers</h2>
+            </div>
+            <div class="container ">
+                <div class="row justify-content-center ">
+                    @foreach (var itemArticle in listArticle.Take(3))
+                    {
+                        <div class="col-md-4 ">
+                            <div class="newanspecial">
+                                <div class="outer-div ">
+                                    <div class="inner-div ">
+                                        <img src="@itemArticle.Avatar" class="entity-img " />
+                                    </div>
+
+                                </div>
+                                <div class="sellingtour-brief new-special ">
+
+                                    <div class="sellingtour-box ">
+                                        <h3 class="sellingtour-title ">
+                                            <a class="size20 color000 " href="/@itemArticle.MenuAlias/@itemArticle.Alias" title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">@itemArticle.Title</a>
+                                        </h3>
+                                        @Html.Raw(itemArticle.Description)
+                                        <a href="/@itemArticle.MenuAlias/@itemArticle.Alias" class="btn-viewdetail btn-left " tabindex="0 "><span>View Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </section>
+</content>

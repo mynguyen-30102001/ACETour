@@ -1,0 +1,56 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+@using Newtonsoft.Json
+@using AsiaCharmtours.Handler
+
+@{
+    W_Menu menu = (W_Menu)ViewData["menu2"];
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Article detailArticles = (W_Article)ViewData["DetailArticle"];
+    List<W_Article> articlesAll = (List<W_Article>)ViewData["ArticleAll"];
+}
+<style>
+    .active .all-acticlespan {
+        color: #cda11a;
+    }
+</style>
+<div class="img-banner" style="position: relative; z-index: 10;">
+    <img src="@menu.Background" width="100%" alt="">
+</div>
+@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<!-- end Header -->
+<div class="dgdan">
+    <div class="container">
+        <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="/@menu.MenuAlias">@menu.MenuName</a> / <a href="">
+            @detailArticles.Title
+        </a>
+    </div>
+</div>
+
+<section class="our-blog-details ptb-100 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="blog-right-sidebar">
+                    <ul class="list-detail-infospratiques-ul">
+                        @foreach (var item in articlesAll)
+                        {
+                            <li class="list-detail-infospratiques" data-toggle="collapse" data-target="#demo">
+                                <a href="/@item.MenuAlias/@item.Alias" class="title_article">
+                                    <span class="all-acticlespan">
+                                        @item.Title
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                        <li class="list-detail-infospratiqueslast">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                @Html.Raw(detailArticles.Content)
+            </div>
+        </div>
+    </div>
+</section>
