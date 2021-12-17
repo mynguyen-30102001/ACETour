@@ -172,6 +172,7 @@
         <AssociationConnector Association="webkh_asiacharmModel.FK_BlogThemeTags_Blog" />
         <AssociationConnector Association="webkh_asiacharmModel.FK_BlogTheme_BlogMenuTheme" />
         <AssociationConnector Association="webkh_asiacharmModel.FK_BlogThemeTags_BlogTags" />
+        <AssociationConnector Association="webkh_asiacharmModel.FK_Hotel_Menu" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

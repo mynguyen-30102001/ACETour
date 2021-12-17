@@ -6,148 +6,283 @@
     List<W_Menu> menus = QuickData.GetMasterMainMenus(lan);
     QA_Question about = (QA_Question)ViewData["ListAbout"];
     List<W_Employee> employee = QuickData.ListEmployee(lan);
+    List<W_Slider> listSlider = QuickData.Slider(lan);
     int i = 1;
 }
-<div class="img-banner" style="position: relative; z-index: 10;">
-    <img src="@menu.Background" width="100%" alt="@menu.Title">
-    <h2 class="text-center">@menu.MenuName</h2>
-</div>
-@Html.Partial("/Views/PartialView/Website/pMenuHome.cshtml")
 
-<!-- end Header -->
+    <content>
+        <section class="id">
+            <div class="banner">
+                <img class="img-banner" src="@menu.Background" alt="content">
+                <div class="wrapper-banner text-center  color-fff">
 
-<div class="nous-about">
-    <div class="container">
-        <p class="wow fadeInUp">
-            @Html.Raw(menu.Description)
-        </p>
-    </div>
-</div>
-<div style="background: #ccd9fe; padding-top: 30px; padding-bottom: 30px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+                    <h1 class="size60 fontb wow fadeIn">
+                        @menu.MenuName
+                    </h1>
+                    <h2 class="size20 fontc">
+                        @menu.Description
+                    </h2>
 
-                @foreach (var item in menus.Where(a => a.MenuParentId == 0 && a.Highlight && (bool)a.ShowMenuTop && a.MenuTypeId == (int)MenuType.AboutUs).OrderBy(x => x.Index).ToList())
-                {
-                    var menuChilds = menus.Where(a => a.MenuParentId == item.MenuId).OrderBy(a => a.Index).ToList();
-                    if (menuChilds.Count > 0)
-                    {
-                        foreach (var itemChild in menuChilds)
+                </div>
+
+            </div>
+        </section>
+        <section>
+
+            <div class="about-tt">
+                <div class="container">
+                    <div class="vk-home__about-content row justify-content-center pad500">
+
+                        <div class="col-xs-10">
+                            <h2 class="vk-home__title text-center size40 wow fadeInUp">@about.Title</h2>
+                        </div>
+                        @*<div class="col-md-5 col-xs-12">
+                            <p class="text-left margintop30 fontc color696969">
+                                Luxury Travel Ltd. was founded in 2004 by Mrs. Tran Lam Yen, passionate traveler and entrepreneur. With more than 15 years of experience in the travel industry, she is a keynote speaker and luxury travel expert in Vietnam and around the globe. When Tran Lam Yen saw
+                                the need for a tour company offering services that would specialize in high-end travelers, she didn’t hesitate for long. That’s how the idea of creating a travel company with an emphasis on ultra-luxurious experiences, privately
+                                guides and bespoke holidays came to life. As a lover of Arts, Writing, History and Culture, Tran Lam Yen created personalized tours with an immersive approach to traveling.
+
+                            </p>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <p class="text-left margintop30 fontc color696969">
+                                Luxury Travel Ltd. was founded in 2004 by Mrs. Tran Lam Yen, passionate traveler and entrepreneur. With more than 15 years of experience in the travel industry, she is a keynote speaker and luxury travel expert in Vietnam and around the globe. When Tran Lam Yen saw
+                                the need for a tour company offering services that would specialize in high-end travelers, she didn’t hesitate for long. That’s how the idea of creating a travel company with an emphasis on ultra-luxurious experiences, privately
+                                guides and bespoke holidays came to life. As a lover of Arts, Writing, History and Culture, Tran Lam Yen created personalized tours with an immersive approach to traveling.
+
+                            </p>
+                        </div>*@
+                        @Html.Raw(about.Content)
+                        <div class="col-xs-12">
+                            <img class="img-aboutus" src="@about.Avatar" alt="">
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="container">
+                    <div class="w-100 text-center margin-top-50">
+                        <h2 class="vk-home__title text-center size40 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Why to choose us?</h2>
+                    </div>
+                    <div class="row justify-content-center pad500">
+                        @foreach (var itemSlide in listSlider)
                         {
-                            if (itemChild.MenuTypeId == (int)MenuType.OutSite)
+                            if (itemSlide.Index == 1)
                             {
-                                <div class="link-nous  wow fadeInUp" data-wow-delay="0.2s">
-                                    <a href="#panel-@i"><i class="far fa-hand-point-right"></i>@itemChild.MenuName</a>
-                                </div>
-                                i++;
-                            }
-                            else
-                            {
-                                <div class="link-nous  wow fadeInUp" data-wow-delay="0.2s">
-                                    <a href="/@itemChild.MenuAlias"><i class="far fa-hand-point-right"></i>@itemChild.MenuName</a>
-                                </div>
-                            }
-                            
-                        }
-                    }
-                }
-            </div>
-            <div class="col-md-8 wow fadeInUp">
-                <video width="100%" height="400" controls autoplay muted>
-                    <source src="~/Content/video/INNOTRAVEL VIETNAM - The Art Of Living.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="nous-nd">
-    <div id="panel-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 wow fadeInUp">
-                    <img src="@about.Avatar" width="100%" alt="">
-                    <p style="text-align: center; margin-top: 20px;">@about.FullName</p>
-                </div>
-                <div class="col-md-8 wow fadeInUp">
-                    @Html.Raw(about.Description)
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="panel-2" class=" wow fadeInUp">
-        <div class="container" style="padding-top: 40px">
-            <div class="col-lg-8" style="margin: auto">
-                <p>
-                    @Html.Raw(menu.Overview)
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div id="panel-3" class="wow fadeInUp">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <img src="@about.Icon" width="100%" alt="">
-                </div>
-                <div class="col-lg-7">
-                    @Html.Raw(about.Content)
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="panel-4" class="wow fadeInUp">
-        <div class="container">
-           
-            <div class="col-lg-7" style="margin: auto; margin-bottom: 30px;">
-                @Html.Raw(menu.Note)
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="carousel-wrap">
-                        <div class="owl-carousel wow fadeInUp" id="nos1">
-                            @foreach (var item in employee)
-                            {
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="our-team" style="background: #fff">
-                                                <div class="pic">
-                                                    <img src="@item.Image">
-                                                </div>
-                                                <h3 class="title">@item.FullName</h3>
-                                                <span class="post">@item.Position</span>
-                                            </div>
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="choose">
+                                        <h2 class="fontb size30 margin-10">
+                                            @itemSlide.Title
+                                        </h2>
+                                        <p class="fontc ct-about size14">
+                                            @Html.Raw(itemSlide.Description)
+                                        </p>
                                     </div>
                                 </div>
                             }
+                        }
+
+
+                    </div>
+
+                </div>
+                <div class="backgroundf4 pad500">
+                    <div class="container">
+                        <div class="margin-10">
+                            <div class="container">
+                                <div class="row justify-content-center wow fadeInUp">
+                                    <div class="col-md-7">
+                                        <h2 class="fontb size60 text-center color000 padding20" style="text-transform: inherit;">
+                                            Meet Out team
+                                        </h2>
+                                        <p class="text-center fontc size14 color696969">
+                                            All of our travel consultants follow a specially devised training program to develop their expertise in all aspects of travel and customer service. We personally check the hotels, resorts, and restaurants, and listen carefully to our client’s requirements
+                                            in order to deliver the right itineraries and experiences.
+                                        </p>
+                                        <p class="text-center fontc size14 color696969">
+                                            We are committed to operating with the highest standards of service and professionalism while continuing to improve on the qualities that make us not just good, but great.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    @foreach(var itemEm in employee.Where(x => x.Index == 1).ToList())
+                                    {
+                                        <div class="col-md-4 col-xs-6 text-center about-team wow fadeInUp">
+                                            <img class="item-img-about-team" src="@itemEm.Image" alt="">
+                                            <div class="text-center">
+                                                <strong class="fontb size25"> @itemEm.FullName</strong>
+                                                <p class="fontc size14 color696969 about-position">
+                                                    @itemEm.Position
+                                                </p>
+                                                <p class="text-left fontc size14 color696969">
+                                                    @Html.Raw(itemEm.Description)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div class="row">
+                                    @foreach (var itemEm in employee.Where(x => x.Index != 1).ToList())
+                                    {
+                                        <div class="col-md-4 col-xs-6 text-center about-team wow fadeInUp">
+                                            <img class="item-img-about-team" src="@itemEm.Image" alt="">
+                                            <div class="text-center">
+                                                <strong class="fontb size25"> Tran Lam Yen</strong>
+                                                <p class="fontc size14 color696969 about-position">
+                                                    @itemEm.Position
+                                                </p>
+                                                <p class="text-left fontc size14 color696969">
+                                                    @Html.Raw(itemEm.Description)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                            <!-- <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12 margintop30">
+                                        <div class="">
+                                            <div class="" style="width:50%; float: left;">
+                                                <img class="item-img-about-team" src="./images/7.jpg" alt="">
+                                            </div>
+                                            <div class="" style="width:50%; float: left;">
+                                                <strong class="fontb size25"> Tran Lam Yen</strong>
+                                                <p class="fontc size14 color696969 about-position">
+                                                    Founder / CEO
+                                                </p>
+                                                <p class="text-left fontc size14 color696969">
+                                                    After 12 years in the industry, Tran Lam Yen found her own business in 2004 providing luxury tours in Vietnam. Tran Lam Yen who is determined to create the most unforgettable travel experiences for high-end tourists.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xs-12 margintop30">
+                                        <div class="row">
+                                            <div class="col-md-6  padding-left0  ">
+                                                <img class="item-img-about-team" src="./images/7.jpg" alt="">
+                                            </div>
+                                            <div class="col-md-6 margin0 tt-team-about">
+                                                <strong class="fontb size25"> Tran Lam Yen</strong>
+                                                <p class="fontc size14 color696969 about-position">
+                                                    Founder / CEO
+                                                </p>
+                                                <p class="text-left fontc size14 color696969">
+                                                    After 12 years in the industry, Tran Lam Yen found her own business in 2004 providing luxury tours in Vietnam. Tran Lam Yen who is determined to create the most unforgettable travel experiences for high-end tourists.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xs-12 margintop30">
+                                        <div class="row">
+                                            <div class="col-md-6 padding-left0 ">
+                                                <img class="item-img-about-team" src="./images/7.jpg" alt="">
+                                            </div>
+                                            <div class="col-md-6 margin0 tt-team-about">
+                                                <strong class="fontb size25"> Tran Lam Yen</strong>
+                                                <p class="fontc size14 color696969 about-position">
+                                                    Founder / CEO
+                                                </p>
+                                                <p class="text-left fontc size14 color696969">
+                                                    After 12 years in the industry, Tran Lam Yen found her own business in 2004 providing luxury tours in Vietnam. Tran Lam Yen who is determined to create the most unforgettable travel experiences for high-end tourists.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div id="panel-5" class="wow fadeInUp">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="@menu.Image2" width="100%" alt="">
-                </div>
-                <div class="col-md-8">
-                    <h4>Permis de voyage international</h4>
-                    <p>
-                        Energistically drive standardized communities through user friendly results.
-                        Phosfluorescently initiate superior technologies vis-a-vis low-risk high-yield
-                        solutions. Objectively facilitate clicks-and-mortar partnerships vis-a-vis
-                        superior
-                    </p>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="make-bottom">
+                <div class="make-bottom-img ">
+                    <img class=" " src="~/Content/images/1.4.jpg " alt=" ">
+                    <div class="make-bottom-txt ">
+                        <div class="container ">
+                            <div class="row justify-content-center ">
+                                <div class="col-md-9">
+                                    <p class="size40 text-center color-fff" style="text-shadow: 0 0 20px black;">
+                                        We know you are unique, so we're here to create the unique experinces for you
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="contactus-detailtour  color-fff text-center fontb">
+                                                <div class="size60">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                </div>
+                                                <div class="size30 fontc">
+                                                    Contact Us
+                                                </div>
+                                                <div class="size18">
+                                                    Call Us: 02422420777
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="contactus-detailtour  color-fff text-center fontb">
+                                                <div class="size60">
+                                                    <i class="fas fa-file-signature"></i>
+                                                </div>
+                                                <div class="size30 fontc">
+                                                    Contact Us
+                                                </div>
+                                                <div class="size18">
+                                                    Send Enquiry
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="contactus-detailtour  color-fff text-center fontb">
+                                                <div class="size60">
+                                                    <i class="far fa-address-card"></i>
+                                                </div>
+                                                <div class="size30 fontc">
+                                                    Contact Us
+                                                </div>
+                                                <div class="size18">
+                                                    Contact: info@webtravel.vn
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+        </section>
+
+
+    </content>
+
+

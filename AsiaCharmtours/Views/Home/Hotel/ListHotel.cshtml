@@ -1,0 +1,111 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@model AsiaCharmtours.Database.W_Article
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    List<W_Hotel> hotelAll = (List<W_Hotel>)ViewData["HotelAll"];
+    //List<W_Article> list = (List<W_Article>)ViewData["ArticleList"];
+    //List<W_Article> listArticle = (List<W_Article>)ViewData["Article"];
+    //List<W_Article> listArDestination = (List<W_Article>)ViewData["ArticleDestination"];
+}
+
+<content>
+    <section class="id">
+        <div class="banner">
+            <img class="img-banner" src="@menu.Background" alt="content">
+            <div class="wrapper-banner text-center  color-fff">
+
+                <h1 class="size60 fontb wow fadeIn">
+                    @menu.MenuName
+                </h1>
+                <h2 class="size20 fontc">
+                    @menu.Description
+                </h2>
+
+            </div>
+
+        </div>
+    </section>
+    <section>
+
+        <div class="backgroundef">
+            <div class="container backgroundfff  padd300">
+                <div class="row">
+
+
+                    <div class="col-md-3">
+                        <h3 class="fontb size40 color000 border-bottom">Hotels</h3>
+                        <div>
+                            <ul class="ul-list-hotel">
+                                @foreach (var itemHotel in hotelAll)
+                                {
+                                    <li class="list-hotel">
+                                        <a href="" class="color000 fontc size16 tt-listhtel ">@itemHotel.HotelName</a>
+                                    </li>
+                                }
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="fontb size40  border-bottom">Sapa Hotel, Hotel in Sapa</h3>
+                        <ul class="">
+                            @foreach (var itemHotel in hotelAll)
+                            {
+                                <li class="list-hotel item-listhotel">
+                                    <div class="w-100">
+                                        <div class="txt-upper fontb size18 fontweight-b ">
+                                            <a class="color696969 size20" href=""> Sapa Eden Hotel</a>
+                                            <span class="colorf3cb07 size14">
+                                                @for (int i = 0; i < itemHotel.Star; i++)
+                                                {
+                                                    <i class="fas fa-star"></i>
+                                                }
+                                                @for (int i = itemHotel.Star; i < 5; i++)
+                                                {
+                                                    <i class="far fa-star"></i>
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <img class="img-fluid img-hotel" src="@itemHotel.Image" alt="">
+                                            </div>
+                                            <div class="col-md-5">
+                                                @Html.Raw(itemHotel.ShortDescription)
+                                            </div>
+                                            <div class="col-md-3 text-center">
+
+                                                <div>
+                                                    <i>from </i>
+                                                    <div class="size30">
+                                                        <p>
+                                                            $@itemHotel.PriceFrom
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="more-hotel">
+                                                    <a class="color000" href="/@itemHotel.MenuAlias/@itemHotel.HotelAlias">READ MORE</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</content>
+

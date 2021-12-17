@@ -16,6 +16,7 @@ namespace AsiaCharmtours.Models
         public int NumberDay { get; set; }
         public string Destination { get; set; }
         public string Description { get; set; }
+        public string DescriptionMin { get; set; }
         public string Meals { get; set; }
         public string Transportation { get; set; }
         public string Accommodation { get; set; }

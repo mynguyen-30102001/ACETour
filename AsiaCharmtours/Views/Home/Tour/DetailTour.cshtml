@@ -9,672 +9,451 @@
     EF_TourDetail tourDetail = (EF_TourDetail)ViewData["tourDetail"];
     List<T2_TourGallery> listGalleries = (List<T2_TourGallery>)ViewData["tourgallary"];
     List<W_Menu> menuTour = (List<W_Menu>)ViewData["menuTour"];
+    List<EF_Article> listArticle = QuickData.ListArticle(lan);
+    List<EF_Tour> listTourLike = QuickData.ListTourLike(lan);
 
 }
-<style>
-    /*.list-tt li {
-        list-style-type: disc;
-    }*/
-</style>
-
-<div class="img-banner" style="position: relative; z-index: 10;">
-    <img src="@menu.Background" width="100%" alt="@menu.MetaTitle">
-    <h2 class="text-center">@menu.MenuName</h2>
-</div>
-@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
-
-<!-- end Header -->
-<div class="dgdan">
-    <div class="container">
-        <a href="/">@GetLanguage.Language(lan, "Accueil")</a> / <a href="/@menu.MenuAlias">@menu.MenuName</a> / <a href="">
-            @tourDetail.TourName
-        </a>
-    </div>
-</div>
-
-<div class="text-detaitour">
-    <div class="container">
-        <h3 style="margin-bottom: 10px;">@tourDetail.TourName</h3>
-        <p class="text-d1 wow fadeInUp">
-            @tourDetail.Destination
-            @*@foreach (var item in menuTour)
+<content>
+    <section class="id">
+        <div class="banner-destination">
+            <div class="des-banner-for">
+                @foreach (var itemGallery in listGalleries)
                 {
-                    @item.MenuName <span>/</span>
-                }*@
-        </p>
-        <div class="col-lg-11 wow fadeInUp" style="margin: auto; margin-top: 20px; margin-bottom: 20px;">
-            <div class="row" style="text-align: center">
-                <div class="col-lg-4 col-md-4">
-                    <span>Destination : @menu.MenuName </span>
+                    <img src="@itemGallery.Image" alt="">
+                }
+            </div>
+            <div class="des-banner-nav">
+                @foreach (var itemGallery in listGalleries)
+                {
+                    <img src="@itemGallery.Image" alt="">
+                }
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <div class="nav-detailtour">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9  col-md-12">
+                        <ul>
+                            <li class="list-nav-detail">
+                                <a href="#overreview" class="color696969 size16 fontc">Over review</a>
+                            </li>
+                            <li class="list-nav-detail">
+                                <a href="#tourplan" class="color696969 size16 fontc">Tour plan</a>
+                            </li>
+                            <li class="list-nav-detail">
+                                <a href="#simiar" class="color696969 size16 fontc">Simiar tour</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-3 colnone">
+                        <div class="btn-book-this-tour">
+
+                            <a href="#book" data-target="" data-toggle="largeModal" class="color000 size16 fontc txt-upper">Book this tour</a>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-4">
-                    <span>Durée : @tourDetail.NumberDay jours</span>
+                <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Large Modal</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h3>Modal Body</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-4">
-                    <span>Type de voyage : @tourDetail.PromotionTitle</span>
+
+            </div>
+        </div>
+
+        <div class="backgroundfff pad500" id="overreview">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul class="vk-blog-detail__breadcrumb">
+                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com">Home</a></li>
+                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/activities">Activities</a></li>
+                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/activities/culture-tours">Culture Tours</a></li>
+                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/tour-item/luxury-grand-cambodia-laos-vietnam-tour-15-days">Luxury Grand Cambodia Laos Vietnam Tour 15 days</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <span class="wow fadeInUp">
-            @Html.Raw(tourDetail.Overview)
-        </span>
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="list-tt container">
-        <h5 class="text-center wow fadeInUp" style="margin-bottom: 40px;">Durant ce circuit vous aimerez</h5>
-        <div class="row">
-            <div class="OFFRES wow fadeInUp">
-                @Html.Raw(tourDetail.Highlights)
-            </div>
-        </div>
-        <div class="row">
-            <div class="OFFRES wow fadeInUp">
-                @Html.Raw(tourDetail.Description)
-            </div>
-        </div>
-        <div class="row">
-            <div class="OFFRES wow fadeInUp">
-                @Html.Raw(tourDetail.Note)
-            </div>
-        </div>
-        <div class="row">
-            <div class="OFFRES wow fadeInUp">
-                @Html.Raw(tourDetail.PromotionContent)
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="slider-dttour col-lg-11" style="margin: auto">
-    <div class="khunganh">
-        <h3>Galerie</h3>
-    </div>
-    <div class="carousel-wrap">
-        <div class="owl-carousel" id="gallery">
-            @foreach (var item in listGalleries)
-            {
-                <div class="item">
-                    <a data-fancybox="gallery" href="@item.Image">
-                        <img src="@item.Image">
-                    </a>
+                <div class="row">
+                    <div class="col">
+                        <div class="vk-shop-detail__meta">
+                            <strong class="color696969 fontc size18 margin-10-20">
+                                Culture Tours
+                            </strong>
+                            <strong class="color696969 fontc size18 margin-10-20">
+                                15 days
+                            </strong>
+                        </div>
+                    </div>
                 </div>
-            }
-        </div>
-    </div>
-</div>
+                <div class="row">
 
-<section class="col-11 tab-tt" style="padding-top: 30px; margin: auto;position: relative;">
-    <div class="row">
-        <div style=" margin: auto;">
-            <ul class="tabs">
-                <li class="tab-link current" data-tab="tab-1">
-                    <h3>Programme</h3>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <div id="tab-1" class="tab-content current">
-                <div class="col-md-12" style="margin-top: 20px;">
-                    <div style="width: 98%; margin: auto" class="nd-detal">
+                    <div class="col-md-8 col-xs-12">
+                        <h1 class="vk-shop-detail__title size30">Luxury Grand Cambodia Laos Vietnam Tour 15 days </h1>
+                        <p class="size16 fontc color696969">
+                            With its natural beauties of caves, forests and never-ending beaches and waterways, Vietnam Cambodia and Laos are the dream destination for travelers seeking to connect with nature
+                        </p>
                         <div class="row">
-                            <div class="col-md-7">
-                                @for (int i = 0; i < tourDetail.T2_TourJourney.Count; i++)
-                                {
-                                    <div class="ct-nd">
-                                        <span>@tourDetail.T2_TourJourney[i].Title</span>
-                                        <div>
-                                            @Html.Raw(tourDetail.T2_TourJourney[i].Content)
+
+                            @Html.Raw(tourDetail.Overview)
+
+                        </div>
+                        <div id="tourplan" class="accordion">
+                            <div class="text-left size40 color000 fontb">
+                                Tour plan
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="travel-vn">
+                                        <div id="accordion" class="accordion">
+                                            <div class="mb-0">
+                                                @foreach (var itemArticle in listArticle)
+                                                {
+                                                    if (itemArticle.MenuAlias == tourDetail.MenuAlias)
+                                                    {
+                                                        if (itemArticle.Index == 0)
+                                                        {
+                                                            <div class="card-vn collapsed color696969" data-toggle="collapse" href="#@itemArticle.Alias">
+                                                                <h3 class="card-title fontc size18 fontweight-b">
+                                                                    @itemArticle.Title
+                                                                    <span class="float-right"><i class="fas fa-angle-down"></i></span>
+                                                                </h3>
+                                                            </div>
+                                                            <div id="@itemArticle.Alias" class="card-body collapse color696969 show" data-parent="#accordion">
+                                                                @Html.Raw(itemArticle.Description)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="card-vn collapsed color696969" data-toggle="collapse" href="#@itemArticle.Alias">
+                                                                <h3 class="card-title fontc size18 fontweight-b">
+                                                                    @itemArticle.Title
+                                                                    <span class="float-right"><i class="fas fa-angle-down"></i></span>
+                                                                </h3>
+                                                            </div>
+                                                            <div id="@itemArticle.Alias" class="card-body collapse color696969 " data-parent="#accordion">
+                                                                @Html.Raw(itemArticle.Description)
+                                                            </div>
+                                                        }
+                                                    }
+
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                }
-                            </div>
-                            <div class="col-md-5">
-                                <div class="img-detailt sticky">
-                                    <img src="~/Content/images/mapdetail.png" width="100%" alt="">
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
-</section>
+                            </div>
+                        </div>
 
-<section class="formtc container">
-    <form action="/book-tour" method="post" id="contactform">
-        <input type="hidden" name="menuAlias" value="@menu.MenuAlias">
-        <div class="khung">
-            <h1 class="text-center wow fadeInUp">
-                Personnaliser ce
-                tour
-            </h1>
-        </div>
-        <input type="hidden" name="IDtour" value="@tourDetail.TourId">
-        <div class="col-lg-10" style="margin: auto">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Nom et prénom <span style="color: red"> (*)</span> </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="FullName" class="form-control" placeholder="Prénom">
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
+                    <div class="col-md-4 col-xs-12 " id="book">
+                        <div class="">
+                            <div class="bacground-fff box-detail-des">
+                                <a href="#">
+                                    <img src="~/Content/images/map22.jpg" alt="">
+                                </a>
+                                <div class="view-maps background000 text-center">
+                                    <a href="#" class="viewmapsa txt-upper color-fff fontc text-center">
+                                        view full maps
+                                    </a>
+                                </div>
 
-                            <div class="col-md-6">
-                                <label for="">Civilité <span style="color: red"> (*)</span> </label>
                             </div>
-                            <div class="col-md-6">
-                                <select class="form-control" name="Gender" id="">
-                                    <option value="Homme">Homme</option>
-                                    <option value="Femme">Femme</option>
-                                </select>
-                            </div>
-                            @Html.Hidden("TourName", tourDetail.TourName)
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Nationalité<span style="color: red"> (*)</span> </label>
-                            </div>
-                            <div class="col-md-6">
-                                <select name="Nationality" class="form-control">
-                                    <option value="">Choisir</option>
-                                    <option value="Argentina">Argentina</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Austria">Austria</option>
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="Belarus">Belarus</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Bhutan">Bhutan</option>
-                                    <option value="Bolivia">Bolivia</option>
-                                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Brunei">Brunei</option>
-                                    <option value="Bulgaria">Bulgaria</option>
-                                    <option value="Cambodia">Cambodia</option>
-                                    <option value="Cameroon">Cameroon</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Chile">Chile</option>
-                                    <option value="China">China</option>
-                                    <option value="Colombia">Colombia</option>
-                                    <option value="Costa Rica">Costa Rica</option>
-                                    <option value="Croatia">Croatia</option>
-                                    <option value="Cuba">Cuba</option>
-                                    <option value="Cyprus">Cyprus</option>
-                                    <option value="Czech Republic">Czech Republic</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="Dominica">Dominica</option>
-                                    <option value="East Timor">East Timor</option>
-                                    <option value="Ecuador">Ecuador</option>
-                                    <option value="Egypt">Egypt</option>
-                                    <option value="El Salvador">El Salvador</option>
-                                    <option value="Estonia">Estonia</option>
-                                    <option value="Faroe Islands">Faroe Islands</option>
-                                    <option value="Fiji">Fiji</option>
-                                    <option value="Finland">Finland</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="Gibraltar">Gibraltar</option>
-                                    <option value="Greece">Greece</option>
-                                    <option value="Greenland">Greenland</option>
-                                    <option value="Guam">Guam</option>
-                                    <option value="Guatemala">Guatemala</option>
-                                    <option value="Honduras">Honduras</option>
-                                    <option value="Hong Kong">Hong Kong</option>
-                                    <option value="Hungary">Hungary</option>
-                                    <option value="Iceland">Iceland</option>
-                                    <option value="India">India</option>
-                                    <option value="Indonesia">Indonesia</option>
-                                    <option value="Ireland">Ireland</option>
-                                    <option value="Israel">Israel</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Jamaica">Jamaica</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="Kazakhstan">Kazakhstan</option>
-                                    <option value="Kiribati">Kiribati</option>
-                                    <option value="Korea, North">Korea, North</option>
-                                    <option value="Korea, South">Korea, South</option>
-                                    <option value="Kuwait">Kuwait</option>
-                                    <option value="Laos">Laos</option>
-                                    <option value="Latvia">Latvia</option>
-                                    <option value="Liberia">Liberia</option>
-                                    <option value="Libya">Libya</option>
-                                    <option value="Liechtenstein">Liechtenstein</option>
-                                    <option value="Lithuania">Lithuania</option>
-                                    <option value="Luxembourg">Luxembourg</option>
-                                    <option value="Macau">Macau</option>
-                                    <option value="Macedonia">Macedonia</option>
-                                    <option value="Malaysia">Malaysia</option>
-                                    <option value="Maldives">Maldives</option>
-                                    <option value="Mali">Mali</option>
-                                    <option value="Malta">Malta</option>
-                                    <option value="Marshall Islands">Marshall Islands</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Micronesia">Micronesia</option>
-                                    <option value="Moldova">Moldova</option>
-                                    <option value="Monaco">Monaco</option>
-                                    <option value="Mongolia">Mongolia</option>
-                                    <option value="Montserrat">Montserrat</option>
-                                    <option value="Myanmar">Myanmar</option>
-                                    <option value="Nauru">Nauru</option>
-                                    <option value="Nepal">Nepal</option>
-                                    <option value="Netherlands">Netherlands</option>
-                                    <option value="Netherlands Antilles">Netherlands Antilles</option>
-                                    <option value="New Caledonia">New Caledonia</option>
-                                    <option value="New Zealand">New Zealand</option>
-                                    <option value="Nigeria">Nigeria</option>
-                                    <option value="Niue">Niue</option>
-                                    <option value="Norfolk Island">Norfolk Island</option>
-                                    <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-                                    <option value="Norway">Norway</option>
-                                    <option value="Oman">Oman</option>
-                                    <option value="Pakistan">Pakistan</option>
-                                    <option value="Palau">Palau</option>
-                                    <option value="Panama">Panama</option>
-                                    <option value="Papua New Guinea">Papua New Guinea</option>
-                                    <option value="Paraguay">Paraguay</option>
-                                    <option value="Peru">Peru</option>
-                                    <option value="Philippines">Philippines</option>
-                                    <option value="Pitcairn Island">Pitcairn Island</option>
-                                    <option value="Poland">Poland</option>
-                                    <option value="Portugal">Portugal</option>
-                                    <option value="Puerto Rico">Puerto Rico</option>
-                                    <option value="Qatar">Qatar</option>
-                                    <option value="Reunion">Reunion</option>
-                                    <option value="Romania">Romania</option>
-                                    <option value="Russia">Russia</option>
-                                    <option value="Rwanda">Rwanda</option>
-                                    <option value="kn">Saint Kitts &amp; Nevis</option>
-                                    <option value="Saint Lucia">Saint Lucia</option>
-                                    <option value="Saint Vincent">Saint Vincent</option>
-                                    <option value="Samoa">Samoa</option>
-                                    <option value="San Marino">San Marino</option>
-                                    <option value="Sao Tome">Sao Tome</option>
-                                    <option value="Saudi Arabia">Saudi Arabia</option>
-                                    <option value="sn">Senegal</option>
-                                    <option value="Singapore">Singapore</option>
-                                    <option value="Slovakia">Slovakia</option>
-                                    <option value="Slovenia">Slovenia</option>
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="Spain">Spain</option>
-                                    <option value="Sri Lanka">Sri Lanka</option>
-                                    <option value="Suriname">Suriname</option>
-                                    <option value="Svalbard">Svalbard</option>
-                                    <option value="Sweden">Sweden</option>
-                                    <option value="Switzerland">Switzerland</option>
-                                    <option value="Syria">Syria</option>
-                                    <option value="Taiwan">Taiwan</option>
-                                    <option value="Tajikistan">Tajikistan</option>
-                                    <option value="Thailand">Thailand</option>
-                                    <option value="Tokelau">Tokelau</option>
-                                    <option value="Tonga">Tonga</option>
-                                    <option value="Trinidad">Trinidad</option>
-                                    <option value="Turkey">Turkey</option>
-                                    <option value="Turkmenistan">Turkmenistan</option>
-                                    <option value="Turks and Caicos">Turks and Caicos</option>
-                                    <option value="Tuvalu">Tuvalu</option>
-                                    <option value="Uganda">Uganda</option>
-                                    <option value="Ukraine">Ukraine</option>
-                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United States">United States</option>
-                                    <option value="Uruguay">Uruguay</option>
-                                    <option value="Uzbekistan">Uzbekistan</option>
-                                    <option value="Vatican City">Vatican City</option>
-                                    <option value="Venezuela">Venezuela</option>
-                                    <option value="Vietnam">Vietnam</option>
-                                    <option value="ot">Other Country</option>
-                                </select>
-                            </div>
+                            <div class="fixed-book-thistour">
+                                <div class=" backgroundfff box-detail-des">
+                                    <h3 class="color31f20 fontb size25 border-bottom fontweight-b">
+                                        Book this tour
+                                    </h3>
+                                    <div class="border-bottom">
+                                        <div class="form-group ">
+                                            <label for="exampleInputPassword1" class="size16 color696969 fontc ">Your name</label>
+                                            <input type="password " class="form-control backgroundef fontc" placeholder="Mr.Nguyen ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="exampleInputPassword1 " class="size16 color696969 fontc ">Phone number</label>
+                                            <input type="number " class="form-control backgroundef fontc " id="exampleInputPassword1 " placeholder=" ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="exampleInputPassword1 " class="size16 color696969 fontc ">Your name</label>
+                                            <input type="email " class="form-control backgroundef fontc " id="exampleInputPassword1 " placeholder="Mr.Nguyen ">
+                                        </div>
+                                        <small class="fontc ">
+                                            By Continuing with this, You have read and  <span>
+                                                <a class="colorf9a " href=" ">agreed to the terms</a>
+                                            </span>
+                                        </small>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
 
-                            <div class="col-md-6">
-                                <label for="">Année de naissance</label>
-                            </div>
-                            <div class="col-md-6">
-                                <select name="Year" id="" class="form-control">
-                                    <option value="">Année</option>
-                                    <option value="1900">1900</option>
-                                    <option value="1901">1901</option>
-                                    <option value="1902">1902</option>
-                                    <option value="1903">1903</option>
-                                    <option value="1904">1904</option>
-                                    <option value="1905">1905</option>
-                                    <option value="1906">1906</option>
-                                    <option value="1907">1907</option>
-                                    <option value="1908">1908</option>
-                                    <option value="1909">1909</option>
-                                    <option value="1910">1910</option>
-                                    <option value="1911">1911</option>
-                                    <option value="1912">1912</option>
-                                    <option value="1913">1913</option>
-                                    <option value="1914">1914</option>
-                                    <option value="1915">1915</option>
-                                    <option value="1916">1916</option>
-                                    <option value="1917">1917</option>
-                                    <option value="1918">1918</option>
-                                    <option value="1919">1919</option>
-                                    <option value="1920">1920</option>
-                                    <option value="1921">1921</option>
-                                    <option value="1922">1922</option>
-                                    <option value="1923">1923</option>
-                                    <option value="1924">1924</option>
-                                    <option value="1925">1925</option>
-                                    <option value="1926">1926</option>
-                                    <option value="1927">1927</option>
-                                    <option value="1928">1928</option>
-                                    <option value="1929">1929</option>
-                                    <option value="1930">1930</option>
-                                    <option value="1931">1931</option>
-                                    <option value="1932">1932</option>
-                                    <option value="1933">1933</option>
-                                    <option value="1934">1934</option>
-                                    <option value="1935">1935</option>
-                                    <option value="1936">1936</option>
-                                    <option value="1937">1937</option>
-                                    <option value="1938">1938</option>
-                                    <option value="1939">1939</option>
-                                    <option value="1940">1940</option>
-                                    <option value="1941">1941</option>
-                                    <option value="1942">1942</option>
-                                    <option value="1943">1943</option>
-                                    <option value="1944">1944</option>
-                                    <option value="1945">1945</option>
-                                    <option value="1946">1946</option>
-                                    <option value="1947">1947</option>
-                                    <option value="1948">1948</option>
-                                    <option value="1949">1949</option>
-                                    <option value="1950">1950</option>
-                                    <option value="1951">1951</option>
-                                    <option value="1952">1952</option>
-                                    <option value="1953">1953</option>
-                                    <option value="1954">1954</option>
-                                    <option value="1955">1955</option>
-                                    <option value="1956">1956</option>
-                                    <option value="1957">1957</option>
-                                    <option value="1958">1958</option>
-                                    <option value="1959">1959</option>
-                                    <option value="1960">1960</option>
-                                    <option value="1961">1961</option>
-                                    <option value="1962">1962</option>
-                                    <option value="1963">1963</option>
-                                    <option value="1964">1964</option>
-                                    <option value="1965">1965</option>
-                                    <option value="1966">1966</option>
-                                    <option value="1967">1967</option>
-                                    <option value="1968">1968</option>
-                                    <option value="1969">1969</option>
-                                    <option value="1970">1970</option>
-                                    <option value="1971">1971</option>
-                                    <option value="1972">1972</option>
-                                    <option value="1973">1973</option>
-                                    <option value="1974">1974</option>
-                                    <option value="1975">1975</option>
-                                    <option value="1976">1976</option>
-                                    <option value="1977">1977</option>
-                                    <option value="1978">1978</option>
-                                    <option value="1979">1979</option>
-                                    <option value="1980">1980</option>
-                                    <option value="1981">1981</option>
-                                    <option value="1982">1982</option>
-                                    <option value="1983">1983</option>
-                                    <option value="1984">1984</option>
-                                    <option value="1985">1985</option>
-                                    <option value="1986">1986</option>
-                                    <option value="1987">1987</option>
-                                    <option value="1988">1988</option>
-                                    <option value="1989">1989</option>
-                                    <option value="1990">1990</option>
-                                    <option value="1991">1991</option>
-                                    <option value="1992">1992</option>
-                                    <option value="1993">1993</option>
-                                    <option value="1994">1994</option>
-                                    <option value="1995">1995</option>
-                                    <option value="1996">1996</option>
-                                    <option value="1997">1997</option>
-                                    <option value="1998">1998</option>
-                                    <option value="1999">1999</option>
-                                    <option value="2000">2000</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2019">2019</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="">Adresse email <span style="color: red"> (*)</span> </label>
-                            </div>
-                            <div class="col-md-9">
-                                <input type="email" name="Email" class="form-control" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Nombre de participants </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="PeopleAdult" class="form-control" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">
-                                    Enfant(s) moins de 12 ans
-                                </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="PeopleChild" class="form-control" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Date de départ </label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="col-xs-10 div-datepicker">
-                                        <input type="date" id="departure_date" name="DateArrival"
-                                               class="form-control bpv-date-input">
+
+                                    </div>
+                                    <div class="_bot ">
+                                        <div class="row">
+                                            <div class="col-md-4 col-12">
+                                                <div class="_label-1 ">from</div>
+                                                @*<div class="_total "> $ 3150</div>*@
+                                                @tourDetail.PriceExcludes
+                                            </div>
+                                            <div class="col-md-8 col-12">
+                                                <button type="button" class="btn-sm-book txt-upper fontc" data-toggle="modal" data-target="#exampleModalCenter">
+                                                    book this tour
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <img class="mdal-img" src="./images/poppup-1.jpg" alt="">
+                                                                        <div class="tt-mdal-img fontc size25 color-fff fontweight-b">
+                                                                            Laos VietNams 5 day in a Tour
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="w-100">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-right: 5px;">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+
+                                                                        <div class="w-100 margin-top-50">
+                                                                            <p class="size40 fontb fontweight-b">
+                                                                                Hello <span>
+                                                                                    Nguyen
+                                                                                </span>
+                                                                            </p>
+                                                                            <p class="fontc size16 margin0 color696969">
+                                                                                You have requested the tour
+                                                                            </p>
+                                                                            <p class="fontc fontweight-b color000 size18">Highlights of Laos 5 days in a Tour of Laos</p>
+                                                                            <p class="fontc size16 margin0 color696969">
+                                                                                Contact information is
+                                                                            </p>
+                                                                            <p class="fontc fontweight-b color000 size18"><span style="padding-right:20px; border-right:2px solid #000; line-height: 20px;">0986756436</span><span style="padding-left:20px">bb&#x40;gmail.com</span></p>
+                                                                        </div>
+                                                                        <div class="row mdal-form">
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="fontc">Departure date (YYYY/MM/DD) </label>
+                                                                                    <div class='input-group date'>
+                                                                                        <input type='text' id='datetimepicker1' class="form-control backgroundf4" placeholder="" />
+
+                                                                                        <span style="position: absolute;  right: 15px; top: 5px; font-size: 15px;;">
+                                                                                            <i style="left: -39px;" class="far fa-calendar-alt"></i>
+                                                                                        </span>
+
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                            <div class="col-md-3 col-xs-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="fontc">Number of Adults </label>
+                                                                                    <div class="input-group">
+
+                                                                                        <input type="number" id="myNumber" class="form-control input-number backgroundf4" value="0" />
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3 col-xs-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="fontc">Number of Children </label>
+                                                                                    <div class="input-group">
+
+                                                                                        <input type="number" id="myNumber" class="form-control input-number backgroundf4 " value="0 " />
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6 ">
+                                                                                <label class="fontc ">Hotel Category </label>
+                                                                                <select class="form-control backgroundf4 ">
+                                                                                    <option>3 stars</option>
+                                                                                    <option>4 stars </option>
+                                                                                    <option>5 stars </option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-md-6 ">
+                                                                                <label class="fontc ">Travel Style </label>
+                                                                                <select class="form-control backgroundf4 ">
+                                                                                    <option>Classic & culture</option>
+                                                                                    <option>Family Tour </option>
+                                                                                    <option>Leisure </option>
+                                                                                    <option>Holiday </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row ">
+                                                                            <div class="col-md-6 ">
+                                                                                <div class="form-group ">
+                                                                                    <label for="my-input ">Please enter the code</label>
+                                                                                    <input id="my-input " class="form-control " type="text " name=" ">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="w-100 text-center ">
+                                                                            <button class="mdal-bt-send txt-upper fontc text-center ">
+                                                                                send now
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="backgroundfff box-detail-des " style="margin-top:30px ">
+                                    <div class="text-center ">
+                                        <h3 class="color31f20 fontb size25 border-bottom text-left fontweight-b ">
+                                            How It Works
+                                        </h3>
+                                        <div class="how-des ">
+                                            <div class="_item ">
+                                                <div class="vk-sidebar-item bd-bott ">
+                                                    <div class="vk-sidebar-item__num "> 01</div>
+                                                    <div class="vk-sidebar-item__brief ">
+                                                        <h2 class="vk-sidebar-item__title ">Send us your inquiry</h2>
+                                                        <div class="vk-sidebar-item__text ">&amp; tell us your preferences</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="_item ">
+                                                <div class="vk-sidebar-item bd-bott ">
+                                                    <div class="vk-sidebar-item__num "> 01</div>
+                                                    <div class="vk-sidebar-item__brief ">
+                                                        <h2 class="vk-sidebar-item__title ">Send us your inquiry</h2>
+                                                        <div class="vk-sidebar-item__text ">&amp; tell us your preferences</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="_item ">
+                                                <div class="vk-sidebar-item ">
+                                                    <div class="vk-sidebar-item__num "> 01</div>
+                                                    <div class="vk-sidebar-item__brief ">
+                                                        <h2 class="vk-sidebar-item__title ">Send us your inquiry</h2>
+                                                        <div class="vk-sidebar-item__text ">&amp; tell us your preferences</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Numéro de téléphone <span style="color: red"> (*)</span> </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="number" name="Phone" class="form-control" placeholder="">
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Budget (usd/personne) </label>
+        </div>
+        <div class="make-bottom ">
+            <div class="make-bottom-img ">
+                <img class=" " src="~/Content/images/1.4.jpg " alt=" ">
+                <div class="make-bottom-txt ">
+                    <div class="container ">
+                        <div class="row justify-content-center ">
+                            <div class="col-md-10 ">
+                                <p class="size40 text-center color-fff ">
+                                    We know you are unique, so we're here to create the unique experinces for you
+                                </p>
+                                <div class="w-100 text-center " style="margin-top: 30px; ">
+                                    <a href="# " class="btn-center " tabindex="0 "><span>Make an enquiry</span></a>
+
+
+                                </div>
+
+
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" name="Budget" class="form-control" placeholder="">
-                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="" style="height: 70px;">
-                        <div class="g-recaptcha" data-sitekey="6Ld3lrkUAAAAAB81kjdJHC7d7awoKztN_588ceCg"></div>
-                        <span style="font-weight:bold" id="recaptcharequement"></span>
-                    </div>
-                </div>
+
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label> Envie d'un échange téléphonique</label>
+
+
+        </div>
+
+        <div class="selling-index pad500 backgroundc " id="simiar ">
+            <div class="vk-home__title-box animated fadeInUp " data-animation="fadeInUp " data-animation-duration="2 " style="opacity: 1; animation-duration: 2s; ">
+                <h2 class="_title size40 ">Similar tours you may like</h2>
+            </div>
+            <div class="sales ">
+                @foreach (var itemTourLike in listTourLike)
+                {
+                    <div class="col-md-3 ">
+                        <div class="swiper-slide ">
+                            <div class="outer-div ">
+                                <div class="inner-div ">
+                                    <img src="@itemTourLike.Image " class="entity-img " />
+                                </div>
+                                <span class="tt-img-tour ">
+                                    @itemTourLike.PromotionTitle
+                                </span>
                             </div>
-                            <div class="col-md-8">
-                                <input type="radio" name="tab1" value="" onclick="show21();" />
-                                Oui
-                                <input type="radio" name="tab1" value="" onclick="show11();" />
-                                None
-                                <div id="div2" class="hide" style="display: none; margin-top: 20px;">
-                                    <input type="text" id="txtPassportNumber" name="communicate"
-                                           placeholder="Veuillez donner l’heure et jour de l’echange telephonique"
-                                           class="form-control" />
+                            <div class="sellingtour-brief ">
+                                <div class="sellingtour-date size16 ">@itemTourLike.NumberDay DAYS</div>
+                                <div class="sellingtour-box ">
+                                    <h3 class="sellingtour-title ">
+                                        <a class="size20 color000 " href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">@itemTourLike.TourName</a>
+                                    </h3>
+                                    <span class="_current ">@Html.Raw(itemTourLike.PriceExcludes)</span><a href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias " class="btn-viewdetail " tabindex="0 "><span>View Details</span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="form-group" style="margin-top: 30px;">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="">Votre demande particulière</label>
-                    </div>
-                    <div class="col-md-8">
-                        <textarea name="Message" id="" cols="30" rows="4" class="form-control" placeholder=""></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <input type="hidden" id="Country" name="Country" value="" />
-            </div>
-            <div class="">
-                <input type="hidden" id="City" name="City" value="" />
-            </div>
-            <div class="bt-submit">
-                <button type="submit">
-                    ENVOYER
-                </button>
-            </div>
-        </div>
-    </form>
-</section>
-@section script{
-    <script type="text/javascript">
-        function LoadingSendEmail() {
-            $('#loading').show();
-        }
-
-        $(window).load(function () {
-            $("#contactform").validate({
-                rules: {
-                    Gender: {
-                        required: true,
-                    },
-                    FullName: {
-                        required: true,
-                        minlength: 5
-                    },
-                    Phone: {
-                        required: true,
-                        minlength: 5
-                    },
-                    Email: {
-                        required: true,
-                        email: true
-                    },
-                    Content: "required",
-                },
-                messages: {
-                    Gender: {
-                        required: "Vui lòng chọn giới tính",
-
-                    },
-                    FullName: {
-                        required: "Vui lòng nhập họ tên",
-                        minlength: "Họ tên quá ngắn"
-                    },
-                    Tel: {
-                        required: "Vui lòng nhập số điện thoại",
-                        minlength: "Số máy quý khách vừa nhập là số không có thực"
-                    },
-                    Email: {
-                        required: "",
-                        Email: "Email không đúng định dạng"
-                    },
-                    Content: "required",
-                },
-                submitHandler: function (form) {
-                    form.submit();
-                    LoadingSendEmail();
                 }
-            });
-        });
-    </script>
 
+
+            </div>
+
+        </div>
+
+
+
+
+    </section>
+
+
+</content>
+
+@section script{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js "></script>
+    <script src="~/Content/js/wow.min.js "></script>
+    <script src="~/Content/js/main.js "></script>
+    <script src="~/Content/js/header.js "></script>
+    <script src="~/Content/js/slider.js "></script>
 }

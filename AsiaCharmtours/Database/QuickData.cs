@@ -36,6 +36,11 @@ namespace AsiaCharmtours.Database
         [NotMapped]
         public string MenuAlias { get; set; }
     }
+    public partial class W_Hotel
+    {
+        [NotMapped]
+        public string MenuAlias { get; set; }
+    }
     public partial class QA_Question
     {
         [NotMapped]
@@ -175,6 +180,7 @@ namespace AsiaCharmtours.Database
                         Destination = a.Destination,
                         DescriptionMin = a.DescriptionMin,
                         Image = a.Image,
+                        PromotionTitle = a.PromotionTitle,
                         PriceExcludes = a.PriceExcludes,
                     }).ToList();
                 return list;
@@ -214,6 +220,7 @@ namespace AsiaCharmtours.Database
                         Content = a.Content,
                         Avatar = a.Avatar,
                         MetaTitle = a.MetaTitle,
+                        Index = a.Index,
                         MetaDescription = a.MetaDescription,
                     }).ToList();
                 return list;
@@ -237,17 +244,17 @@ namespace AsiaCharmtours.Database
                     .Join(db.W_Menu, a => a.MainMenuId, b => b.MenuId , (a,b) => new EF_Tour {
                         MenuAlias = b.MenuAlias,
                         Description = a.Description,
+                        TourId = a.TourId,
                         TourName = a.TourName,
                         TourAlias = a.TourAlias,
                         Destination = a.Destination,
                         DescriptionMin = a.DescriptionMin,
                         Image = a.Image,
+                        Index = a.Index,
                         MainMenuId = a.MainMenuId,
                         PriceExcludes = a.PriceExcludes,
                         Status = (bool)a.Status,
-
-                    })
-                    .ToList();
+                    }).OrderBy(x => x.Index).ToList();
                 return list;
             }
         }
@@ -516,6 +523,72 @@ namespace AsiaCharmtours.Database
             }
         }
 
+        public static List<W_Menu> GetAllMenuHotel(string _lang = "en")
+        {
+            using (var db = new DB())
+            {
+                List<W_Menu> listMenus = new List<W_Menu>();
+                // chuyên mục chính
+                List<W_Menu> menus = db.W_Menu
+                        .Where(x => x.LanguageCode == _lang && x.Location == 1 && x.MenuTypeId == (int)MenuType.Hotels)
+                        .OrderBy(x => x.Index)
+                        .ToList();
+                if (menus is null) menus = new List<W_Menu>();
+                if (menus.Count > 0)
+                {
+                    int maxLevel = menus.Max(x => x.Level) + 1;
+                    List<W_Menu> masterMenus = menus.FindAll(x => x.Level == 0).OrderBy(x => x.Index).ToList();
+                    listMenus.AddRange(masterMenus);
+                    for (int i = 1; i < maxLevel; i++)
+                    {
+                        List<W_Menu> menuCurrentLevel = new List<W_Menu>();
+                        if (masterMenus.Count > 0)
+                            menuCurrentLevel = menus.FindAll(x => x.Level == i).OrderByDescending(x => x.Index).ToList();
+                        else
+                            menuCurrentLevel = menus.FindAll(x => x.Level == i).OrderBy(x => x.Index).ToList();
+                        if (menuCurrentLevel != null && menuCurrentLevel.Count > 0)
+                        {
+                            menuCurrentLevel.ForEach(x =>
+                            {
+                                int indexParentMenu = listMenus.FindIndex(y => y.MenuId == x.MenuParentId);
+                                if (indexParentMenu < 0 || indexParentMenu == listMenus.Count - 1)
+                                    listMenus.Add(x);
+                                else
+                                    listMenus.Insert(indexParentMenu + 1, x);
+                            });
+                        }
+                    }
+                }
+                // chuyên mục phụ
+                List<W_Menu> menus2 = db.W_Menu
+                        .Where(x => x.LanguageCode == _lang && x.Location == 0 && x.Status && (x.MenuTypeId == (int)MenuType.Tour || x.MenuTypeId == (int)MenuType.TourHighlight))
+                        .OrderBy(x => x.Index)
+                        .ToList();
+                if (menus2 is null) menus2 = new List<W_Menu>();
+                if (menus2.Count > 0)
+                {
+                    int maxLevel = menus2.Max(x => x.Level) + 1;
+                    List<W_Menu> masterMenus = menus2.FindAll(x => x.Level == 0).OrderBy(x => x.Index).ToList();
+                    listMenus.AddRange(masterMenus);
+                    for (int i = 1; i < maxLevel; i++)
+                    {
+                        List<W_Menu> menuCurrentLevel = menus2.FindAll(x => x.Level == i).OrderByDescending(x => x.Index).ToList();
+                        if (menuCurrentLevel != null && menuCurrentLevel.Count > 0)
+                        {
+                            menuCurrentLevel.ForEach(x =>
+                            {
+                                int indexParentMenu = listMenus.FindIndex(y => y.MenuId == x.MenuParentId);
+                                if (indexParentMenu < 0 || indexParentMenu == listMenus.Count - 1)
+                                    listMenus.Add(x);
+                                else
+                                    listMenus.Insert(indexParentMenu + 1, x);
+                            });
+                        }
+                    }
+                }
+                return listMenus;
+            }
+        }
         public static List<W_Menu> GetAllMenuArticle(string _lang)
         {
             using (var db = new DB())
@@ -523,7 +596,7 @@ namespace AsiaCharmtours.Database
                 List<W_Menu> listMenus = new List<W_Menu>();
                 // chuyên mục chính
                 List<W_Menu> menus = db.W_Menu
-                        .Where(x => x.LanguageCode == _lang && x.Location == 1 && (x.MenuTypeId == (int)MenuType.Article || x.MenuTypeId == (int)MenuType.AboutUs || x.MenuTypeId == (int)MenuType.InfosArticle))
+                        .Where(x => x.LanguageCode == _lang && x.Location == 1  && (x.MenuTypeId == (int)MenuType.Article || x.MenuTypeId == (int)MenuType.AboutUs || x.MenuTypeId == (int)MenuType.InfosArticle ||( x.MenuTypeId == (int)MenuType.Sites && x.Level == 0) || (x.MenuTypeId == (int)MenuType.Tour )))
                         .OrderBy(x => x.Index)
                         .ToList();
                 if (menus is null) menus = new List<W_Menu>();
@@ -1021,6 +1094,7 @@ namespace AsiaCharmtours.Database
                     Highlights = _tour.Highlights,
                     Meals = _tour.Meals,
                     Destination = _tour.Destination,
+                    DescriptionMin = _tour.DescriptionMin,
                     Note = _tour.Note,
                     NumberDay = _tour.NumberDay,
                     PromotionTitle = _tour.PromotionTitle,

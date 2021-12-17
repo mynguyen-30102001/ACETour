@@ -158,7 +158,7 @@
                 <div class="row vk-home__tour-cat-list wow fadeInUp">
                     @foreach (var itemMenuDes in getDestitation)
                     {
-                        if (itemMenuDes.Index != 1)
+                        if (itemMenuDes.Index != 2 && itemMenuDes.Index != 4)
                         {
                             <div class="col-12 col-md-6 col-lg-3 _item">
                                 <div class="vk-shop-item vk-shop-item--style-4" data-animation="fadeInUpFix" data-animation-delay="0" data-animation-duration="2" style="opacity: 1; animation-duration: 2s;">
@@ -222,7 +222,7 @@
                                     <img src="@itemTourLike.Image" class="entity-img " />
                                 </div>
                                 <span class="tt-img-tour">
-                                    @itemTourLike.DescriptionMin
+                                    @itemTourLike.PromotionTitle
                                 </span>
                             </div>
                             <div class="sellingtour-brief">
@@ -231,7 +231,7 @@
                                     <h3 class="sellingtour-title">
                                         <a class="size20 color000" href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">@itemTourLike.TourName</a>
                                     </h3>
-                                    <span class="_current">$4608</span>
+                                    <span class="_current">@Html.Raw(itemTourLike.PriceExcludes)</span>
                                     <a href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
                                 </div>
                             </div>

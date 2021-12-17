@@ -49,5 +49,6 @@ namespace AsiaCharmtours.Database
         public virtual ICollection<W_HotelGallery> W_HotelGallery { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<W_HotelMenu> W_HotelMenu { get; set; }
+        public virtual W_Menu W_Menu { get; set; }
     }
 }

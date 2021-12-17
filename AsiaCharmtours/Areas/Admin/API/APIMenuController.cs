@@ -452,7 +452,38 @@ namespace LibraryServices.Areas.Admin.API
                 return BadRequest(ex.Message);
             }
         }
- 
+
+        [Route("get-all-menu-hotel")]
+        [HttpGet]
+        public IHttpActionResult GetAllMenuHotel()
+        {
+            try
+            {
+                string _lang = "";
+                CookieHeaderValue cookie = Request.Headers.GetCookies("lang_client").FirstOrDefault();
+                if (cookie != null)
+                {
+                    _lang = cookie["lang_client"].Value;
+                }
+                List<W_Menu> listMenus = QuickData.GetAllMenuHotel(_lang);
+                using (var db = new DB())
+                {
+                    var menuResults = listMenus
+                                    .Select(x => new
+                                    {
+                                        x.MenuId,
+                                        MenuName = W_Helper.HeadSpecialString(x.Level) + x.MenuName
+                                    }).ToList();
+                    return Ok(menuResults);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [Route("get-all-menu-article")]
         [HttpGet]
         public IHttpActionResult GetAllMenuArticles()

@@ -1,0 +1,370 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+@using Newtonsoft.Json
+@using AsiaCharmtours.Handler
+
+@{
+    W_Menu menu = (W_Menu)ViewData["menu2"];
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Hotel detailHotel = (W_Hotel)ViewData["DetailHotel"];
+    List<W_Hotel> hotelAll = (List<W_Hotel>)ViewData["HotelAll"];
+    List<W_HotelGallery> listGalleries = (List<W_HotelGallery>)ViewData["hotelGallery"];
+}
+
+
+<content>
+    <section class="id">
+        <div class="banner">
+            <img class="img-banner" src="@menu.Background" alt="content">
+            <div class="wrapper-banner text-center  color-fff">
+
+                <h1 class="size60 fontb wow fadeIn">
+                    @menu.MenuName
+                </h1>
+                <h2 class="size20 fontc">
+                    @menu.Description
+                </h2>
+            </div>
+
+        </div>
+    </section>
+    <section>
+
+        <div class="backgroundef">
+            <div class="container backgroundfff">
+                <div class="row pad500">
+
+
+                    <div class="col-md-3">
+                        <h3 class="fontb size40 color000 border-bottom">Hotels</h3>
+                        <div>
+                            <ul class="ul-list-hotel">
+                                @foreach (var itemHotel in hotelAll)
+                                {
+                                    <li class="list-hotel">
+                                        <a href="" class="color000 fontc size16 tt-listhtel ">@itemHotel.HotelName</a>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="w-100">
+                            <div class="txt-upper fontb size18 fontweight-b margintop30">
+                                <a class="color000 size20" href="">@detailHotel.HotelName</a>
+                            </div>
+                        </div>
+                        <div class="w-100">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item ">
+                                    <a class="nav-link listnav-detailhotel active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link listnav-detailhotel" data-toggle="tab" href="#tabs-2" role="tab">Facility</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link listnav-detailhotel" data-toggle="tab" href="#tabs-3" role="tab">Gallery</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                    <div class="pane-description">
+                                        @Html.Raw(detailHotel.Description)
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                    <div class="pane-description">
+                                        @Html.Raw(detailHotel.Facility)
+                                        @*<div class="row">
+                                                <div class="col-md-3">
+                                                    <b>Facilities</b>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+                                                        <li>
+                                                            car
+                                                        </li>
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+
+                                                        </li>
+
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <b>Facilities</b>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+                                                        <li>
+                                                            car
+                                                        </li>
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+
+                                                        </li>
+
+                                                        <li>
+                                                            tour
+                                                        </li>
+                                                        <li>
+                                                            meeting facilities
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <b>Facilities</b>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+                                                        <li>
+                                                            car
+                                                        </li>
+
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+
+                                                        </li>
+
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ul>
+                                                        <li>
+                                                            24-hour room service
+                                                        </li>
+                                                        <li>
+                                                            bar
+                                                        </li>
+                                                        <li>
+                                                            restaurant
+                                                        </li>
+
+                                                        </li>
+
+
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>*@
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                    <div class="pane-description">
+                                        <div class="row">
+                                            @foreach (var itemGallery in listGalleries)
+                                            {
+                                            <div class="col-md-4">
+                                                <img src="@itemGallery.Image" alt="">
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row padd300 justify-content-center">
+                    <div class="w-100">
+                        <h2 class="size30 text-center">Orther Hotels</h2>
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            @foreach (var itemHotel in hotelAll.Take(3))
+                            {
+                                if (itemHotel.HotelId != detailHotel.HotelId )
+                                {
+                                    <div class="col-md-4 col-xs-6">
+                                        <div class="blog-part blog-res">
+                                            <div class="blog-img">
+                                                <a href="/@itemHotel.MenuAlias/@itemHotel.HotelAlias"><img src="@itemHotel.Image" alt="blog-img"></a>
+                                            </div>
+
+                                            <div class="w-100 text-left fontb size20 txt-upper color000 tt-blog tt-relacted">
+                                                @itemHotel.HotelName
+                                            </div>
+
+
+
+                                            <div class="otherhotels">
+                                                <a class="color000" href="/@itemHotel.MenuAlias/@itemHotel.HotelAlias">READ MORE</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</content>

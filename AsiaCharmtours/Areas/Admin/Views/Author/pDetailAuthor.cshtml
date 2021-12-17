@@ -1,0 +1,77 @@
+﻿<div class="armchair">
+    <h3>
+        <span ng-if="isAdd">Thêm tác giả</span>
+        <span ng-if="!isAdd">Chỉnh sửa tác giả</span>
+    </h3>
+    <div class="uk-grid">
+        <div class="uk-width-1">
+            <div class="uk-grid">
+                <div class="uk-width-medium-2-3">
+                    <div class="md-input-wrapper">
+                        <span>Tên</span> <span class="required-field">(*)</span>
+                        <input required ng-model="data.Title" type="text" class="md-input">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Thứ tự hiển thị: </span>
+                        <input required ng-model="data.Index" type="number" value="0" min="0" class="md-input" style="max-width: 120px;">
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Trạng thái hiển thị: </span>
+                        <input type="checkbox" data-switchery checked id="switch_status" />
+                    </div>
+                    <div class="md-input-wrapper">
+                        <span>Nội dung</span>
+                        <textarea class="md-input" rows="2" name="Description"></textarea>
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="uk-grid">
+                        <div class="uk-width-1 uk-text-center">
+                            <span>Hình ảnh</span> <span class="required-field">(*)</span>
+                            <img id="img-logo" src="~/FileDefault/img-default.gif">
+                            <input id="Logo" style="display: none; width: 0px;" name="Logo" class="upload">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window-footer uk-text-center">
+    <button ng-click="closeWindow()" type="button" class="md-btn md-btn-default md-btn-wave-light waves-effect waves-button waves-light">Hủy</button>
+    <button ng-if="isAdd" ng-click="Post()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Thêm mới</button>
+    <button ng-if="!isAdd" ng-click="Put()" type="button" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light">Cập nhật</button>
+</div>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace("Description");
+
+        $("input[type='radio']").on('ifChanged', function (e) {
+            if ($("input[type='radio'][id=relatepost2]").is(':checked'))
+                $("#add_related_post").css("display", "block");
+            else
+                $("#add_related_post").css("display", "none");
+        });
+        function setFileField(fileUrl) {
+            $('#' + $(upload).attr('for')).val(fileUrl);
+            $("#img-logo").attr("src", fileUrl);
+        }
+        if (!$('.button-upload').length > 0) {
+            var upload;
+            var textBox = $('.upload');
+            for (var i = 0; i < textBox.length; i++) {
+                var uploadText = $(textBox[i]);
+                uploadText.css('width', uploadText.width() - 70);
+                uploadText.after('<button type="button" for="' + uploadText.attr('id') + '" class="button-upload md-btn md-btn-primary md-btn-wave-light uk-margin-top">Chọn ảnh</button>');
+                $('.button-upload').click(function () {
+                    upload = $(this);
+                    // You can use the "CKFinder" class to render CKFinder in a page:
+                    var finder = new CKFinder();
+                    finder.basePath = '../files';
+                    finder.selectActionFunction = setFileField;
+                    finder.popup();
+                });
+            }
+        }
+    });
+</script>

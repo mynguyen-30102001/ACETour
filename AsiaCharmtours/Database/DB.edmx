@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Alias" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="250" />
           <Property Name="LanguageCode" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Facebook" Type="nvarchar" MaxLength="300" />
@@ -1691,6 +1691,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Hotel_Menu">
+          <End Role="W_Menu" Type="Self.W_Menu" Multiplicity="1" />
+          <End Role="W_Hotel" Type="Self.W_Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="W_Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="W_Hotel">
+              <PropertyRef Name="MainMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Menu_Language">
           <End Role="W_Language" Type="Self.W_Language" Multiplicity="1" />
           <End Role="W_Menu" Type="Self.W_Menu" Multiplicity="*" />
@@ -2331,6 +2343,10 @@
             <End Role="W_Menu" EntitySet="W_Menu" />
             <End Role="W_Gallery" EntitySet="W_Gallery" />
           </AssociationSet>
+          <AssociationSet Name="FK_Hotel_Menu" Association="Self.FK_Hotel_Menu">
+            <End Role="W_Menu" EntitySet="W_Menu" />
+            <End Role="W_Hotel" EntitySet="W_Hotel" />
+          </AssociationSet>
           <AssociationSet Name="FK_Menu_Language" Association="Self.FK_Menu_Language">
             <End Role="W_Language" EntitySet="W_Language" />
             <End Role="W_Menu" EntitySet="W_Menu" />
@@ -2851,6 +2867,10 @@
             <End Role="BlogThemeTag" EntitySet="BlogThemeTags" />
           </AssociationSet>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_Hotel_Menu" Association="webkh_asiacharmModel.FK_Hotel_Menu">
+            <End Role="W_Menu" EntitySet="W_Menu" />
+            <End Role="W_Hotel" EntitySet="W_Hotel" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CR_Cabin">
           <Key>
@@ -3823,6 +3843,7 @@
           <Property Name="Hot" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="W_HotelGallery" Relationship="webkh_asiacharmModel.FK_W_HotelGallery_W_Hotel" FromRole="W_Hotel" ToRole="W_HotelGallery" />
           <NavigationProperty Name="W_HotelMenu" Relationship="webkh_asiacharmModel.FK_W_HotelMenu_W_Hotel" FromRole="W_Hotel" ToRole="W_HotelMenu" />
+          <NavigationProperty Name="W_Menu" Relationship="webkh_asiacharmModel.FK_Hotel_Menu" FromRole="W_Hotel" ToRole="W_Menu" />
         </EntityType>
         <EntityType Name="W_HotelGallery">
           <Key>
@@ -3905,6 +3926,7 @@
           <Property Name="Iframe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Tagline" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Blogs" Relationship="webkh_asiacharmModel.FK_Blog_W_Menu" FromRole="W_Menu" ToRole="Blog" />
+          <NavigationProperty Name="W_Hotel" Relationship="webkh_asiacharmModel.FK_Hotel_Menu" FromRole="W_Menu" ToRole="W_Hotel" />
         </EntityType>
         <EntityType Name="W_MenuType">
           <Key>
@@ -4812,7 +4834,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Alias" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Alias" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="LanguageCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Facebook" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -5055,6 +5077,18 @@
             </Principal>
             <Dependent Role="BlogThemeTag">
               <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hotel_Menu">
+          <End Type="webkh_asiacharmModel.W_Menu" Role="W_Menu" Multiplicity="1" />
+          <End Type="webkh_asiacharmModel.W_Hotel" Role="W_Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="W_Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="W_Hotel">
+              <PropertyRef Name="MainMenuId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

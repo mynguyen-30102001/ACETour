@@ -198,6 +198,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\API\APIAccountController.cs" />
     <Compile Include="Areas\Admin\API\APIArticleController.cs" />
+    <Compile Include="Areas\Admin\API\APIAuthorController.cs" />
     <Compile Include="Areas\Admin\API\APICompanyController.cs" />
     <Compile Include="Areas\Admin\API\APICustomizeController.cs" />
     <Compile Include="Areas\Admin\API\APIEmployeeController.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Areas\Admin\API\APISliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthorController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomizeController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
@@ -574,6 +576,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\js\Account\account.js" />
     <Content Include="Areas\Admin\Content\js\Article\article.js" />
+    <Content Include="Areas\Admin\Content\js\Author\author.js" />
     <Content Include="Areas\Admin\Content\js\Company\company.js" />
     <Content Include="Areas\Admin\Content\js\Customize\customize.js" />
     <Content Include="Areas\Admin\Content\js\Employee\employee.js" />
@@ -2451,6 +2454,9 @@
     <Content Include="Content\fonts\themify-icons\fonts\themify.woff" />
     <Content Include="Content\fonts\themify-icons\UTM BryantLG_B.ttf" />
     <Content Include="Content\fonts\UTM BryantLG_B.ttf" />
+    <Content Include="Areas\Admin\Views\Author\ListAuthor.cshtml" />
+    <Content Include="Areas\Admin\Views\Author\pDetailAuthor.cshtml" />
+    <Content Include="Areas\Admin\Views\Author\pConfirmDelete.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile10.pubxml" />
@@ -2549,6 +2555,8 @@
     <Content Include="Views\Home\Sites\DetailsSites.cshtml" />
     <Content Include="Views\Contact\Error.cshtml" />
     <Content Include="Views\Shared\ContactError.cshtml" />
+    <Content Include="Views\Home\Hotel\ListHotel.cshtml" />
+    <Content Include="Views\Home\Hotel\DetailHotel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

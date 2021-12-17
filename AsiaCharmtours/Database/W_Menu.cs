@@ -27,6 +27,7 @@ namespace AsiaCharmtours.Database
             this.W_HotelMenu = new HashSet<W_HotelMenu>();
             this.W_ThemesMenu = new HashSet<W_ThemesMenu>();
             this.Blogs = new HashSet<Blog>();
+            this.W_Hotel = new HashSet<W_Hotel>();
         }
     
         public int MenuId { get; set; }
@@ -80,5 +81,7 @@ namespace AsiaCharmtours.Database
         public virtual ICollection<W_ThemesMenu> W_ThemesMenu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Blog> Blogs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<W_Hotel> W_Hotel { get; set; }
     }
 }
