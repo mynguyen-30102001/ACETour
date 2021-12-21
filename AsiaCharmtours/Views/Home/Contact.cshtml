@@ -25,80 +25,83 @@
         </section>
         <section id="Agent-travel">
             <div class="pad800">
-                <div class="container">
-                    <div class="w-100">
-                        <p class="fontc fontweight-b color696969 margin0">Name <span style="color:#DD4F42;">*</span></p>
+                <form action="/book-contact" id="contactform" method="post">
+                    <input type="hidden" name="menuAlias" value="@menu.MenuAlias"/>
+                    <div class="container">
+                        <div class="w-100">
+                            <p class="fontc fontweight-b color696969 margin0">Name <span style="color:#DD4F42;">*</span></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label class="small fontc color696969">First</label>
+                                    <input type="text" class="form-control fontc" id="firstName" name="FirstName">
+                                </div>
+                            </div>
+                            <div class="col-md-6  align-self-center">
+                                <div class="form-group">
+                                    <p class="fontc fontweight-b color696969 margin0"></p>
+                                    <label class="small fontc color696969">Last</label>
+                                    <input type="text" class="form-control fontc" id="lastName" name="LastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="fontc fontweight-b color696969 marginbt">Email <span style="color:#DD4F42;">*</span></p>
+
+                                    <input type="text" class="form-control fontc" id="email" name="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="fontc fontweight-b color696969 marginbt">Country <span style="color:#DD4F42;">*</span></p>
+                                    <select class="form-control fontc" id="Country" name="Country">
+                                        <option value="Hà Nội">Ha Noi</option>
+                                        <option value="Thanh Hóa">Thanh Hoa</option>
+                                        <option value="Hà Tĩnh">Ha Tinh </option>
+                                        <option value="Phú Thọ">Phu Tho</option>
+                                        <option value="Hải Phòng">Hai Phong</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="fontc fontweight-b color696969 marginbt">Company <span style="color:#DD4F42;">*</span></p>
+
+                                    <input type="text" class="form-control fontc" id="company" name="Company">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="fontc fontweight-b color696969 marginbt">Website <span style="color:#DD4F42;">*</span></p>
+
+                                    <input type="text" class="form-control fontc" id="website" name="Website" placeholder="http://">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="fontc fontweight-b color696969 marginbt">Phone <span style="color:#DD4F42;">*</span></p>
+
+                                    <input type="text" class="form-control fontc" id="phone" name="Phone" placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn-sm-frm-agent">
+                                Submit
+                            </button>
+                        </div>
+
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-
-                                <label class="small fontc color696969">First</label>
-                                <input type="text" class="form-control fontc" id="exampleFormControlInput1">
-                            </div>
-                        </div>
-                        <div class="col-md-6  align-self-center">
-                            <div class="form-group">
-                                <p class="fontc fontweight-b color696969 margin0"></p>
-                                <label class="small fontc color696969">Last</label>
-                                <input type="text" class="form-control fontc" id="exampleFormControlInput1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p class="fontc fontweight-b color696969 marginbt">Email <span style="color:#DD4F42;">*</span></p>
-
-                                <input type="text" class="form-control fontc" id="exampleFormControlInput1">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p class="fontc fontweight-b color696969 marginbt">Country <span style="color:#DD4F42;">*</span></p>
-                                <select class="form-control fontc" id="exampleFormControlSelect1">
-                                    <option>Ha Noi</option>
-                                    <option>Thanh Hoa</option>
-                                    <option>Ha Tinh </option>
-                                    <option>Phu Tho</option>
-                                    <option>Hai Phong</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p class="fontc fontweight-b color696969 marginbt">Company <span style="color:#DD4F42;">*</span></p>
-
-                                <input type="text" class="form-control fontc" id="exampleFormControlInput1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p class="fontc fontweight-b color696969 marginbt">Website <span style="color:#DD4F42;">*</span></p>
-
-                                <input type="text" class="form-control fontc" id="exampleFormControlInput1 " placeholder="http://">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p class="fontc fontweight-b color696969 marginbt">Phone <span style="color:#DD4F42;">*</span></p>
-
-                                <input type="text" class="form-control fontc" id="exampleFormControlInput1 " placeholder="">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <button class="btn-sm-frm-agent">
-                            Submit
-                        </button>
-                    </div>
-
-                </div>
+                </form>
             </div>
         </section>
     </content>
@@ -109,15 +112,14 @@
             $('#loading').show();
         }
 
-        $(window).load(function () {
+        $(document).ready(function () {
             $("#contactform").validate({
                 rules: {
-                    Gender: {
+                    FirstName: {
                         required: true,
                     },
-                    FullName: {
+                    LastName: {
                         required: true,
-                        minlength: 5
                     },
                     Phone: {
                         required: true,
@@ -127,26 +129,35 @@
                         required: true,
                         email: true
                     },
-                    Request: "required",
+                    Company: {
+                        required: true,
+                    },
+                    Website: {
+                        required: true,
+                    }
                 },
                 messages: {
-                    Gender: {
-                        required: "Please select a gender",
+                    FirstName: {
+                        required: "Please select a first name",
 
                     },
-                    FullName: {
-                        required: "Please enter your full name",
-                        minlength: "The name is too short"
+                    LastName: {
+                        required: "Please enter your last name",
                     },
-                    Tel: {
+                    Phone: {
                         required: "Please enter the phone number",
                         minlength: "The phone number you entered is not a real number"
                     },
                     Email: {
-                        required: "",
+                        required: "Please enter the email",
                         Email: "Email invalidate"
                     },
-                    Request: "required",
+                    Company: {
+                        required:"Please enter your company",
+                    },
+                    Website: {
+                        requred: "Please enter your website",
+                    }
                 },
                 submitHandler: function (form) {
                     form.submit();

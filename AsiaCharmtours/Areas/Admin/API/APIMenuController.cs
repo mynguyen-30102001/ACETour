@@ -546,6 +546,37 @@ namespace LibraryServices.Areas.Admin.API
             }
         }
 
+        [Route("get-all-menu-blog")]
+        [HttpGet]
+        public IHttpActionResult GetMenuBlog()
+        {
+            try
+            {
+                string _lang = "";
+                CookieHeaderValue cookie = Request.Headers.GetCookies("lang_client").FirstOrDefault();
+                if (cookie != null)
+                {
+                    _lang = cookie["lang_client"].Value;
+                }
+                List<W_Menu> listMenus = QuickData.GetAllMenuBlog(_lang);
+                using (var db = new DB())
+                {
+                    var menuResults = listMenus
+                                    .Select(x => new
+                                    {
+                                        x.MenuId,
+                                        MenuName = W_Helper.HeadSpecialString(x.Level) + x.MenuName
+                                    }).ToList();
+                    return Ok(menuResults);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [Route("get-menu-tour-by-level")]
         [HttpGet]
         public IHttpActionResult GetMenuTourByLevel(int _parentMenuId, int _level)

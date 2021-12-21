@@ -47,6 +47,7 @@ namespace AsiaCharmtours.Database
         public string PriceExcludes { get; set; }
         public string Cancellation { get; set; }
         public string Policy { get; set; }
+        public string Star { get; set; }
         public string Note { get; set; }
         public int Index { get; set; }
         public string MetaTitle { get; set; }

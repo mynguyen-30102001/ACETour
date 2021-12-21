@@ -58,6 +58,8 @@ namespace AsiaCharmtours.Areas.Admin.API
             }
         }
 
+        
+
         [Route("post")]
         [HttpPost]
         [AcceptAction(ActionName = "Post", ControllerName = "APIAuthorController")]

@@ -1,11 +1,11 @@
-﻿var urlGetMenuTourByLevel = '/api/menu/get-menu-article-by-level';
-var urlGetAllMenu = '/api/menu/get-all-menu-article';
-var urlGet = '/api/article/get';
-var urlGetTour = '/api/article/get-tour';
-var urlPost = '/api/article/post';
-var urlDetail = '/api/article/detail';
-var urlPut = '/api/article/put';
-var urlDelete = '/api/article/delete';
+﻿//var urlGetMenuTourByLevel = '/api/menu/get-menu-article-by-level';
+var urlGetAllMenu = '/api/menu/get-all-menu-blog';
+var urlGetAuthor = '/api/blog/get-author';
+var urlGet = '/api/blog/get';
+var urlPost = '/api/blog/post';
+var urlDetail = '/api/blog/detail';
+var urlPut = '/api/blog/put';
+var urlDelete = '/api/blog/delete';
 
 app.controller('controller', ['$scope', '$http', 'template', 'validation', 'notify', 'helper', '$timeout', function ($scope, $http, template, validation, notify, helper, $timeout) {
     $scope.filters = {
@@ -26,7 +26,7 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
     };
     $scope.data = {};
     $scope.menus = [];
-    $scope.menuForDomain = [];
+    $scope.author = [];
     $scope.isAdd = true;
     $scope.replaceOldData = false; // kiểm tra nếu tồn tại bài liên quan cũ thì cài đặt đã chọn trong bảng chọn bài viết (Có ảnh hưởng event selected)
     $scope.relatedPost = [];
@@ -70,12 +70,12 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             width: 200,
             headerCellClass: 'text-center-grid'
         },
-        {
-            displayName: "Người viết",
-            name: 'UserCreate',
-            width: 150,
-            headerCellClass: 'text-center-grid'
-        },
+        //{
+        //    displayName: "Người viết",
+        //    name: 'UserCreate',
+        //    width: 150,
+        //    headerCellClass: 'text-center-grid'
+        //},
         {
             displayName: "Ngày cập nhật",
             name: 'DateUpdate',
@@ -111,13 +111,14 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             name: "#",
             width: 120,
             field: "#",
-            cellTemplate: template.templateActionMethod('ArticleId'),
+            cellTemplate: template.templateActionMethod('BlogId'),
             enableFiltering: false,
             enableSorting: false,
             cellClass: 'text-center-grid',
             headerCellClass: 'text-center-grid'
         }
     ];
+    
     $scope.gridOptionsRelatedPost = {
         paginationPageSizes: [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000],
         paginationPageSize: 100,
@@ -133,7 +134,7 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             $scope.gridApi = gridApi;
             $scope.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                 if (!$scope.replaceOldData) {
-                    var indexExists = $scope.relatedPost.findIndex(x => x.TourId == row.entity.TourId);
+                    var indexExists = $scope.relatedPost.findIndex(x => x.BlogId == row.entity.BlogId);
                     if (indexExists < 0)
                         $scope.relatedPost.push(row.entity);
                     else
@@ -144,7 +145,7 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             $scope.gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
                 if (!$scope.replaceOldData) {
                     for (var i = 0; i < rows.length; i++) {
-                        var indexExists = $scope.relatedPost.findIndex(x => x.TourId == rows[i].entity.TourId);
+                        var indexExists = $scope.relatedPost.findIndex(x => x.BlogId == rows[i].entity.BlogId);
                         if (indexExists < 0)
                             $scope.relatedPost.push(rows[i].entity);
                         else
@@ -161,46 +162,22 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
     };
     $scope.gridOptionsRelatedPost.columnDefs = [
         {
-            displayName: "Tên tour",
-            name: 'TourName',
+            displayName: "Tiêu đề",
+            name: 'Title',
             width: '*',
             minWidth: 200
         },
         {
-            displayName: "Điểm đến",
-            name: 'Destination',
+            displayName: "Chuyên mục",
+            name: 'MenuName',
             width: '*',
-            minWidth: 200,
-            headerCellClass: 'text-center-grid'
+            minWidth: 150
         },
         {
-            displayName: "Thời gian (ngày)",
-            name: 'NumberDay',
-            width: 150,
-            cellClass: 'text-center-grid',
-            headerCellClass: 'text-center-grid'
-        },
-        {
-            displayName: "Thứ tự hiển thị",
-            name: 'Index',
-            width: 150,
-            cellClass: 'text-center-grid',
-            headerCellClass: 'text-center-grid'
-        },
-        {
-            displayName: "Ngày tạo",
-            name: 'DateCreate',
-            cellFilter: 'date: "dd/MM/yyyy HH:mm"',
-            width: 150,
-            cellClass: 'text-center-grid',
-            headerCellClass: 'text-center-grid'
-        },
-        {
-            displayName: "Hiển thị",
-            name: 'Status',
-            width: 150,
-            cellClass: 'text-center-grid',
-            headerCellClass: 'text-center-grid'
+            displayName: "Ngày cập nhật",
+            name: 'DateUpdate',
+            cellFilter: 'date: "dd/MM/yyyy"',
+            width: 150
         }
     ];
     $scope.Get = function () {
@@ -212,7 +189,7 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
         }).then(function success(response) {
             notify.spinerHide();
             var data = response.data;
-            $scope.gridOptions.data = data.articles;
+            $scope.gridOptions.data = data.blogs;
             $scope.gridOptions.totalItems = data.totalRecord;
         }, function error(response) {
             notify.spinerHide();
@@ -223,13 +200,13 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
     $scope.GetRelatedPost = function () {
         notify.spinerShow();
         $http({
-            url: urlGetTour,
+            url: urlGet,
             method: 'GET',
             params: $scope.filtersRelatedPost
         }).then(function success(response) {
             notify.spinerHide();
             var data = response.data;
-            $scope.gridOptionsRelatedPost.data = data.tours;
+            $scope.gridOptionsRelatedPost.data = data.blogs;
             $scope.gridOptionsRelatedPost.totalItems = data.totalRecord;
             $scope.checkRelatedPostExist();
         }, function error(response) {
@@ -250,21 +227,24 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
         });
     };
     $scope.GetAllMenu();
+    $scope.GetAuthor = function () {
+        $http({
+            url: urlGetAuthor,
+            method: 'GET'
+        }).then(function success(response) {
+            $scope.author = response.data;
+        }, function error(response) {
+            //notify.spinerHide();
+            notify.error(response.data.Message);
+        });
+    };
+    $scope.GetAuthor();
     $scope.showAdd = function () {
         $("#kUI_window").data("kendoWindow").maximize().open();
         $scope.data = {
             MainMenuId: '',
             Index: 0,
-            W_ArticalMenu: [
-                {
-                    SubMenu1: -1,
-                    IndexSubMenu1: 0,
-                    SubMenu2: -1,
-                    IndexSubMenu2: 0,
-                    SubMenu3: -1,
-                    IndexSubMenu3: 0
-                }
-            ],
+            AuthoId : '',
             Title: '',
             Alias: '',
             Description: '',
@@ -274,9 +254,6 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             MetaDescription: ''
         };
         helper.changeSwitchery($('#switch_status'), true);
-        helper.changeSwitchery($('#switch_destination'), false);
-        helper.changeSwitchery($('#switch_travel'), false);
-
         helper.changeRadio($('#relatepost'), true);
         $scope.relatedPost = [];
         CKEDITOR.instances.Description.setData('');
@@ -289,7 +266,6 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
     };
 
     $scope.showDetail = function (_id) {
-        debugger
         $("#kUI_window").data("kendoWindow").maximize().open();
         $scope.isAdd = false;
         notify.spinerShow();
@@ -297,40 +273,22 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             url: urlDetail,
             method: 'GET',
             params: {
-                _articleId: _id
+                _blogId: _id
             }
         }).then(function success(response) {
-            debugger
             notify.spinerHide();
             var data = response.data;
-            $scope.data = data.article;
+            $scope.data = data.blog;
             $scope.relatedPost = data.relatedPosts;
-          
-            $scope.filterMenu._menuParent1 = data._menuParent1;
-            $scope.filterMenu._parentMenuId = data._parentMenuId;
+            //$scope.filterMenu._menuParent1 = data._menuParent1;
             //$scope.menuForArea = data.menuForArea;
-            //$scope.menuDestination = data.menuDestination;
-            //data.menuForDestination.forEach(x => {
-            //    var indexExistMenu = $scope.data.W_ThemesMenu.findIndex(y => y.MenuId === x.MenuId);
-            //    if (indexExistMenu >= 0) {
-            //        x.Checked = true;
-            //    }
-            //    else {
-            //        x.Checked = false;
-            //    }
-            //});
-            //$scope.menuForDestination = data.menuForDestination;
             $("#Logo").val($scope.data.Avatar);
             $("#img-logo").attr("src", $scope.data.Avatar);
-            $("#Logo3").val($scope.data.Icon);
-            $("#img-logo3").attr("src", $scope.data.Icon);
+            $("#Logo3").val($scope.data.Background);
+            $("#img-logo3").attr("src", $scope.data.Background);
             CKEDITOR.instances.Description.setData($scope.data.Description);
             CKEDITOR.instances.Content.setData($scope.data.Content);
             helper.changeSwitchery($('#switch_status'), $scope.data.Status);
-            helper.changeSwitchery($('#switch_destination'), $scope.data.Destination);
-            helper.changeSwitchery($('#switch_travel'), $scope.data.Travel);
-          
-
             if ($scope.data.SelectRelatedPost)
                 helper.changeRadio($('#relatepost2'), true);
             else
@@ -347,26 +305,18 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
         if (validation.checkRequired()) {
             notify.spinerShow();
             $scope.data.Avatar = $("#Logo").val();
-            $scope.data.Icon = $("#Logo3").val();
+            $scope.data.Background = $("#Logo3").val();
             $scope.data.Status = $('#switch_status').is(':checked');
-            $scope.data.Destination = $('#switch_destination').is(':checked');
-            $scope.data.Travel = $('#switch_travel').is(':checked');
             $scope.data.SelectRelatedPost = $('#relatepost2').is(':checked');
             $scope.data.Description = CKEDITOR.instances.Description.getData();
             $scope.data.Content = CKEDITOR.instances.Content.getData();
-            $scope.data.W_ArticleRelatedPost = [];
+            $scope.data.BlogRelatedPosts = [];
             if ($scope.data.SelectRelatedPost) {
                 for (var i = 0; i < $scope.relatedPost.length; i++)
-                    $scope.data.W_ArticleRelatedPost.push({
-                        ArticleRelatedId: $scope.relatedPost[i].TourId
+                    $scope.data.BlogRelatedPosts.push({
+                        BlogRelateId: $scope.relatedPost[i].BlogId
                     });
             }
-            //var menuForDestination = JSON.parse(JSON.stringify($scope.menuForDestination));
-            //if (menuForDestination == null)
-            //    menuForDestination = [];
-            //menuForDestination = menuForDestination.filter(x => x.Checked);
-            //$scope.data.W_ThemesMenu = menuForDestination;
-
             $http({
                 url: urlPost,
                 method: "POST",
@@ -384,28 +334,20 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
     };
     $scope.Put = function () {
         if (validation.checkRequired()) {
-            debugger
             notify.spinerShow();
             $scope.data.Avatar = $("#Logo").val();
-            $scope.data.Icon = $("#Logo3").val();
+            $scope.data.Background = $("#Logo3").val();
             $scope.data.Status = $('#switch_status').is(':checked');
-            $scope.data.Destination = $('#switch_destination').is(':checked');
-            $scope.data.Travel = $('#switch_travel').is(':checked');
             $scope.data.SelectRelatedPost = $('#relatepost2').is(':checked');
             $scope.data.Description = CKEDITOR.instances.Description.getData();
             $scope.data.Content = CKEDITOR.instances.Content.getData();
-            $scope.data.W_ArticleRelatedPost = [];
+            $scope.data.BlogRelatedPosts = [];
             if ($scope.data.SelectRelatedPost) {
                 for (var i = 0; i < $scope.relatedPost.length; i++)
-                    $scope.data.W_ArticleRelatedPost.push({
-                        ArticleRelatedId: $scope.relatedPost[i].TourId
+                    $scope.data.BlogRelatedPosts.push({
+                      BlogRelateId: $scope.relatedPost[i].BlogId
                     });
             }
-            //var menuForDestination = JSON.parse(JSON.stringify($scope.menuForDestination));
-            //if (menuForDestination == null)
-            //    menuForDestination = [];
-            //menuForDestination = menuForDestination.filter(x => x.Checked);
-            //$scope.data.W_ThemesMenu = menuForDestination;
             $http({
                 url: urlPut,
                 method: "POST",
@@ -429,14 +371,14 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
         $scope.checkRelatedPostExist();
         UIkit.modal("#modalRelatePost").show();
     };
-    // kiểm tra bài viết liên quan đã chọn
+     //kiểm tra bài viết liên quan đã chọn
     $scope.checkRelatedPostExist = function () {
         $timeout(function () {
             $scope.replaceOldData = true;
             $scope.gridApi.selection.clearSelectedRows();
             if ($scope.relatedPost.length > 0) {
                 for (var i = 0; i < $scope.relatedPost.length; i++) {
-                    var index = $scope.gridOptionsRelatedPost.data.findIndex(x => x.TourId == $scope.relatedPost[i].TourId);
+                    var index = $scope.gridOptionsRelatedPost.data.findIndex(x => x.BlogId == $scope.relatedPost[i].BlogId);
                     if (index >= 0)
                         $scope.gridApi.selection.selectRow($scope.gridOptionsRelatedPost.data[index])
                 }
@@ -456,7 +398,7 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
             url: urlDelete,
             method: 'GET',
             params: {
-                _articleId: $scope.menuIdChoose
+                _blogId: $scope.menuIdChoose
             }
         }).then(function success(response) {
             notify.spinerHide();
@@ -469,34 +411,8 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
         });
     };
 
-    $scope.GetMenuLevelTwo = function () {
-        if ($scope.filterMenu._menuParent1 == '') {
-            //$scope.menuForDestination = [];
-            return;
-        }
-        notify.spinerShow();
-        $http({
-            url: urlGetMenuTourByLevel,
-            method: 'GET',
-            params: {
-                _parentMenuId: $scope.filterMenu._menuParent1,
-                _level: 2
-            }
-        }).then(function success(response) {
-            notify.spinerHide();
-            var data = response.data;
-            //$scope.menuForArea = data.menuResult;   
-            //$scope.menuDestination = data.menuDestination;   
-        }, function error(response) {
-            notify.spinerHide();
-            notify.error(response.data.Message);
-        });
-    };
-
-    //$scope.GetMenuByLevel = function () {
-
-    //    if ($scope.filterMenu._parentMenuId == '') {
-    //        $scope.menuForDestination = [];
+    //$scope.GetMenuLevelTwo = function () {
+    //    if ($scope.filterMenu._menuParent1 == '') {
     //        return;
     //    }
     //    notify.spinerShow();
@@ -504,25 +420,16 @@ app.controller('controller', ['$scope', '$http', 'template', 'validation', 'noti
     //        url: urlGetMenuTourByLevel,
     //        method: 'GET',
     //        params: {
-    //            _parentMenuId: $scope.filterMenu._parentMenuId,
-    //            _level: 3
+    //            _parentMenuId: $scope.filterMenu._menuParent1,
+    //            _level: 2
     //        }
     //    }).then(function success(response) {
     //        notify.spinerHide();
-    //        $scope.menuForDestination = response.data.menuDestination;
-    //        $scope.menuForDestination.forEach(x => {
-    //            var indexExistMenu = $scope.data.W_ThemesMenu.findIndex(y => y.MenuId === x.MenuId);
-    //            if (indexExistMenu >= 0) {
-    //                x.Checked = true;
-    //            }
-    //            else {
-    //                x.Checked = false;
-    //            }
-    //        });
+    //        var data = response.data;
+    //        $scope.menuForArea = data.menuResult;
     //    }, function error(response) {
     //        notify.spinerHide();
     //        notify.error(response.data.Message);
     //    });
     //};
-
 }]);

@@ -42,7 +42,7 @@ namespace AsiaCharmtours.Controllers
                 book.People = "Adults: " + PeopleAdult + ", Childrent: " + PeopleChild;
                 insertTour = book;
                 insertTour.TourType = TourName;
-                insertTour.Gender = book.Gender;
+                insertTour.LanguageCode = lan;
                 db.T2_TourBook.Add(insertTour);
                 db.SaveChanges();
                 string Message = "Ho ten" + book.FullName;
@@ -61,21 +61,22 @@ namespace AsiaCharmtours.Controllers
                 T2_Tour tour = db.T2_Tour.FirstOrDefault(m => m.TourId == IDtour);
                 string content = getTemplate.Content;
 
-                content = content.Replace("{Gender}", book.Gender);
+                //content = content.Replace("{Gender}", book.Gender);
                 content = content.Replace("{Code}", "ID_" + tour.TourId.ToString());
                 content = content.Replace("{From7ToUnder9YearsOld}", PeopleChild.ToString());
                 content = content.Replace("{From9YearsOld}", PeopleAdult.ToString());
                 content = content.Replace("{InfoBooking}", tour.TourName);
+                content = content.Replace("{Star}", tour.Star);
 
                 content = content.Replace("{FullName}", book.FullName);
                 content = content.Replace("{Tel}", book.Phone.ToString());
                 content = content.Replace("{Email}", book.Email);
-                content = content.Replace("{Country}", book.Nationality);
-                content = content.Replace("{Communicate}", book.communicate);
+                //content = content.Replace("{Country}", book.Nationality);
+                //content = content.Replace("{Communicate}", book.communicate);
                 content = content.Replace("{Departure}", book.DateArrival);
                 //content = content.Replace("{Departure}", book.DateArrival.ToString("dddd, dd MMMM yyyy"));
 
-                content = content.Replace("{Request}", book.Message);
+                //content = content.Replace("{Request}", book.Message);
                 content = content.Replace("{HotelName}", get.CompanyName);
                 content = content.Replace("{Add}", get.Address);
                 content = content.Replace("{Hotline}", get.Phone);

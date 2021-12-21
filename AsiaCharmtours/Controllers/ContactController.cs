@@ -23,7 +23,7 @@ namespace AsiaCharmtours.Controllers
 
         [Route("book-contact")]
         [HttpPost]
-        public ActionResult AddBook(W_Contact book, string menuAlias)
+        public ActionResult ViewContact(W_Contact book, string menuAlias, string FirstName, string LastName )
         {
             if ((int)TempData["Spammm"] == 1)
             {
@@ -40,6 +40,7 @@ namespace AsiaCharmtours.Controllers
                     insert = book;
                     insert.Date = DatetimeHelper.DateTimeUTCNow();
                     insert.LanguageCode = lan;
+                    insert.FullName = FirstName +' ' + LastName ;
                     db.W_Contact.Add(insert);
                     db.SaveChanges();
 
@@ -56,13 +57,15 @@ namespace AsiaCharmtours.Controllers
                     W_Company get = db.W_Company.FirstOrDefault();
                     string content = getTemplate.Content;
 
-                    content = content.Replace("{Gender}", book.Gender);
+                    //content = content.Replace("{Gender}", book.Gender);
                     content = content.Replace("{FullName}", book.FullName);
                     content = content.Replace("{Tel}", book.Phone.ToString());
                     content = content.Replace("{Email}", book.Email);
-                    content = content.Replace("{Country}", book.Nationality);
+                    content = content.Replace("{Country}", book.Country);
+                    content = content.Replace("{Company}", book.Company);
+                    content = content.Replace("{Websites}", book.Website);
 
-                    content = content.Replace("{Request}", book.Request);
+                    //content = content.Replace("{Request}", book.Request);
                     content = content.Replace("{HotelName}", get.CompanyName);
                     content = content.Replace("{Add}", get.Address);
                     content = content.Replace("{Hotline}", get.Phone);
@@ -72,12 +75,12 @@ namespace AsiaCharmtours.Controllers
                     W_Helper.SendMailGuest(TKmail, book.Email, getTemplate.Subject, content);
                     W_Helper.SendMailGuest(TKmail, get.Email, getTemplate.Subject, content);
 
-                    return View("Booking/AddBook");
+                    return View();
                 }
             }
             else
             {
-                return View("ContactError");
+                return View("Contact/Error");
             }
             
         }

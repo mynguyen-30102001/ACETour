@@ -26,7 +26,33 @@
     <link rel="stylesheet" href="~/Content/css/swiper.min.css">
     <link rel="stylesheet" href="~/Content/css/animate.css">
     <title>ACE Travel</title>
+    <style>
+        label.error {
+            display: inline-block;
+            color: red;
+            width: auto;
+        }
+
+        #wraploadding {
+            background-color: #fff;
+            opacity: 0.8;
+            z-index: 5000;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: none;
+        }
+
+            #wraploadding div#imgloadding {
+                width: 100px;
+                height: 100px;
+                margin: auto;
+                position: relative;
+            }
+    </style>
+    @RenderSection("css", false)
 </head>
+
 <body>
     <header>
         <a id="button"><i class="fas fa-angle-up"></i></a>
@@ -61,230 +87,230 @@
                 </div>
             </div>
         </section>
-        @Html.Partial("/Views/PartialView/Website/pHeader.cshtml")
+        @Html.Partial("/Views/PartialView/Website/pHeader.cshtml", company)
 
         <!--<section class="menu" id="header-1">
-    <nav class="navbar navbar-expand-lg navbar-dark background000">
+        <nav class="navbar navbar-expand-lg navbar-dark background000">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="~/Content/index.html">HOME</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        DESTINATIONS
-                    </a>
-                    <div class="dropdown-menu wow fadeInUp" aria-labelledby="navbarDropdown">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Content/index.html">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DESTINATIONS
+                        </a>
+                        <div class="dropdown-menu wow fadeInUp" aria-labelledby="navbarDropdown">
 
-                        <div class="container ">
-                            <div class="row">
-                                <div class="col-xs-5ths text-center">
-                                    <a href="~/Content/vietnam.html">
-                                        <img class="img-dropdownmenu" src="~/Content/images/Laos.png" alt="">
-                                        <div class="margin-10-20 colorf9a size25 tt-menu"> <i> Laos </i></div>
-                                    </a>
+                            <div class="container ">
+                                <div class="row">
+                                    <div class="col-xs-5ths text-center">
+                                        <a href="~/Content/vietnam.html">
+                                            <img class="img-dropdownmenu" src="~/Content/images/Laos.png" alt="">
+                                            <div class="margin-10-20 colorf9a size25 tt-menu"> <i> Laos </i></div>
+                                        </a>
 
-                                </div>
-                                <div class="col-xs-5ths text-center">
-                                    <a href="~/Content/vietnam.html">
-                                        <img class="img-dropdownmenu" src="~/Content/images/ThaiLan.png" alt="">
-                                        <div class="margin-10-20 colorf9a size25 tt-menu"> <i> ThaiLan </i></div>
-                                    </a>
+                                    </div>
+                                    <div class="col-xs-5ths text-center">
+                                        <a href="~/Content/vietnam.html">
+                                            <img class="img-dropdownmenu" src="~/Content/images/ThaiLan.png" alt="">
+                                            <div class="margin-10-20 colorf9a size25 tt-menu"> <i> ThaiLan </i></div>
+                                        </a>
 
-                                </div>
-                                <div class="col-xs-5ths text-center">
-                                    <a href="~/Content/vietnam.html">
-                                        <img class="img-dropdownmenu" src="~/Content/images/vietnam.png" alt="">
-                                        <div class="margin-10-20 colorf9a size25 tt-menu"> <i> VietNam </i></div>
-                                    </a>
+                                    </div>
+                                    <div class="col-xs-5ths text-center">
+                                        <a href="~/Content/vietnam.html">
+                                            <img class="img-dropdownmenu" src="~/Content/images/vietnam.png" alt="">
+                                            <div class="margin-10-20 colorf9a size25 tt-menu"> <i> VietNam </i></div>
+                                        </a>
 
-                                </div>
-                                <div class="col-xs-5ths text-center">
-                                    <a href="~/Content/vietnam.html">
-                                        <img class="img-dropdownmenu" src="~/Content/images/Campuchia.png" alt="">
-                                        <div class="margin-10-20 colorf9a size25 tt-menu"> <i> Campuchia</i></div>
-                                    </a>
+                                    </div>
+                                    <div class="col-xs-5ths text-center">
+                                        <a href="~/Content/vietnam.html">
+                                            <img class="img-dropdownmenu" src="~/Content/images/Campuchia.png" alt="">
+                                            <div class="margin-10-20 colorf9a size25 tt-menu"> <i> Campuchia</i></div>
+                                        </a>
 
-                                </div>
-                                <div class="col-xs-5ths text-center">
-                                    <a href="~/Content/vietnam.html">
-                                        <img class="img-dropdownmenu" src="~/Content/images/Myanmar.png" alt="">
-                                        <div class="margin-10-20 colorf9a size25 tt-menu"> <i> Myanmar</i></div>
-                                    </a>
+                                    </div>
+                                    <div class="col-xs-5ths text-center">
+                                        <a href="~/Content/vietnam.html">
+                                            <img class="img-dropdownmenu" src="~/Content/images/Myanmar.png" alt="">
+                                            <div class="margin-10-20 colorf9a size25 tt-menu"> <i> Myanmar</i></div>
+                                        </a>
 
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
-
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="~/Content/activities.html" id="navbarDropdown">
-                        ACTIVITIES
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="~/Content/activities.html" id="navbarDropdown">
+                            ACTIVITIES
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="">
 
 
-                        <div class="container ">
-                            <div class="row ">
-                                <div class="col-md-4">
-                                    <span class="text-uppercase color696969">Activites</span>
-                                    <div class="row  border-right">
-                                        <div class="col-md-6">
+                            <div class="container ">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <span class="text-uppercase color696969">Activites</span>
+                                        <div class="row  border-right">
+                                            <div class="col-md-6">
 
-                                            <ul class="nav flex-column padding0 ">
-                                                <li class="nav-item ">
-                                                    <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Advender tour</a>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Mega menu</a>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Biking $ Travel</a>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Dropdown menu</a>
-                                                </li>
-                                            </ul>
-                                        </div>-->
+                                                <ul class="nav flex-column padding0 ">
+                                                    <li class="nav-item ">
+                                                        <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Advender tour</a>
+                                                    </li>
+                                                    <li class="nav-item ">
+                                                        <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Mega menu</a>
+                                                    </li>
+                                                    <li class="nav-item ">
+                                                        <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Biking $ Travel</a>
+                                                    </li>
+                                                    <li class="nav-item ">
+                                                        <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Dropdown menu</a>
+                                                    </li>
+                                                </ul>
+                                            </div>-->
         <!-- /.col-md-4  -->
         <!--<div class="col-md-6">
-                <ul class="nav flex-column padding0  ">
-                    <li class="nav-item ">
-                        <a class="nav-link nav-activites padding0" href="detail-destiation.html">Active</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Link item</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Link item</a>
-                    </li>
-                </ul>
+                    <ul class="nav flex-column padding0  ">
+                        <li class="nav-item ">
+                            <a class="nav-link nav-activites padding0" href="detail-destiation.html">Active</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Link item</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link nav-activites padding0 " href="detail-destiation.html">Link item</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-8">
-        <span class="text-uppercase color696969">Popular tour</span>
-        <div class="row" style="margin-top:20px">
-            <div class="col-md-6 col-xs-6">
-                <a class="" href="~/Content/detail-destiation.html">
+        <div class="col-md-8">
+            <span class="text-uppercase color696969">Popular tour</span>
+            <div class="row" style="margin-top:20px">
+                <div class="col-md-6 col-xs-6">
+                    <a class="" href="~/Content/detail-destiation.html">
+                        <div class="row zoomin-img-header">
+
+
+
+                            <div class="col-md-6 zoomin-img-header">
+
+                                <img class="height100" src="~/Content/images/Laos.png" alt="">
+
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
+                                <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
+                            </div>
+                        </div>
+                    </a>
+
+
+                </div>
+                <div class="col-md-6 col-xs-6">
                     <div class="row zoomin-img-header">
-
-
-
                         <div class="col-md-6 zoomin-img-header">
-
-                            <img class="height100" src="~/Content/images/Laos.png" alt="">
-
+                            <img class="height100" src="~/Content/images/1.3.jpg" alt="">
                         </div>
                         <div class="col-md-6 col-xs-6">
                             <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
                             <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
                         </div>
                     </div>
-                </a>
 
 
-            </div>
-            <div class="col-md-6 col-xs-6">
-                <div class="row zoomin-img-header">
-                    <div class="col-md-6 zoomin-img-header">
-                        <img class="height100" src="~/Content/images/1.3.jpg" alt="">
-                    </div>
-                    <div class="col-md-6 col-xs-6">
-                        <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
-                        <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
-                    </div>
                 </div>
+                <div class="col-md-6 col-xs-6">
+                    <div class="row zoomin-img-header">
+                        <div class="col-md-6 zoomin-img-header">
+                            <img class="height100" src="~/Content/images/1.4.jpg" alt="">
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
+                            <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
+                        </div>
+                    </div>
 
 
-            </div>
-            <div class="col-md-6 col-xs-6">
-                <div class="row zoomin-img-header">
-                    <div class="col-md-6 zoomin-img-header">
-                        <img class="height100" src="~/Content/images/1.4.jpg" alt="">
-                    </div>
-                    <div class="col-md-6 col-xs-6">
-                        <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
-                        <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
-                    </div>
                 </div>
+                <div class="col-md-6 col-xs-6">
+                    <div class="row zoomin-img-header">
+                        <div class="col-md-6 zoomin-img-header">
+                            <img class="height100" src="~/Content/images/1.7.jpg" alt="">
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
+                            <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
+                        </div>
+                    </div>
 
 
-            </div>
-            <div class="col-md-6 col-xs-6">
-                <div class="row zoomin-img-header">
-                    <div class="col-md-6 zoomin-img-header">
-                        <img class="height100" src="~/Content/images/1.7.jpg" alt="">
-                    </div>
-                    <div class="col-md-6 col-xs-6">
-                        <span class="text-uppercase tt-content-popular color696969">Popular tour</span>
-                        <p class="color-fff size14">Vietnam and Cambodia Family Tour 14 days</p>
-                    </div>
                 </div>
+                <div>
 
+                </div>
+                <div class="col-md-6">
 
+                </div>
             </div>
-            <div>
-
-            </div>
-            <div class="col-md-6">
-
-            </div>
-        </div>
-    </div>-->
+        </div>-->
         <!-- /.col-md-4  -->
         <!-- /.col-md-4  -->
         <!--</div>
+                                </div>
+
+
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Content/hotel.html">HOTELS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Content/blog.html">BLOG</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Content/About-us.html">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Content/travelagent.html">TRAVEL AGENTS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="search-toggle" data-selector="#header-1"><i class="fas fa-search"></i></a>
+                        </li>
 
 
+                        <div class="searchheader">
+                            <div class="search-box wow fadeInDownp">
+                                <form action="" class="">
+
+                                    <input type="text" class="text search-input" placeholder="Type here to search..." />
+
+
+                                </form>
+
+                            </div>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Content/hotel.html">HOTELS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Content/blog.html">BLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Content/About-us.html">ABOUT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Content/travelagent.html">TRAVEL AGENTS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="search-toggle" data-selector="#header-1"><i class="fas fa-search"></i></a>
-                    </li>
 
 
-                    <div class="searchheader">
-                        <div class="search-box wow fadeInDownp">
-                            <form action="" class="">
+                    </ul>
 
-                                <input type="text" class="text search-input" placeholder="Type here to search..." />
+                </div>
 
 
-                            </form>
-
-                        </div>
-                    </div>
-
-
-                </ul>
-
-            </div>
-
-
-        </nav>
-    </section>-->
+            </nav>
+        </section>-->
     </header>
-        @RenderBody()
+    @RenderBody()
 
 
     <footer>
@@ -524,6 +550,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="./Content/js/wow.min.js "></script>
     <script src="./Content/js/main.js "></script>
     <script src="./Content/js/header.js "></script>

@@ -71,6 +71,8 @@ namespace AsiaCharmtours.Controllers
                         return Tour(menu);
                     case (int)MenuType.Article:
                         return ListArticle(menu);
+                    case (int)MenuType.Blog:
+                        return ListBlog(menu);
                     case (int)MenuType.Contact:
                         return Contact(menu);
                     case (int)MenuType.AboutUs:
@@ -109,6 +111,8 @@ namespace AsiaCharmtours.Controllers
                         return TourDetail(menu, itemAlias);
                     case (int)MenuType.Article:
                         return DetailArticle(menu, itemAlias);
+                    case (int)MenuType.Blog:
+                        return DetailBlog(menu, itemAlias);
                     case (int)MenuType.Question:
                         return DetailQuestion(menu, itemAlias);
                     case (int)MenuType.InfosArticle:
@@ -311,6 +315,41 @@ namespace AsiaCharmtours.Controllers
                 //ViewData["Article"] = listArticle;
                 //ViewData["ArticleDestination"] = listDestitation;
                 return View("Guide/ListGuide", detailsArticle);
+            }
+        }
+        
+        public ActionResult ListBlog(W_Menu menu)
+        {
+            using (var db = new DB())
+            {
+                W_Menu menus = db.W_Menu.FirstOrDefault(x => x.MenuId == menu.MenuParentId);
+                ViewData["menu"] = menus;
+                ViewData["menu2"] = menu;
+                //HttpCookie langCookie = Request.Cookies["LanguageID"];
+                //var lan = langCookie.Value;
+                List<W_Menu> listMenu = QuickData.ListMenuThemes(0, menu.LanguageCode);
+                List<SelectListItem> listmenu = new List<SelectListItem>();
+                listmenu.Add(new SelectListItem() { Value = "All trip types", Text = "All" });
+                foreach (var b in listMenu)
+                {
+                    listmenu.Add(new SelectListItem() { Value = b.MenuName, Text = b.MenuId.ToString() });
+                }
+                ViewBag.ListMenuID = new SelectList(listmenu, "Text", "Value");
+            
+                List<Blog> listAll = db.Blogs.Where(x => x.MainMenuId == menu.MenuId && x.Status && x.LanguageCode == menu.LanguageCode)
+                    .OrderBy(x => x.BlogId).ToList();
+                foreach (var travel in listAll)
+                {
+                    travel.MenuAlias = travel.W_Menu.MenuAlias;
+                    travel.AuthorName = travel.Author.Title;
+                }
+                ViewData["BlogAll"] = listAll;
+
+                Blog detailsBlog = db.Blogs.FirstOrDefault(x => x.MainMenuId == menu.MenuId && x.Status && x.LanguageCode == menu.LanguageCode);
+                //ViewData["ArticleList"] = list;
+                //ViewData["Article"] = listArticle;
+                //ViewData["ArticleDestination"] = listDestitation;
+                return View("Blog/ListBlog", detailsBlog);
             }
         }
 
@@ -591,6 +630,46 @@ namespace AsiaCharmtours.Controllers
             }
         }
 
+        public ActionResult DetailBlog(W_Menu menu, string blogArticle)
+        {
+            using (var db = new DB())
+            {
+                ViewData["menu2"] = menu;
+                W_Menu menus = db.W_Menu.FirstOrDefault(x => x.MenuId == menu.MenuParentId);
+                ViewData["menu"] = menus;
+
+                List<W_Menu> listMenu = QuickData.ListMenuThemes(0, menu.LanguageCode);
+                List<SelectListItem> listmenu = new List<SelectListItem>();
+                listmenu.Add(new SelectListItem() { Value = "All trip types", Text = "All" });
+                foreach (var b in listMenu)
+                {
+                    listmenu.Add(new SelectListItem() { Value = b.MenuName, Text = b.MenuId.ToString() });
+                }
+                ViewBag.ListMenuID = new SelectList(listmenu, "Text", "Value");
+                Blog detailBlog = db.Blogs.FirstOrDefault(x => x.Alias == blogArticle);
+                List<Blog> listAll = db.Blogs.Where(x => x.MainMenuId == menu.MenuId && x.Status).OrderByDescending(x => x.BlogId).ToList();
+                List<BlogRelatedPost> ListBlogRelate = db.BlogRelatedPosts.Where(a => a.BlogId == detailBlog.BlogId).ToList();
+                List<Blog> listRelate = new List<Blog>();
+               
+                foreach (var relate in ListBlogRelate)
+                {
+                    Blog blog = listAll.FirstOrDefault(a => a.BlogId == relate.BlogRelateId);
+                    Author author = db.Authors.FirstOrDefault(x => x.ID == blog.AuthoId);
+                    blog.Author.Title = author.Title;
+                    listRelate.Add(blog);
+                }
+
+                foreach (var travel in listAll)
+                {
+                    travel.MenuAlias = travel.W_Menu.MenuAlias;
+                }
+                ViewData["BlogAll"] = listAll;
+                ViewData["DetailBlog"] = detailBlog;
+                ViewData["Relate"] = listRelate;
+
+                return View("Blog/DetailBlog");
+            }
+        }
         public ActionResult DetailHotel(W_Menu menu, string articleHotel)
         {
             using (var db = new DB())

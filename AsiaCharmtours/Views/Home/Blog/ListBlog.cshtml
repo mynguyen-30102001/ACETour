@@ -1,0 +1,118 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    W_Menu menu = (W_Menu)ViewData["menu"];
+    W_Menu menu2 = (W_Menu)ViewData["menu2"];
+    List<Blog> blogAll = (List<Blog>)ViewData["BlogAll"];
+}
+
+
+<content>
+    <section class="id">
+        <div class="banner">
+            <img class="img-banner" src="@menu2.Background" alt="content">
+            <div class="wrapper-banner text-center  color-fff">
+
+                <h1 class="size60 fontb wow fadeIn">
+                   @menu2.MenuName
+                </h1>
+                <h2 class="size20 fontc">
+                    @Html.Raw(menu2.Description)
+                </h2>
+
+            </div>
+
+        </div>
+    </section>
+    <section>
+
+        <div class="container pad500">
+            <div class="row">
+                <div class="w-100 text-center">
+                    <h2 class="size60 fontb txt-upper text-center" style="letter-spacing: 2px;">LUXURY TRAVEL'S BLOG</h2>
+                    <small class="fontc color696969 size16" style="letter-spacing: 2px;">
+                        The Comprehensive Travel Guide to Southeast Asia
+                    </small>
+                </div>
+                <div class="col-md-8">
+                    @foreach (var itemBlog in blogAll)
+                    {
+                        <div class="margintop30">
+
+                            <div class="blog-part blog-res">
+                                <div class="blog-img">
+                                    <a href="/@itemBlog.MenuAlias/@itemBlog.Alias"><img src="@itemBlog.Avatar" alt="blog-img"></a>
+                                </div>
+                                <div class="blog-info">
+                                    <div class="w-100 text-center fontb size25 txt-upper color000 tt-blog">
+                                        @itemBlog.Title
+                                    </div>
+                                    <div class="blog-meta">
+                                        <span>
+                                            <i class="fas fa-user"></i>
+                                            @itemBlog.AuthorName
+                                        </span>
+                                        <span>
+                                            <i class="far fa-calendar-alt"></i>
+                                            @itemBlog.DateUpdate
+                                        </span>
+
+                                    </div>
+                                    @Html.Raw(itemBlog.Description)
+                                    <a href="blog-details.html">READ MORE</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-4">
+                    <div class="fixed-book-thistour margintop30">
+                        <div class="backgroundfff box-detail-des " style="margin-top:30px ">
+                            <div class="text-center ">
+                                <h3 class="color31f20 fontb size25 border-bottom text-left fontweight-b ">
+                                    How It Works
+                                </h3>
+                                <div class="how-des ">
+                                    <div class="_item ">
+                                        <div class="vk-sidebar-item bd-bott ">
+                                            <div class="vk-sidebar-item__num "> 01</div>
+                                            <div class="vk-sidebar-item__brief ">
+                                                <h2 class="vk-sidebar-item__title ">Send us your inquiry</h2>
+                                                <div class="vk-sidebar-item__text ">&amp; tell us your preferences</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="_item ">
+                                        <div class="vk-sidebar-item bd-bott ">
+                                            <div class="vk-sidebar-item__num "> 01</div>
+                                            <div class="vk-sidebar-item__brief ">
+                                                <h2 class="vk-sidebar-item__title ">Send us your inquiry</h2>
+                                                <div class="vk-sidebar-item__text ">&amp; tell us your preferences</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="_item ">
+                                        <div class="vk-sidebar-item ">
+                                            <div class="vk-sidebar-item__num "> 01</div>
+                                            <div class="vk-sidebar-item__brief ">
+                                                <h2 class="vk-sidebar-item__title ">Send us your inquiry</h2>
+                                                <div class="vk-sidebar-item__text ">&amp; tell us your preferences</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</content>
+

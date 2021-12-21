@@ -1,0 +1,207 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Models
+@using Newtonsoft.Json
+@using AsiaCharmtours.Handler
+
+@{
+    W_Menu menu = (W_Menu)ViewData["menu2"];
+    string lan = Request.Cookies["LanguageID"].Value;
+    Blog detailBlog = (Blog)ViewData["DetailBlog"];
+    List<Blog> listRelate = (List<Blog>)ViewData["Relate"];
+    //List<Blog> blogAll = (List<Blog>)ViewData["BlogAll"];
+    List<EF_Blog> listBlogRelate = QuickData.ListBlogRelate(lan);
+    //var a = detailBlog.BlogRelatedPosts;
+}
+
+<content>
+    
+    <section class="id">
+        <div class="banner">
+            <img class="img-banner" src="@menu.Background" alt="content">
+            <div class="wrapper-banner text-center  color-fff">
+
+                <h1 class="size60 fontb wow fadeIn">
+                    @menu.MenuName
+                </h1>
+                <h2 class="size20 fontc">
+                    @Html.Raw(menu.Description)
+                </h2>
+
+            </div>
+
+        </div>
+    </section>
+    <section>
+
+        <div class="container pad500">
+            <div class="row">
+                <div class="w-100 text-center">
+                    <h2 class="size60 fontb txt-upper text-center" style="letter-spacing: 2px;">LUXURY TRAVEL'S BLOG</h2>
+                    <small class="fontc color696969 size16" style="letter-spacing: 2px;">
+                        The Comprehensive Travel Guide to Southeast Asia
+                    </small>
+                </div>
+                <div class="col-md-9 margintop30 col-sm-12">
+                    <div class="w-100 text-center txt-upper color000 tt-blog">
+                        <p class=""></p>
+                        <h2 class="fontb size25 ">
+                            @detailBlog.Title
+                        </h2>
+                        <div class="blog-meta marginbt">
+                            <span>
+                                <i class="fas fa-user"></i>
+                                @detailBlog.AuthorName
+                            </span>
+                            <span>
+                                <i class="far fa-calendar-alt"></i>
+                                @detailBlog.DateUpdate
+                            </span>
+
+                        </div>
+
+                    </div>
+                    <div class="blog-part blog-res">
+                        <div class="blog-img">
+                            <a href="/@detailBlog.MenuAlias/@detailBlog.Alias"><img src="@detailBlog.Avatar" alt="blog-img"></a>
+                        </div>
+                        <div class="tt-detailblog">
+                            <p class="">
+                                @Html.Raw(detailBlog.Description)
+                            </p>
+                            <span style="font-family: helvetica, arial, sans-serif;">
+                                <div class="su-youtube su-responsive-media-yes">
+                                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/rGUKWKGiG60?" frameborder="0" allowfullscreen="true">
+                                    </iframe>
+                                </div>
+                            </span>
+                        </div>
+
+
+                        @*<div class="content-detail-blog">
+                            <b class="fontb size40">I. What is the best time to Quang Binh?</b>
+
+                            <img src="./images/1.7.jpg" alt="">
+                            <div class="w-100">
+                                <P class="fontc text-center">Images:Quang Binh attracts visitors with the diversity</P>
+                            </div>
+                            <p class="text-center">
+                                Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and Son Doong Cave, the new and biggest cave in the
+                                world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore, to eat and how to live your Quang Binh trip
+                                up. All-in-one-guide for Quang Binh this time.Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and
+                                Son Doong Cave, the new and biggest cave in the world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore,
+                                to eat and how to live your Quang Binh trip up. All-in-one-guide for Quang Binh this time.
+                            </p>
+                        </div>
+                        <div class="content-detail-blog">
+                            <b class="fontb size40">II. How to travel to Quang Binh?</b>
+                            <p>Different means of transport are available, which is suitable for different customers at various prices and experiences.</p>
+                            <img src="./images/1.7.jpg" alt="">
+                            <div class="w-100">
+                                <P class="fontc text-center">Images:Quang Binh attracts visitors with the diversity</P>
+                            </div>
+                            <p class="text-center">
+                                Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and Son Doong Cave, the new and biggest cave in the
+                                world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore, to eat and how to live your Quang Binh trip
+                                up. All-in-one-guide for Quang Binh this time.Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and
+                                Son Doong Cave, the new and biggest cave in the world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore,
+                                to eat and how to live your Quang Binh trip up. All-in-one-guide for Quang Binh this time.
+                            </p>
+                            <div class="w-100 pad500">
+                                <a href="./contactus.html" class="_text k-btn text-center fontb">
+                                    View Details
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="content-detail-blog">
+                            <b class="fontb size30"> 1. What is the best time to Quang Binh?</b>
+
+                            <img src="./images/1.7.jpg" alt="">
+                            <div class="w-100">
+                                <P class="fontc text-center">Images:Quang Binh attracts visitors with the diversity</P>
+                            </div>
+                            <p class="text-center">
+                                Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and Son Doong Cave, the new and biggest cave in the
+                                world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore, to eat and how to live your Quang Binh trip
+                                up. All-in-one-guide for Quang Binh this time.Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and
+                                Son Doong Cave, the new and biggest cave in the world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore,
+                                to eat and how to live your Quang Binh trip up. All-in-one-guide for Quang Binh this time.
+                            </p>
+                        </div>
+                        <div class="tt-detailblog">
+
+                            <span style="font-family: helvetica, arial, sans-serif;">
+                                <div class="su-youtube su-responsive-media-yes">
+                                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/rGUKWKGiG60?" frameborder="0" allowfullscreen="true">
+                                    </iframe>
+                                </div>
+                            </span>
+                            <p class="text-center">
+                                Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and Son Doong Cave, the new and biggest cave in the
+                                world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore, to eat and how to live your Quang Binh trip
+                                up. All-in-one-guide for Quang Binh this time.Known as “The king of cave”, Quang Binh attracts visitors with the diversity of complex of caves in Phong Nha Ke Bang national park, a World Natural Heritage by UNESCO and
+                                Son Doong Cave, the new and biggest cave in the world. Nhat Le beach and various activities in Song Chay – Hang Toi will definitely amaze you as well. Read on to see what is the best time, how to arrive, what to explore,
+                                to eat and how to live your Quang Binh trip up. All-in-one-guide for Quang Binh this time.
+                            </p>
+                        </div>*@
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        @if (listRelate.Count != 0)
+        {
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="w-100">
+                        <h3 class="fontb size40">
+                            Related Posts:
+                        </h3>
+                    </div>
+                    @foreach (var itemRelate in listRelate)
+                    {
+                        <div class="col-md-4 col-xs-6">
+                            <div class="blog-part blog-res">
+                                <div class="blog-img">
+                                    <a href="/@itemRelate.MenuAlias/@itemRelate.Alias"><img src="@itemRelate.Avatar" alt="blog-img"></a>
+                                </div>
+                                <div class="blog-info">
+                                    <div class="w-100 text-center fontb size16 txt-upper color000 tt-blog tt-relacted">
+                                        @itemRelate.Title
+                                    </div>
+                                    <div class="blog-meta">
+                                        <span>
+                                            <i class="fas fa-user"></i>
+                                            @itemRelate.Author.Title
+                                        </span>
+                                        <span>
+                                            <i class="far fa-calendar-alt"></i>
+                                            @itemRelate.DateUpdate
+                                        </span>
+
+                                    </div>
+
+                                    <p class="">
+
+                                        @Html.Raw(itemRelate.Description)
+                                    </p>
+                                    <a href="/@itemRelate.MenuAlias/@itemRelate.Alias">READ MORE</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        }
+
+    </section>
+
+
+</content>
+

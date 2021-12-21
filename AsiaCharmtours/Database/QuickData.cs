@@ -36,6 +36,12 @@ namespace AsiaCharmtours.Database
         [NotMapped]
         public string MenuAlias { get; set; }
     }
+    public partial class Blog
+    {
+        [NotMapped]
+        public string MenuAlias { get; set; }
+        public string AuthorName { get; set; }
+    }
     public partial class W_Hotel
     {
         [NotMapped]
@@ -166,6 +172,30 @@ namespace AsiaCharmtours.Database
             }
         }
 
+        public static List<EF_Blog> ListBlogRelate(string _lang)
+        {
+            using(var db = new DB())
+            {
+                List<EF_Blog> list = db.Blogs.Where(a => a.LanguageCode == _lang)
+                    .Join(db.BlogRelatedPosts, a => a.BlogId, b => b.BlogId, (a, b) => new EF_Blog
+                    {
+                        BlogId = a.BlogId,
+                        BlogRelatedId = (int)b.BlogRelateId,
+                        LanguageCode = a.LanguageCode,
+                        Title = b.Blog.Title,
+                        Avatar =a.Avatar,
+                        Description = b.Blog.Description,
+                        Content = b.Blog.Content,
+                        Background = a.Background,
+                        SelectRelatedPost = a.SelectRelatedPost,
+                        Index = a.Index,
+                        Status = a.Status,
+                        Author = b.Blog.Author,
+                    }).OrderBy(a => a.Index).ToList();
+                return list;
+            }
+        }
+
         public static List<EF_Tour> ListTourLike(string _lang)
         {
             using (var db = new DB())
@@ -255,6 +285,15 @@ namespace AsiaCharmtours.Database
                         PriceExcludes = a.PriceExcludes,
                         Status = (bool)a.Status,
                     }).OrderBy(x => x.Index).ToList();
+                return list;
+            }
+        }
+
+        public static List<Author> ListAuthor(string _lang)
+        {
+            using(var db = new DB())
+            {
+                List<Author> list = db.Authors.Where(a => (bool)a.Status && a.LanguageCode == _lang).ToList();
                 return list;
             }
         }
@@ -637,6 +676,45 @@ namespace AsiaCharmtours.Database
                 // chuyên mục chính
                 List<W_Menu> menus = db.W_Menu
                         .Where(x => x.LanguageCode == _lang && x.Level == 0 && (x.MenuTypeId == (int)MenuType.Question || x.MenuTypeId == (int)MenuType.AboutUs))
+                        .OrderBy(x => x.Index)
+                        .ToList();
+                if (menus is null) menus = new List<W_Menu>();
+                if (menus.Count > 0)
+                {
+                    int maxLevel = menus.Max(x => x.Level) + 1;
+                    List<W_Menu> masterMenus = menus.FindAll(x => x.Level == 0).OrderBy(x => x.Index).ToList();
+                    listMenus.AddRange(masterMenus);
+                    for (int i = 1; i < maxLevel; i++)
+                    {
+                        List<W_Menu> menuCurrentLevel = new List<W_Menu>();
+                        if (masterMenus.Count > 0)
+                            menuCurrentLevel = menus.FindAll(x => x.Level == i).OrderByDescending(x => x.Index).ToList();
+                        else
+                            menuCurrentLevel = menus.FindAll(x => x.Level == i).OrderBy(x => x.Index).ToList();
+                        if (menuCurrentLevel != null && menuCurrentLevel.Count > 0)
+                        {
+                            menuCurrentLevel.ForEach(x =>
+                            {
+                                int indexParentMenu = listMenus.FindIndex(y => y.MenuId == x.MenuParentId);
+                                if (indexParentMenu < 0 || indexParentMenu == listMenus.Count - 1)
+                                    listMenus.Add(x);
+                                else
+                                    listMenus.Insert(indexParentMenu + 1, x);
+                            });
+                        }
+                    }
+                }
+                return listMenus;
+            }
+        }
+        public static List<W_Menu> GetAllMenuBlog(string _lang)
+        {
+            using (var db = new DB())
+            {
+                List<W_Menu> listMenus = new List<W_Menu>();
+                // chuyên mục chính
+                List<W_Menu> menus = db.W_Menu
+                        .Where(x => x.LanguageCode == _lang && x.Level == 0 && (x.MenuTypeId == (int)MenuType.Blog))
                         .OrderBy(x => x.Index)
                         .ToList();
                 if (menus is null) menus = new List<W_Menu>();

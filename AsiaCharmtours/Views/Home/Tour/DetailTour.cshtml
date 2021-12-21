@@ -13,6 +13,13 @@
     List<EF_Tour> listTourLike = QuickData.ListTourLike(lan);
 
 }
+@section css{
+    <style>
+        input {
+            border: none;
+        }
+    </style>
+}
 <content>
     <section class="id">
         <div class="banner-destination">
@@ -85,10 +92,18 @@
                 <div class="row">
                     <div class="col">
                         <ul class="vk-blog-detail__breadcrumb">
-                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com">Home</a></li>
-                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/activities">Activities</a></li>
-                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/activities/culture-tours">Culture Tours</a></li>
-                            <li><a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/tour-item/luxury-grand-cambodia-laos-vietnam-tour-15-days">Luxury Grand Cambodia Laos Vietnam Tour 15 days</a></li>
+                            <li>
+                                <a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com">Home</a>
+                            </li>
+                            <li>
+                                <a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/activities">Activities</a>
+                            </li>
+                            <li>
+                                <a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/activities/culture-tours">Culture Tours</a>
+                            </li>
+                            <li>
+                                <a class="color696969 size16 fontc" href="https://luxurytravelvietnam.com/tour-item/luxury-grand-cambodia-laos-vietnam-tour-15-days">Luxury Grand Cambodia Laos Vietnam Tour 15 days</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -183,154 +198,163 @@
                                     <h3 class="color31f20 fontb size25 border-bottom fontweight-b">
                                         Book this tour
                                     </h3>
-                                    <div class="border-bottom">
-                                        <div class="form-group ">
-                                            <label for="exampleInputPassword1" class="size16 color696969 fontc ">Your name</label>
-                                            <input type="password " class="form-control backgroundef fontc" placeholder="Mr.Nguyen ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="exampleInputPassword1 " class="size16 color696969 fontc ">Phone number</label>
-                                            <input type="number " class="form-control backgroundef fontc " id="exampleInputPassword1 " placeholder=" ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="exampleInputPassword1 " class="size16 color696969 fontc ">Your name</label>
-                                            <input type="email " class="form-control backgroundef fontc " id="exampleInputPassword1 " placeholder="Mr.Nguyen ">
-                                        </div>
-                                        <small class="fontc ">
-                                            By Continuing with this, You have read and  <span>
-                                                <a class="colorf9a " href=" ">agreed to the terms</a>
-                                            </span>
-                                        </small>
-
-
-
-                                    </div>
-                                    <div class="_bot ">
-                                        <div class="row">
-                                            <div class="col-md-4 col-12">
-                                                <div class="_label-1 ">from</div>
-                                                @*<div class="_total "> $ 3150</div>*@
-                                                @tourDetail.PriceExcludes
+                                    <form id="contactform">
+                                        <div class="border-bottom">
+                                            <div class="form-group ">
+                                                <label for="exampleInputPassword1" class="size16 color696969 fontc ">Your name</label>
+                                                <input type="text" name="fullName" id="fullName" class="form-control backgroundef fontc" placeholder="Mr.Nguyen ">
                                             </div>
-                                            <div class="col-md-8 col-12">
-                                                <button type="button" class="btn-sm-book txt-upper fontc" data-toggle="modal" data-target="#exampleModalCenter">
-                                                    book this tour
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-body">
-
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <img class="mdal-img" src="./images/poppup-1.jpg" alt="">
-                                                                        <div class="tt-mdal-img fontc size25 color-fff fontweight-b">
-                                                                            Laos VietNams 5 day in a Tour
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="w-100">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-right: 5px;">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-
-                                                                        <div class="w-100 margin-top-50">
-                                                                            <p class="size40 fontb fontweight-b">
-                                                                                Hello <span>
-                                                                                    Nguyen
-                                                                                </span>
-                                                                            </p>
-                                                                            <p class="fontc size16 margin0 color696969">
-                                                                                You have requested the tour
-                                                                            </p>
-                                                                            <p class="fontc fontweight-b color000 size18">Highlights of Laos 5 days in a Tour of Laos</p>
-                                                                            <p class="fontc size16 margin0 color696969">
-                                                                                Contact information is
-                                                                            </p>
-                                                                            <p class="fontc fontweight-b color000 size18"><span style="padding-right:20px; border-right:2px solid #000; line-height: 20px;">0986756436</span><span style="padding-left:20px">bb&#x40;gmail.com</span></p>
-                                                                        </div>
-                                                                        <div class="row mdal-form">
-                                                                            <div class="col-md-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label class="fontc">Departure date (YYYY/MM/DD) </label>
-                                                                                    <div class='input-group date'>
-                                                                                        <input type='text' id='datetimepicker1' class="form-control backgroundf4" placeholder="" />
-
-                                                                                        <span style="position: absolute;  right: 15px; top: 5px; font-size: 15px;;">
-                                                                                            <i style="left: -39px;" class="far fa-calendar-alt"></i>
-                                                                                        </span>
-
-                                                                                    </div>
-                                                                                </div>
-
-
-                                                                            </div>
-                                                                            <div class="col-md-3 col-xs-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="fontc">Number of Adults </label>
-                                                                                    <div class="input-group">
-
-                                                                                        <input type="number" id="myNumber" class="form-control input-number backgroundf4" value="0" />
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-xs-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="fontc">Number of Children </label>
-                                                                                    <div class="input-group">
-
-                                                                                        <input type="number" id="myNumber" class="form-control input-number backgroundf4 " value="0 " />
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 ">
-                                                                                <label class="fontc ">Hotel Category </label>
-                                                                                <select class="form-control backgroundf4 ">
-                                                                                    <option>3 stars</option>
-                                                                                    <option>4 stars </option>
-                                                                                    <option>5 stars </option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-md-6 ">
-                                                                                <label class="fontc ">Travel Style </label>
-                                                                                <select class="form-control backgroundf4 ">
-                                                                                    <option>Classic & culture</option>
-                                                                                    <option>Family Tour </option>
-                                                                                    <option>Leisure </option>
-                                                                                    <option>Holiday </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row ">
-                                                                            <div class="col-md-6 ">
-                                                                                <div class="form-group ">
-                                                                                    <label for="my-input ">Please enter the code</label>
-                                                                                    <input id="my-input " class="form-control " type="text " name=" ">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="w-100 text-center ">
-                                                                            <button class="mdal-bt-send txt-upper fontc text-center ">
-                                                                                send now
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
+                                            <div class="form-group ">
+                                                <label for="exampleInputPassword1 " class="size16 color696969 fontc ">Phone number</label>
+                                                <input type="number" name="phone" class="form-control backgroundef fontc " id="phone" placeholder=" ">
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="exampleInputPassword1 " class="size16 color696969 fontc ">Email</label>
+                                                <input type="email" name="email" class="form-control backgroundef fontc " id="email" placeholder="webhotel@gmail.com">
+                                            </div>
+                                            <small class="fontc ">
+                                                By Continuing with this, You have read and  <span>
+                                                    <a class="colorf9a " href=" ">agreed to the terms</a>
+                                                </span>
+                                            </small>
+                                        </div>
+                                        <div class="_bot ">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="_label-1 ">from</div>
+                                                    @*<div class="_total "> $ 3150</div>*@
+                                                    @tourDetail.PriceExcludes
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <button id="btn_button" type="submit" class="btn-sm-book txt-upper fontc" data-toggle="modal" @*data-target="#exampleModalCenter"*@>
+                                                        book this tour
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </form>
+                                    <!-- Modal -->
+                                    <div class="modal hide fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <form action="/book-tour" method="post" id="formcontact">
+                                                        <input type="hidden" name="IDtour" value="@tourDetail.TourId" />
+                                                        <input type="hidden" name="TourName" value="@tourDetail.TourName" />
+                                                        <input type="hidden" name="menuAlias" value="@tourDetail.MenuAlias" />
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <img class="mdal-img" src="@tourDetail.Image" alt="">
+                                                                <div class="tt-mdal-img fontc size25 color-fff fontweight-b">
+                                                                    Laos VietNams 5 day in a Tour
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="w-100">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-right: 5px;">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
 
+                                                                <div class="w-100 margin-top-50">
+                                                                    <p class="size40 fontb fontweight-b">
+                                                                        Hello
+                                                                        <input id="FullName" name="FullName" value=""/>
+                                                                        @*<span>
+                                                                                Nguyen
+                                                                            </span>*@
+                                                                    </p>
+                                                                    <p class="fontc size16 margin0 color696969">
+                                                                        You have requested the tour
+                                                                    </p>
+                                                                    <p class="fontc fontweight-b color000 size18">@tourDetail.TourName</p>
+                                                                    <p class="fontc size16 margin0 color696969">
+                                                                        Contact information is
+                                                                    </p>
+                                                                    <p class="fontc fontweight-b color000 size18">
+                                                                        <input id="Phone" name="Phone" value="" style="padding-right:20px; border-right:2px solid #000; line-height: 20px;" />
+                                                                        <input id="Email" name="Email" value="" style="padding-left:20px" />
+                                                                    </p>
+                                                                </div>
+                                                                <div class="row mdal-form">
+                                                                    <div class="col-md-6 col-xs-12">
+                                                                        <div class="form-group">
+                                                                            <label class="fontc">Departure date (YYYY/MM/DD) </label>
+                                                                            <div class='input-group date'>
+                                                                                <input type='date' name="DateArrival" id='datetimepicker1' class="form-control backgroundf4" placeholder="" />
+
+                                                                                @*<span style="position: absolute;  right: 15px; top: 5px; font-size: 15px;;">
+                                                                                    <i style="left: -39px;" class="far fa-calendar-alt"></i>
+                                                                                </span>*@
+
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <div class="col-md-3 col-xs-6">
+                                                                        <div class="form-group">
+                                                                            <label class="fontc">Number of Adults </label>
+                                                                            <div class="input-group">
+
+                                                                                <input type="number" id="adults" name="PeopleAdult" class="form-control input-number backgroundf4" value="1" />
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-xs-6">
+                                                                        <div class="form-group">
+                                                                            <label class="fontc">Number of Children </label>
+                                                                            <div class="input-group">
+
+                                                                                <input type="number" id="children" name="PeopleChild" class="form-control input-number backgroundf4 " value="0" />
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 ">
+                                                                        <label class="fontc ">Hotel Category </label>
+                                                                        <select name="Star" class="form-control backgroundf4 ">
+                                                                            <option value="3">3 stars</option>
+                                                                            <option value="4">4 stars </option>
+                                                                            <option value="5">5 stars </option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-6 ">
+                                                                        <label class="fontc ">Travel Style </label>
+                                                                        <select name="TourType" class="form-control backgroundf4 ">
+                                                                            <option value="Classic & culture">Classic & culture</option>
+                                                                            <option value="Family Tour">Family Tour </option>
+                                                                            <option value="Leisure">Leisure </option>
+                                                                            <option value="Holiday">Holiday </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-md-6 ">
+                                                                        <div class="form-group ">
+                                                                            <label for="my-input ">Please enter the code</label>
+                                                                            <input id="my-input " class="form-control " type="text" name="Code">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="w-100 text-center ">
+                                                                    <button type="submit" class="mdal-bt-send txt-upper fontc text-center ">
+                                                                        send now
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
 
                                     </div>
+
+
+
                                 </div>
                                 <div class="backgroundfff box-detail-des " style="margin-top:30px ">
                                     <div class="text-center ">
@@ -428,7 +452,8 @@
                                     <h3 class="sellingtour-title ">
                                         <a class="size20 color000 " href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias " title="Luxuries and Mysteries of Myanmar 10 days " tabindex="0 ">@itemTourLike.TourName</a>
                                     </h3>
-                                    <span class="_current ">@Html.Raw(itemTourLike.PriceExcludes)</span><a href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias " class="btn-viewdetail " tabindex="0 "><span>View Details</span></a>
+                                    <span class="_current ">@Html.Raw(itemTourLike.PriceExcludes)</span>
+                                    <a href="/@itemTourLike.MenuAlias/@itemTourLike.TourAlias " class="btn-viewdetail " tabindex="0 "><span>View Details</span></a>
                                 </div>
                             </div>
                         </div>
@@ -452,8 +477,78 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="~/Content/js/wow.min.js "></script>
     <script src="~/Content/js/main.js "></script>
     <script src="~/Content/js/header.js "></script>
     <script src="~/Content/js/slider.js "></script>
+
+    <script type="text/javascript">
+        //function LoadingSendEmail() {
+        //    $('#loading').show();
+        //}
+
+        $(document).ready(function () {
+            $('.backgroundef').on('change', function () {
+                //alert("show");
+                var fullName = $('#fullName').val();
+                var phone = $('#phone').val();
+                var email = $('#email').val();
+                $("#FullName").val(fullName);
+                $("#Phone").val(phone);
+                $("#Email").val(email);
+                //$("#FullName").text(fullName);
+                //$("#Phone").text(phone);
+                //$("#Email").text(email);
+            });
+
+            $("#contactform").validate({
+                rules: {
+                    fullName: {
+                        required: true,
+                    },
+                    phone: {
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                },
+                messages: {
+                    fullName: {
+                        required: "Please select a your name",
+
+                    },
+                    phone: {
+                        required: "Please enter your phone",
+                    },
+                    email: {
+                        required: "Please enter your email",
+                        Email: "Email invalidate"
+                    },
+                },
+
+                submitHandler: function (form) {
+                    var fullName = $('#fullName').val();
+                    var phone = $('#phone').val();
+                    var email = $('#email').val();
+
+                    
+                }
+            });
+
+            $('#btn_button').on('click', function () {
+                var _fullName = $('#fullName').val();
+                var _phone = $('#phone').val();
+                var _email = $('#email').val();
+
+                if (_fullName != '' || _phone != '' || _email != '') {
+                    $('#exampleModalCenter').modal('show');
+                }
+            })
+        });
+
+
+    </script>
 }

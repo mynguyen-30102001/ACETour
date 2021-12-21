@@ -29,7 +29,8 @@ namespace AsiaCharmtours.Database
         public int Phone { get; set; }
         public string communicate { get; set; }
         public string Nationality { get; set; }
-        public int Year { get; set; }
+        public Nullable<int> Year { get; set; }
         public string City { get; set; }
+        public Nullable<int> Star { get; set; }
     }
 }

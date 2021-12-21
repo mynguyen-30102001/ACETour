@@ -40,7 +40,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Avatar" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Background" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Background" Type="nvarchar" MaxLength="300" />
           <Property Name="MetaTitle" Type="nvarchar" MaxLength="250" />
           <Property Name="MetaDescription" Type="nvarchar" MaxLength="250" />
           <Property Name="PlanTrip" Type="nvarchar" MaxLength="500" />
@@ -730,9 +730,10 @@
           <Property Name="Address" Type="nvarchar" MaxLength="300" />
           <Property Name="Phone" Type="int" Nullable="false" />
           <Property Name="communicate" Type="nvarchar" MaxLength="250" />
-          <Property Name="Nationality" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Year" Type="int" />
           <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Star" Type="int" />
         </EntityType>
         <EntityType Name="T2_TourGallery">
           <Key>
@@ -909,6 +910,8 @@
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
           <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="W_CoreValue">
           <Key>
@@ -1284,7 +1287,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BlogRelatedPost_Blog">
-          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BlogRelatedPost" Type="Self.BlogRelatedPost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Blog">
@@ -3537,9 +3542,10 @@
           <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="Int32" Nullable="false" />
           <Property Name="communicate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Nationality" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Star" Type="Int32" />
         </EntityType>
         <EntityType Name="T2_TourGallery">
           <Key>
@@ -3740,6 +3746,8 @@
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="W_CoreValue">
           <Key>
@@ -4864,7 +4872,7 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Background" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Background" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="MetaTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="MetaDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PlanTrip" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -5728,6 +5736,7 @@
           <EntitySetMapping Name="T2_TourBook">
             <EntityTypeMapping TypeName="webkh_asiacharmModel.T2_TourBook">
               <MappingFragment StoreEntitySet="T2_TourBook">
+                <ScalarProperty Name="Star" ColumnName="Star" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Nationality" ColumnName="Nationality" />
@@ -5924,6 +5933,8 @@
           <EntitySetMapping Name="W_Contact">
             <EntityTypeMapping TypeName="webkh_asiacharmModel.W_Contact">
               <MappingFragment StoreEntitySet="W_Contact">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Nationality" ColumnName="Nationality" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />

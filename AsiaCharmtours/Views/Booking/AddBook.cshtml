@@ -7,11 +7,20 @@
     W_Company company = QuickData.Company(lan);
     W_Menu menu = (W_Menu)ViewData["menu"];
 }
-<div class="img-banner" style="position: relative; z-index: 10;">
-    <img src="@menu.Background" width="100%" alt="@menu.Title">
-    <h2 class="text-center">@menu.MenuName</h2>
-</div>
-@Html.Partial("/Views/PartialView/Website/pMenuTour.cshtml")
+<section class="id">
+    <div class="banner">
+        <img class="img-banner" src="@menu.Background" alt="content">
+        <div class="wrapper-banner text-center  color-fff">
+
+            <h1 class="size60 fontb wow fadeIn">
+                @menu.MenuName
+            </h1>
+
+
+        </div>
+
+    </div>
+</section>
 <div class="container text-center">
     <div class="thank-you text-center margin-top-20">
         <h2 class="title text-special margin-bottom-0">Thank you for booking with us!</h2>
