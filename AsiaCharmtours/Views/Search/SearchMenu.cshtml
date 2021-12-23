@@ -1,0 +1,54 @@
+﻿@using AsiaCharmtours.Database
+@using AsiaCharmtours.Handler
+@using AsiaCharmtours.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<ShowObject> result = (List<ShowObject>)ViewData["result"];
+}
+
+
+<content>
+    <section>
+        <div class="container pad500">
+            <div class="row">
+                <div class="w-100 text-center">
+                    <h2 class="size60 fontb txt-upper text-center" style="letter-spacing: 2px;">Result search: @ViewBag.KeySearch</h2>
+
+                </div>
+
+                @foreach (var itemSearch in result)
+                {
+                    <div class="col-md-4">
+                        <div class="margintop30">
+
+                            <div class="blog-part blog-res">
+                                <div class="blog-img">
+                                    <a href="/@itemSearch.MenuAlias/@itemSearch.Alias"><img src="@itemSearch.Image" alt="blog-img"></a>
+                                </div>
+                                <div class="blog-info">
+                                    <div class="w-100 text-center fontb size25 txt-upper color000 tt-blog">
+                                        @if (itemSearch.TourName == null)
+                                        {
+                                            @itemSearch.Title
+                                        }
+                                        else
+                                        {
+                                            @itemSearch.TourName
+                                        }
+
+                                    </div>
+                                    @Html.Raw(itemSearch.Description)
+                                    <a href="/@itemSearch.MenuAlias/@itemSearch.Alias">READ MORE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+
+
+</content>
+

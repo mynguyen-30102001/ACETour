@@ -1,124 +1,186 @@
 ﻿@using AsiaCharmtours.Database
 @using AsiaCharmtours.Handler
 @using AsiaCharmtours.Models
+@model List<EF_Tour>
 @{
     string lan = Request.Cookies["LanguageID"].Value;
     W_Menu menu = (W_Menu)ViewData["menu"];
     List<EF_Tour> tourLike = (List<EF_Tour>)ViewData["TourLike"];
-    List<W_Menu> listDestination = QuickData.ListDestination(menu, lan);
+    //List<W_Menu> listDestination = QuickData.ListDestination(menu, lan);
     List<EF_Article> article = QuickData.ListArticle(lan);
-    List<EF_Tour> listTour = QuickData.ListTour(lan);
+
+    List<W_Menu> getAllMenuTour = QuickData.GetAllMenuTours(lan);
+    //List<T2_Tour> listDestinations = QuickData.ListDestinations(lan);
+}
+@section css{
+    <style>
+        /* body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin: 0 0 0.25em;
+            color: black;
+        }*/
+        /* Thiết kẻ thẻ select */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            border: 0 !important;
+            /*background: DeepSkyBlue;*/
+            background-image: none;
+        }
+
+        .select {
+            position: relative;
+            display: flex;
+            width: 18em;
+            height: 3em;
+            /*line-height: 3;*/
+            /*background: #fff;*/
+            overflow: hidden;
+            border-radius: .25em;
+        }
+
+        select {
+            flex: 1;
+            padding: 0 .5em;
+            /*color: #fff;*/
+            cursor: pointer;
+        }
+        .drop {
+            color: #928579;
+            font-size: 25px;
+        }
+        /* thiết kế dấu mũi tên */
+        .select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 1em;
+            /*background: DodgerBlue;*/
+            cursor: pointer;
+            pointer-events: none;
+            -webkit-transition: .25s all ease;
+            -o-transition: .25s all ease;
+            transition: .25s all ease;
+            color: white;
+        }
+        /* Hiệu ứng hover */
+        .select:hover::after {
+            color: Gainsboro;
+        }
+    </style>
 }
 
+<content>
+    <section class="id">
+        <div class="banner">
 
-    <content>
-        <section class="id">
-            <div class="banner">
+            <img class="img-banner" src="@menu.Background" alt="content">
+            <div class="wrapper-banner text-center  color-fff">
+                <!-- <h2 class="size25">
+                    Title name tour
+                </h2> -->
+                <h1 class="size70 fontb">
+                    @menu.MenuName
+                </h1>
 
-                <img class="img-banner" src="@menu.Background" alt="content">
-                <div class="wrapper-banner text-center  color-fff">
-                    <!-- <h2 class="size25">
-                        Title name tour
-                    </h2> -->
-                    <h1 class="size70 fontb">
-                        @menu.MenuName
-                    </h1>
+                <p class="size20 fontc">
+                    @menu.Description
+                </p>
+                <!-- <div class="container" style="margin-top:50px">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-4 col-6 margin0 padding0 form-index backgroundfff">
+                            <div class="small padding-left10 color000">Duration of the trip</div>
+                            <div class="wrap-drop" id="noble-gases">
 
-                    <p class="size20 fontc">
-                        @menu.Description
-                    </p>
-                    <!-- <div class="container" style="margin-top:50px">
-                        <div class="row justify-content-center text-left">
-                            <div class="col-md-4 col-6 margin0 padding0 form-index backgroundfff">
-                                <div class="small padding-left10 color000">Duration of the trip</div>
-                                <div class="wrap-drop" id="noble-gases">
-
-                                    <span>All Noble Gases</span>
-                                    <ul class="drop">
-                                        <li class="selected"><a>All Noble Gases</a></li>
-                                        <li><a>Helium</a></li>
-                                        <li><a>Neon</a></li>
-                                        <li><a>Argon</a></li>
-                                        <li><a>Krypton</a></li>
-                                        <li><a>Xenon</a></li>
-                                        <li><a>Radon</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 margin0 padding0">
-                                <button class="btn-search-index">
-                                    <span class="txt-upper " style="font-weight: 600;">
-                                      Search tour
-                                    </span>
-
-                                </button>
+                                <span>All Noble Gases</span>
+                                <ul class="drop">
+                                    <li class="selected"><a>All Noble Gases</a></li>
+                                    <li><a>Helium</a></li>
+                                    <li><a>Neon</a></li>
+                                    <li><a>Argon</a></li>
+                                    <li><a>Krypton</a></li>
+                                    <li><a>Xenon</a></li>
+                                    <li><a>Radon</a></li>
+                                </ul>
                             </div>
                         </div>
-                    </div> -->
-                </div>
+                        <div class="col-md-3 col-6 margin0 padding0">
+                            <button class="btn-search-index">
+                                <span class="txt-upper " style="font-weight: 600;">
+                                  Search tour
+                                </span>
 
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
             </div>
-        </section>
-        <div class="activities-search">
+
+        </div>
+    </section>
+    <div class="activities-search">
+        <form action="/filter-tour" method="post">
+            <input type="hidden" name="menuAlias" value="@menu.MenuAlias"/>
             <div class="container">
                 <div class="row justify-content-center text-left">
                     <div class="col-md-3 col-6 margin0 padding0 form-index backgroundfff">
                         <div class="search-activ">
                             <div class="small padding-left10 color000">Duration of the trip</div>
-                            <div class="wrap-drop" id="noble-gases">
-
-                                <span>All Noble Gases</span>
-                                <ul class="drop">
-                                    <li class="selected"><a>All Noble Gases</a></li>
-                                    <li><a>Helium</a></li>
-                                    <li><a>Neon</a></li>
-                                    <li><a>Argon</a></li>
-                                    <li><a>Krypton</a></li>
-                                    <li><a>Xenon</a></li>
-                                    <li><a>Radon</a></li>
-                                </ul>
+                            <div class="select">
+                                <select class="drop" name="TypeMenu">
+                                    <option selected disabled>Type Menu</option>
+                                    @foreach (var itemMenuTour in getAllMenuTour)
+                                    {
+                                        <option value="@itemMenuTour.MenuName">@itemMenuTour.MenuName</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-6 margin0 padding0 form-index backgroundfff">
                         <div class="search-activ">
                             <div class="small padding-left10 color000">Duration of the trip</div>
-                            <div class="wrap-drop" id="noble-gases">
-
-                                <span>All Noble Gases</span>
-                                <ul class="drop">
-                                    <li class="selected"><a>All Noble Gases</a></li>
-                                    <li><a>Helium</a></li>
-                                    <li><a>Neon</a></li>
-                                    <li><a>Argon</a></li>
-                                    <li><a>Krypton</a></li>
-                                    <li><a>Xenon</a></li>
-                                    <li><a>Radon</a></li>
-                                </ul>
+                            <div class="select">
+                                <select class="drop" name="NumberDay">
+                                    <option selected disabled>Number Day</option>
+                                    <option value="1">1-3 days</option>
+                                    <option value="2">4-7 days</option>
+                                    <option value="3">8-11 days</option>
+                                    <option value="3">12-15 days</option>
+                                    <option value="3">more 15 days</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-6 margin0 padding0 form-index backgroundfff">
                         <div class="search-activ">
                             <div class="small padding-left10 color000">Duration of the trip</div>
-                            <div class="wrap-drop" id="noble-gases">
-
-                                <span>All Noble Gases</span>
-                                <ul class="drop">
-                                    <li class="selected"><a>All Noble Gases</a></li>
-                                    <li><a>Helium</a></li>
-                                    <li><a>Neon</a></li>
-                                    <li><a>Argon</a></li>
-                                    <li><a>Krypton</a></li>
-                                    <li><a>Xenon</a></li>
-                                    <li><a>Radon</a></li>
-                                </ul>
+                            <div class="select">
+                                <select class="drop" name="Destination">
+                                    <option selected disabled>Destination</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Quảng Ninh">Quảng Ninh</option>
+                                    <option value="Huế">Huế</option>
+                                    <option value="TP HCM">TP HCM</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-6 margin0 padding0">
 
-                        <button class="btn-search-index btn-search-active">
+                        <button type="submit" class="btn-search-index btn-search-active">
 
                             <span class="txt-upper size16" style="font-weight: 600;">
                                 Search tour
@@ -131,26 +193,30 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <section class="activities">
-            <div class="vk-home__about">
-                <div class="container">
-                    <div class="vk-home__about-content row justify-content-center">
-                        <div class="col-md-8 col-xs-12">
-                            @foreach (var itemArticle in article)
+        </form>
+    </div>
+    <section class="activities">
+        <div class="vk-home__about">
+            <div class="container">
+                <div class="vk-home__about-content row justify-content-center">
+                    <div class="col-md-8 col-xs-12">
+                        @foreach (var itemArticle in article)
+                        {
+                            if (itemArticle.MenuAlias == menu.MenuAlias)
                             {
-                                if (itemArticle.MenuAlias == menu.MenuAlias)
-                                {
-                                    <h2 class="vk-home__title animated fadeInUpFix text-center size60 fontb">@itemArticle.Title</h2>
-                                    @Html.Raw(itemArticle.Description)
-                                }
+                                <h2 class="vk-home__title animated fadeInUpFix text-center size60 fontb">@itemArticle.Title</h2>
+                                @Html.Raw(itemArticle.Description)
                             }
-
-                        </div>
+                        }
 
                     </div>
+
                 </div>
             </div>
+        </div>
+
+        @if (Model.Count > 0)
+        {
 
             <div class="introduc margin-top-50 marbt-50 pd-t-bt">
                 <h1 class="size60 text-center">
@@ -158,7 +224,7 @@
                 </h1>
                 <div class="container">
                     <div class="row marbt-50">
-                        @foreach (var itemTour in listTour)
+                        @foreach (var itemTour in Model)
                         {
                             <div class="col-lg-4 col-md-6 col-xs 6">
                                 <div class="sellingtour mar200">
@@ -174,13 +240,14 @@
                                             <h3 class="sellingtour-title">
                                                 <a class="size20 color000" href="./detail-destiation.html" title="Luxuries and Mysteries of Myanmar 10 days" tabindex="0">@itemTour.TourName</a>
                                             </h3>
-                                            <span class="_current">@Html.Raw(itemTour.PriceExcludes)</span><a href="/@itemTour.MenuAlias/@itemTour.TourAlias" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
+                                            <span class="_current">@Html.Raw(itemTour.PriceExcludes)</span>
+                                            <a href="/@itemTour.MenuAlias/@itemTour.TourAlias" class="btn-viewdetail" tabindex="0"><span>View Details</span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
-             
+
 
                     </div>
                     <div class="w-100" style="margin: auto;
@@ -193,39 +260,41 @@
                 </div>
             </div>
 
-
-            <div class="make-bottom">
-                <div class="make-bottom-img">
-                    <img class="" src="~/Content/images/1.4.jpg" alt="">
-                    <div class="make-bottom-txt">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-10">
-                                    <p class="size40 text-center color-fff">
-                                        We know you are unique, so we're here to create the unique experinces for you
-                                    </p>
-                                    <div class="w-100 text-center" style="margin-top: 30px;">
-                                        <a href="./detail-destiation.html" class="btn-center" tabindex="0"><span>Make an enquiry</span></a>
+        }
 
 
-                                    </div>
+        <div class="make-bottom">
+            <div class="make-bottom-img">
+                <img class="" src="~/Content/images/1.4.jpg" alt="">
+                <div class="make-bottom-txt">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10">
+                                <p class="size40 text-center color-fff">
+                                    We know you are unique, so we're here to create the unique experinces for you
+                                </p>
+                                <div class="w-100 text-center" style="margin-top: 30px;">
+                                    <a href="./detail-destiation.html" class="btn-center" tabindex="0"><span>Make an enquiry</span></a>
 
 
                                 </div>
 
+
                             </div>
+
                         </div>
                     </div>
-
                 </div>
-
 
             </div>
 
-        </section>
+
+        </div>
+
+    </section>
 
 
 
 
-    </content>
+</content>
 

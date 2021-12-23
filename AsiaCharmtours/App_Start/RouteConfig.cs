@@ -19,6 +19,11 @@ namespace AsiaCharmtours
                 controller = "Home",
                 action = "Index"
             });
+            routes.MapRoute("Inquire", "inquire", new
+            {
+                controller = "Inquire",
+                action = "InquireNow"
+            });
             routes.MapRoute("TourSearch", "tour-search", new
             {
                 controller = "Home",

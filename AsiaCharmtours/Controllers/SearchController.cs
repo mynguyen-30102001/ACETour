@@ -113,7 +113,8 @@ namespace AsiaCharmtours.Controllers
             return Json(new { list = model, total = totalRow, status = true }, JsonRequestBehavior.AllowGet);
         }
 
-        
+
+
         public ActionResult Test(string menuAlias)
         {
             using (var db = new DB())
@@ -141,6 +142,89 @@ namespace AsiaCharmtours.Controllers
                 return View("SearchTour", eft);
             }
            
+        }
+        [Route("search-index")]
+        [HttpGet]
+        public ActionResult SearchIndex(string keySearch)
+        {
+            using (var db = new DB())
+            {
+                HttpCookie langCookie = Request.Cookies["LanguageID"];
+                var lan = langCookie.Value;
+                ViewBag.KeySearch = keySearch;
+                List<EF_Tour> list = db.T2_Tour.Where(x => (bool)x.Status && (x.TourName.Contains(keySearch)))
+                    .Join(db.W_Menu, a => a.MainMenuId, b => b.MenuId, (a, b) => new EF_Tour
+                    {
+                        TourName = a.TourName,
+                        PriceExcludes = a.PriceExcludes,
+                        MenuAlias = b.MenuAlias,
+                        DescriptionMin = a.DescriptionMin,
+                        Description  = a.Description,
+                        DateCreate = a.DateCreate,
+                        Destination = a.Destination,
+                        Image = a.Image,
+                        NumberDay = a.NumberDay,
+                        MetaTitle = a.MetaTitle,
+                        MetaDescription = a.MetaDescription
+                    }).ToList();
+                if (list == null)
+                {
+                    return View("/messageSearch");
+                }
+                ViewData["result"] = list;
+                return View();
+            }
+            
+        }
+
+        [Route("search-menu")]
+        [HttpGet]
+        public ActionResult SearchMenu(string keySearch)
+        {
+            using (var db = new DB())
+            {
+                HttpCookie langCookie = Request.Cookies["LanguageID"];
+                List<ShowObject> result = new List<ShowObject>();
+                var lan = langCookie.Value;
+                ViewBag.KeySearch = keySearch;
+                List<ShowObject> tour = db.T2_Tour.Where(x => (bool)x.Status && (x.TourName.Contains(keySearch)))
+                    .Join(db.W_Menu, a => a.MainMenuId, b => b.MenuId, (a, b) => new ShowObject
+                    {
+                        TourName = a.TourName,
+                        PriceExcludes = a.PriceExcludes,
+                        MenuAlias = b.MenuAlias,
+                        Alias = a.TourAlias,
+                        DescriptionMin = a.DescriptionMin,
+                        Description = a.Description,
+                        DateCreate = a.DateCreate,
+                        Image = a.Image,
+                        NumberDay = a.NumberDay,
+                        MetaTitle = a.MetaTitle,
+                        MetaDescription = a.MetaDescription
+                    }).ToList();
+                result.AddRange(tour);
+
+                List<ShowObject> article = db.W_Article.Where(x => (bool)x.Status && (x.Title.Contains(keySearch)))
+                   .Join(db.W_Menu, a => a.MainMenuId, b => b.MenuId, (a, b) => new ShowObject
+                   {
+                       Title = a.Title,
+                       MenuAlias = b.MenuAlias,
+                       Description = a.Description,
+                       Content = a.Content,
+                       Image = a.Avatar,
+                       Alias = a.Alias,
+                       Index = a.Index,
+                   }).ToList();
+                result.AddRange(article);
+                if (result == null)
+                {
+                    return View("/messageSearch");
+                }
+                ViewData["result"] = result;
+                return View();
+            }
+
+
         }
     }
 }

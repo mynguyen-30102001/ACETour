@@ -77,10 +77,10 @@
                     </div>
                     <div class="col-md-5 align-self-center">
                         <div class="row justify-content-end">
-
-                            <div class="inque-now">
-                                <a href="" class="txt-upper color-fff">Inquire Now</a>
-                            </div>
+                                <div class="inque-now">
+                                    <a href="/inquire" class="txt-upper color-fff">Inquire Now</a>
+                                </div>
+                            
                         </div>
 
                     </div>
@@ -564,6 +564,22 @@
             $(".contacthotel").hide();
             $('header').css('margin-top', '0');
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#search-menu").validate({
+                rules: {
+                    keySearch: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    keySearch: {
+                        required:"Please enter key search"
+                    }
+                }
+            })
+        })
     </script>
     @RenderSection("script", false)
 </body>

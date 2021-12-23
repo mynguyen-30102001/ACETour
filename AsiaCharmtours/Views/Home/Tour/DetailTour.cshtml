@@ -530,13 +530,23 @@
                 },
 
                 submitHandler: function (form) {
-                    var fullName = $('#fullName').val();
-                    var phone = $('#phone').val();
-                    var email = $('#email').val();
-
-                    
                 }
             });
+            $("#formcontact").validate({
+                rules: {
+                    DateArrival: {
+                        required : true,
+                    }
+                },
+                messages: {
+                    DateArrival: {
+                        required : "Please enter date arrival",
+                    }
+                },
+                submitHandler: function (form) {
+                    
+                }
+            })
 
             $('#btn_button').on('click', function () {
                 var _fullName = $('#fullName').val();

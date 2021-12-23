@@ -33,27 +33,28 @@
                 <h1 class="size70 fontb wow fadeIn">
                     Southeast Asia
                 </h1>
-                <div class="container" style="margin-top:50px">
-                    <div class="row justify-content-center text-left">
-                        <div class="col-lg-4 col-md-6 col-10 col-6 margin0 padding0 form-index backgroundfff">
+                <form action="/search-index" method="get" class="" id="search-menu1">
+                    <div class="container" style="margin-top:50px">
+                        <div class="row justify-content-center text-left">
 
-                            <form action="" class="">
-
-                                <input type="text" class="text search-input" style="width: 100%; padding: 23px;" placeholder="Type here to search...">
+                            <div class="col-lg-4 col-md-6 col-10 col-6 margin0 padding0 form-index backgroundfff">
 
 
-                            </form>
-                        </div>
-                        <div class="col-md-3 col-10 margin0 padding0">
-                            <button class="btn-search-index">
-                                <span class="txt-upper size16 fontc fontweight-b">
-                                    Search tour
-                                </span>
+                                <input type="text" name="keySearch" class="text search-input" style="width: 100%; padding: 23px;" placeholder="Type here to search...">
 
-                            </button>
+                            </div>
+                            <div class="col-md-3 col-10 margin0 padding0">
+                                <button type="submit" class="btn-search-index">
+                                    <span class="txt-upper size16 fontc fontweight-b">
+                                        Search tour
+                                    </span>
+
+                                </button>
+                            </div>
+
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
         </div>
@@ -339,3 +340,22 @@
 
     </section>
 </content>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#search-menu1").validate({
+                rules: {
+                    keySearch: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    keySearch: {
+                        required:"Please enter key search"
+                    }
+                }
+            })
+        })
+    </script>
+    }

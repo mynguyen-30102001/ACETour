@@ -256,6 +256,7 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InquireController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Database\Author.cs">
       <DependentUpon>DB.tt</DependentUpon>
@@ -2566,6 +2567,9 @@
     <Content Include="Views\Home\Hotel\DetailHotel.cshtml" />
     <Content Include="Views\Home\Blog\ListBlog.cshtml" />
     <Content Include="Views\Home\Blog\DetailBlog.cshtml" />
+    <Content Include="Views\Search\SearchMenu.cshtml" />
+    <Content Include="Views\Search\SearchIndex.cshtml" />
+    <Content Include="Views\Inquire\InquireNow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

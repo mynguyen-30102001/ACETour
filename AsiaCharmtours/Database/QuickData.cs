@@ -280,6 +280,7 @@ namespace AsiaCharmtours.Database
                         Destination = a.Destination,
                         DescriptionMin = a.DescriptionMin,
                         Image = a.Image,
+                        NumberDay = a.NumberDay,
                         Index = a.Index,
                         MainMenuId = a.MainMenuId,
                         PriceExcludes = a.PriceExcludes,
@@ -298,27 +299,27 @@ namespace AsiaCharmtours.Database
             }
         }
 
-        public static List<W_Menu> ListDestination(W_Menu menu, string _lang)
-        {
-            using (var db = new DB())
-            {
-                W_Menu menus = db.W_Menu.FirstOrDefault(x => x.MenuId == menu.MenuId);
-                List<W_Menu> list = db.W_Menu.Where(x => x.MenuParentId == menus.MenuId).ToList();
-                List<W_Menu> menus2 = new List<W_Menu>();
-                if (list != null)
-                {
-                    foreach (var item in list)
-                    {
-                        List<W_Menu> menudestitation = db.W_Menu.Where(x => x.MenuParentId == item.MenuId && x.MenuTypeId == (int)MenuType.TourHighlight).ToList();
-                        foreach (var item2 in menudestitation)
-                        {
-                            menus2.Add(item2);
-                        }
-                    }
-                }
-                return menus2.Take(5).Distinct().ToList();
-            }
-        }
+        //public static List<W_Menu> ListDestination(W_Menu menu, string _lang)
+        //{
+        //    using (var db = new DB())
+        //    {
+        //        W_Menu menus = db.W_Menu.FirstOrDefault(x => x.MenuId == menu.MenuId);
+        //        List<W_Menu> list = db.W_Menu.Where(x => x.MenuParentId == menus.MenuId).ToList();
+        //        List<W_Menu> menus2 = new List<W_Menu>();
+        //        if (list != null)
+        //        {
+        //            foreach (var item in list)
+        //            {
+        //                List<W_Menu> menudestitation = db.W_Menu.Where(x => x.MenuParentId == item.MenuId && x.MenuTypeId == (int)MenuType.TourHighlight).ToList();
+        //                foreach (var item2 in menudestitation)
+        //                {
+        //                    menus2.Add(item2);
+        //                }
+        //            }
+        //        }
+        //        return menus2.Take(5).Distinct().ToList();
+        //    }
+        //}
 
         public static List<W_Menu> ListMenuParent(W_Menu menu, string _lang)
         {
@@ -489,6 +490,26 @@ namespace AsiaCharmtours.Database
             }
         }
 
+        public static List<T2_Tour> ListDestinations(string _lang)
+        {
+            using (var db = new DB())
+            {
+                List<T2_Tour> tours = db.T2_Tour.Where(x => (bool)x.Status && x.LanguageCode == _lang).OrderBy(x => x.Destination).Distinct().ToList();
+                return tours;
+            }
+        }
+
+        public static List<W_Menu> GetAllMenuTours(string _lang = "en")
+        {
+            using(var db = new DB())
+            {
+                List<W_Menu> menus = db.W_Menu
+                        .Where(x => x.LanguageCode == _lang && x.Level == 1 && x.MenuTypeId == (int)MenuType.Tour || x.MenuTypeId == (int)MenuType.TourHighlight)
+                        .OrderBy(x => x.Index)
+                        .ToList();
+                return menus;
+            }
+        }
 
         /// <summary>
         /// Lấy danh sách các chuyên mục menu tour

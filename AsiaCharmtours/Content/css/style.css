@@ -734,15 +734,15 @@
             object-fit: cover;
         }
         
-        .wrapper-banner {
-            position: absolute;
+        /*.wrapper-banner {
+            position: absolute;*/
             /* width: 0; */
-            left: 0;
+            /*left: 0;
             top: 30%;
             right: auto;
             margin: auto;
             width: 100%;
-        }
+        }*/
         
         .btn-search-index {
             width: 100%;
@@ -751,15 +751,15 @@
             border: 0;
         }
         
-        .wrap-drop {
+        /*.wrap-drop {
             cursor: pointer;
             padding: .4rem;
             position: relative;
             width: 100%;
             z-index: 3;
-        }
+        }*/
         
-        .wrap-drop::after {
+      /*  .wrap-drop::after {
             border-color: #695d52 transparent;
             border-style: solid;
             border-width: 10px 10px 0;
@@ -770,9 +770,9 @@
             right: 1rem;
             top: 50%;
             width: 0;
-        }
+        }*/
         
-        .wrap-drop .drop {
+       /* .wrap-drop .drop {
             background: #FFF;
             display: none;
             left: 0;
@@ -785,9 +785,9 @@
             right: 0;
             top: 100%;
             z-index: 2;
-        }
+        }*/
         
-        .wrap-drop .drop li a {
+        /*.wrap-drop .drop select option {
             color: #695d52;
             display: block;
             padding: 1rem;
@@ -798,9 +798,9 @@
         .wrap-drop span {
             color: #928579;
             font-size: 25px;
-        }
+        }*/
         
-        .wrap-drop .drop li:hover a {
+      /*  .wrap-drop .drop option:hover {
             background-color: #695d52;
             color: #e7ded5;
         }
@@ -813,7 +813,7 @@
             display: block;
             opacity: 1;
             pointer-events: auto;
-        }
+        }*/
         
         .vk-home-banner-bot {
             background-color: #e7e7e7;
